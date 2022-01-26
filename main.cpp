@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 16:06:31 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/01/26 17:14:13 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/01/26 17:43:01 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,10 @@ int	main()
 		std::cout << "capacity = " << mine.capacity() << std::endl;
 		mine.reserve(25);
 		std::cout << "capacity = " << mine.capacity() << std::endl;
+		std::cout << "empty? : " << (mine.empty() ? "yes" : "no") << std::endl;
 		mine.clear();
 		std::cout << "size = " << mine.size() << std::endl;
+		std::cout << "empty? : " << (mine.empty() ? "yes" : "no") << std::endl;
 
 	}
 	{
@@ -56,8 +58,10 @@ int	main()
 		std::cout << "capacity = " << real.capacity() << std::endl;
 		real.reserve(25);
 		std::cout << "capacity = " << real.capacity() << std::endl;
+		std::cout << "empty? : " << (real.empty() ? "yes" : "no") << std::endl;
 		real.clear();
 		std::cout << "size = " << real.size() << std::endl;
+		std::cout << "empty? : " << (real.empty() ? "yes" : "no") << std::endl;
 	}
 	// system("leaks containers");
 }
