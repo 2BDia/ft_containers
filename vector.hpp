@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 15:17:05 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/01/26 17:13:39 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/01/26 17:41:27 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,6 @@ namespace ft
 			size_type max_size() const {return this->_alloc.max_size();};
 			void resize(size_type n, value_type val = value_type())
 			{
-				if (n > this->max_size())
-					throw (std::bad_alloc());
 				if (n < this->_size)
 				{
 					(void)val;
@@ -100,8 +98,11 @@ namespace ft
 				}
 			};
 			size_type capacity() const {return this->_capacity;};
+			bool empty() const {return (this->_size == 0) ? true : false;};
 			void reserve (size_type n)
 			{
+				if (n > this->max_size())
+					throw (std::length_error(""));
 				if (n > this->_capacity)
 				{
 					pointer	tmp = this->_alloc.allocate(n);
