@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 15:17:05 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/01/26 16:39:48 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/01/26 17:13:39 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,16 +88,11 @@ namespace ft
 				else
 				{
 					if (n > this->_capacity)
-					{	
-						pointer	tmp = this->_alloc.allocate(n);
-						for (size_type i = 0; i < n; i++)
-						{
-							if (i < this->_capacity)
-								this->_alloc.construct(tmp + i, this->_data[i]);
-						}
-						this->_alloc.deallocate(this->_data, this->_capacity);
-						this->_data = tmp;
-						this->_capacity = n;
+					{
+						if (n > this->_capacity * 2)
+							this->reserve(n);
+						else
+							this->reserve(this->_capacity * 2);
 					}
 					for (size_type i = this->_size; i < n; i++)
 						this->_alloc.construct(this->_data + i, val);
@@ -105,6 +100,21 @@ namespace ft
 				}
 			};
 			size_type capacity() const {return this->_capacity;};
+			void reserve (size_type n)
+			{
+				if (n > this->_capacity)
+				{
+					pointer	tmp = this->_alloc.allocate(n);
+					for (size_type i = 0; i < n; i++)
+					{
+						if (i < this->_capacity)
+							this->_alloc.construct(tmp + i, this->_data[i]);
+					}
+					this->_alloc.deallocate(this->_data, this->_capacity);
+					this->_data = tmp;
+					this->_capacity = n;
+				}
+			};
 			
 
 			//Modifiers functions
