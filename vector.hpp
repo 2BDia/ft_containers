@@ -6,15 +6,17 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 15:17:05 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/01/26 17:41:27 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/01/31 18:11:09 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
 #include <iostream>
-#include <stdexcept>
 #include <memory>
+#include <stdexcept>
+
+#include "iterator.hpp"
 
 namespace ft
 {
@@ -24,14 +26,26 @@ namespace ft
 		public:
 
 			//Member types
-			typedef T 											value_type;
-			typedef Alloc 										allocator_type;
-			typedef typename allocator_type::reference 			reference;
-			typedef typename allocator_type::const_reference	const_reference;
-			typedef typename allocator_type::pointer 			pointer;
-			typedef typename allocator_type::const_pointer		const_pointer;
-			//TODO iterators
-			typedef size_t 										size_type;
+			typedef T 														value_type;
+			typedef Alloc 													allocator_type;
+			typedef typename allocator_type::reference 						reference;
+			typedef typename allocator_type::const_reference				const_reference;
+			typedef typename allocator_type::pointer 						pointer;
+			typedef typename allocator_type::const_pointer					const_pointer;
+			typedef ft::random_access_iterator<value_type>					iterator;
+			typedef ft::random_access_iterator<const value_type>			const_iterator;
+			typedef ft::reverse_random_access_iterator<value_type>			reverse_iterator;
+			typedef ft::reverse_random_access_iterator<const value_type>	const_reverse_iterator;
+			typedef size_t 													size_type;
+
+		private:
+
+			pointer			_data;
+			size_type		_size;
+			size_type		_capacity;
+			allocator_type	_alloc;
+
+		public :
 
 			//Constructors : TODO range and operator=
 			explicit vector(const allocator_type& alloc = allocator_type())
@@ -70,6 +84,12 @@ namespace ft
 				this->clear();
 				this->_alloc.deallocate(this->_data, this->_capacity);
 			};
+
+			//Iterators functions
+			iterator begin() {return this->_data;};
+			const_iterator begin() const {return this->_data;};
+			iterator end() {return this->_data + this->_size;};
+			const_iterator end() const {return this->_data + this->_size;};
 
 			//Capacity functions
 			size_type size() const {return this->_size;};
@@ -116,9 +136,8 @@ namespace ft
 					this->_capacity = n;
 				}
 			};
-			
 
-			//Modifiers functions
+			//Modifiers=
 			void clear()
 			{
 				for(size_type i = 0; i < this->_size; i++)
@@ -126,23 +145,8 @@ namespace ft
 				this->_size = 0;
 			};
 
-			//test
-			void	add(value_type n, int index)
-			{
-				this->_data[index] = n;
-			};
-
-			void	print(void)
-			{
-				for (size_type i = 0; i < this->_size; i++)
-					std::cout << this->_data[i] << std::endl;
-			};
-
-		private:
-
-			pointer	_data;
-			size_type	_size;
-			size_type	_capacity;
-			allocator_type	_alloc;
+			//Element access
+			reference operator[] (size_type n) {return *(this->_data + n);};
+			const_reference operator[] (size_type n) const {return *(this->_data + n);};
 	};
 }
