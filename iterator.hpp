@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 13:37:06 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/01/31 18:09:13 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/02/02 15:44:19 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,12 @@ namespace ft
 				this->_pointer--;
 				return (tmp);
 			};
+			bool operator!=(random_access_iterator const rhs) {return (this->_pointer != rhs._pointer);};
+			bool operator==(random_access_iterator const rhs) {return (this->_pointer == rhs._pointer);};
+			bool operator<(random_access_iterator const rhs) {return (this->_pointer < rhs._pointer);};
+			bool operator<=(random_access_iterator const rhs) {return (this->_pointer <= rhs._pointer);};
+			bool operator>(random_access_iterator const rhs) {return (this->_pointer > rhs._pointer);};
+			bool operator>=(random_access_iterator const rhs) {return (this->_pointer >= rhs._pointer);};
 	};
 
 	template <class Category, class T, class Distance = ptrdiff_t,
@@ -135,5 +141,11 @@ namespace ft
 				this->_pointer++;
 				return (tmp);
 			};
+			bool operator!=(reverse_random_access_iterator const rhs) {return (this->_pointer != rhs._pointer);};
+			bool operator==(reverse_random_access_iterator const rhs) {return (this->_pointer == rhs._pointer);};
+			bool operator<(reverse_random_access_iterator const rhs) {return (this->_pointer > rhs._pointer);};
+			bool operator<=(reverse_random_access_iterator const rhs) {return (this->_pointer >= rhs._pointer);};
+			bool operator>(reverse_random_access_iterator const rhs) {return (this->_pointer < rhs._pointer);};
+			bool operator>=(reverse_random_access_iterator const rhs) {return (this->_pointer <= rhs._pointer);};
 	};
 }
