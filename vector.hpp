@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 15:17:05 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/01/31 18:11:09 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/02/02 14:36:38 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,10 @@ namespace ft
 			const_iterator begin() const {return this->_data;};
 			iterator end() {return this->_data + this->_size;};
 			const_iterator end() const {return this->_data + this->_size;};
+			reverse_iterator rbegin() {return this->_data + (this->_size - 1);};
+			const_reverse_iterator rbegin() const {return this->_data + (this->_size - 1);};
+			reverse_iterator rend() {return this->_data - 1;};
+			const_reverse_iterator rend() const {return this->_data - 1;};
 
 			//Capacity functions
 			size_type size() const {return this->_size;};
