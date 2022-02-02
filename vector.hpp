@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 15:17:05 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/02/02 14:36:38 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/02/02 16:16:31 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,5 +152,21 @@ namespace ft
 			//Element access
 			reference operator[] (size_type n) {return *(this->_data + n);};
 			const_reference operator[] (size_type n) const {return *(this->_data + n);};
+			reference at (size_type n)
+			{
+				if (n > this->_size)
+					throw (std::out_of_range(""));
+				return (this->_data[n]);
+			};
+			const_reference at (size_type n) const
+			{
+				if (n > this->_size)
+					throw (std::out_of_range(""));
+				return (this->_data[n]);
+			};
+			reference front() {return this->_data[0];};
+			const_reference front() const {return this->_data[0];};
+			reference back() {return this->_data[this->_size - 1];};
+			const_reference back() const {return this->_data[this->_size - 1];};
 	};
 }

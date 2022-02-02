@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 13:37:06 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/02/02 15:44:19 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/02/02 15:56:18 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ namespace ft
 			//Destructor
 			~random_access_iterator(void) {};
 
+			//https://www.cplusplus.com/reference/iterator/reverse_iterator/
 			//Operators missing a lot of them
 			void operator=(random_access_iterator const &rhs) {this->_pointer = rhs._pointer;};
 			reference operator*() const {return *this->_pointer;};

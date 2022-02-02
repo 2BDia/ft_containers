@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 16:06:31 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/02/02 15:44:34 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/02/02 16:16:51 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,11 @@ int	main()
 		std::cout << std::endl << "- Size -" << std::endl;
 		std::cout << "size = " << mine.size() << std::endl;
 		std::cout << "max_size = " << mine.max_size() << std::endl;
+
+		std::cout << std::endl << "- Element access -" << std::endl;
+		std::cout << "at(5) = " << mine.at(5) << std::endl;
+		std::cout << "front = " << mine.front() << std::endl;
+		std::cout << "back = " << mine.back() << std::endl;
 
 		std::cout << std::endl << "- Resize -" << std::endl;
 		mine.resize(5);
@@ -224,6 +229,11 @@ int	main()
 		std::cout << "size = " << real.size() << std::endl;
 		std::cout << "max_size = " << real.max_size() << std::endl;
 
+		std::cout << std::endl << "- Element access -" << std::endl;
+		std::cout << "at(5) = " << real.at(5) << std::endl;
+		std::cout << "front = " << real.front() << std::endl;
+		std::cout << "back = " << real.back() << std::endl;
+
 		std::cout << std::endl << "- Resize -" << std::endl;
 		real.resize(5);
 		real.resize(8, 100);
@@ -242,23 +252,17 @@ int	main()
 		std::cout << "empty? : " << (real.empty() ? "yes" : "no") << std::endl;
 	}
 	{
-		std::cout << std::endl << "*** TEST ***" << std::endl;
-		std::vector<int> real(10);
+		// std::cout << std::endl << "*** TEST ***" << std::endl;
+		// std::vector<int> test(10);
 
-		for (size_t i = 0; i < real.size(); i++)
-			real[i] = i;
+		// for (size_t i = 0; i < test.size(); i++)
+		// 	test[i] = i;
 		
-		std::vector<int>::reverse_iterator	rit = real.rbegin();
+		// std::vector<int>::iterator	it = test.end();
 
-		std::cout << "rit = " << *rit << std::endl;
-		std::cout << "++rit = " << *(++rit) << std::endl;
-		std::cout << "++rit = " << *(++rit) << std::endl;
-		std::cout << "--rit = " << *(--rit) << std::endl;
-		rit = real.rend();
-		std::cout << "rit = " << *rit << std::endl;
-		std::cout << "--rit = " << *(--rit) << std::endl;
-		std::cout << "--rit = " << *(--rit) << std::endl;
-		std::cout << "++rit = " << *(++rit) << std::endl;
+		// it--;
+		// std::cout << "end = " << *it << std::endl;
+		// std::cout << "it - 5 = " << *(it - 5) << std::endl;
 	}
 	// system("leaks containers");
 }
