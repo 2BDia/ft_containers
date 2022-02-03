@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 13:37:06 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/02/02 15:56:18 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/02/03 15:06:00 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,10 @@
 
 namespace ft
 {
+	/********************/
+	/*     Iterator     */
+	/********************/
+
 	template <class Category, class T, class Distance = ptrdiff_t,
 				class Pointer = T*, class Reference = T&>
 	struct iterator
@@ -53,8 +57,12 @@ namespace ft
 			//https://www.cplusplus.com/reference/iterator/reverse_iterator/
 			//Operators missing a lot of them
 			void operator=(random_access_iterator const &rhs) {this->_pointer = rhs._pointer;};
+
+			pointer base() const {return this->_pointer;}; //??
+
 			reference operator*() const {return *this->_pointer;};
-			random_access_iterator operator++()
+
+			random_access_iterator& operator++()
 			{
 				this->_pointer++;
 				return (*this);
@@ -65,7 +73,8 @@ namespace ft
 				this->_pointer++;
 				return (tmp);
 			};
-			random_access_iterator operator--()
+
+			random_access_iterator& operator--()
 			{
 				this->_pointer--;
 				return (*this);
@@ -76,13 +85,35 @@ namespace ft
 				this->_pointer--;
 				return (tmp);
 			};
+
 			bool operator!=(random_access_iterator const rhs) {return (this->_pointer != rhs._pointer);};
 			bool operator==(random_access_iterator const rhs) {return (this->_pointer == rhs._pointer);};
 			bool operator<(random_access_iterator const rhs) {return (this->_pointer < rhs._pointer);};
 			bool operator<=(random_access_iterator const rhs) {return (this->_pointer <= rhs._pointer);};
 			bool operator>(random_access_iterator const rhs) {return (this->_pointer > rhs._pointer);};
 			bool operator>=(random_access_iterator const rhs) {return (this->_pointer >= rhs._pointer);};
+
+			random_access_iterator	operator+(difference_type n) const {return this->_pointer + n;};
+			random_access_iterator	operator-(difference_type n) const {return this->_pointer - n;};
+
+			random_access_iterator& operator+=(difference_type n)
+			{
+				this->_pointer += n;
+				return (*this);
+			};
+			random_access_iterator& operator-=(difference_type n)
+			{
+				this->_pointer -= n;
+				return (*this);
+			};
+
+			pointer operator->() const {return &(operator*());};
+			reference operator[](difference_type n) const {return *(operator+(n));};
 	};
+	
+	/********************/
+	/* Reverse_iterator */
+	/********************/
 
 	template <class Category, class T, class Distance = ptrdiff_t,
 				class Pointer = T*, class Reference = T&>
@@ -119,8 +150,12 @@ namespace ft
 
 			//Operators missing a lot of them
 			void operator=(reverse_random_access_iterator const &rhs) {this->_pointer = rhs._pointer;};
+
 			reference operator*() const {return *this->_pointer;};
-			reverse_random_access_iterator operator++()
+
+			pointer base() const {return this->_pointer;}; //??
+
+			reverse_random_access_iterator& operator++()
 			{
 				this->_pointer--;
 				return (*this);
@@ -131,7 +166,8 @@ namespace ft
 				this->_pointer--;
 				return (tmp);
 			};
-			reverse_random_access_iterator operator--()
+
+			reverse_random_access_iterator& operator--()
 			{
 				this->_pointer++;
 				return (*this);
@@ -142,11 +178,29 @@ namespace ft
 				this->_pointer++;
 				return (tmp);
 			};
+
 			bool operator!=(reverse_random_access_iterator const rhs) {return (this->_pointer != rhs._pointer);};
 			bool operator==(reverse_random_access_iterator const rhs) {return (this->_pointer == rhs._pointer);};
 			bool operator<(reverse_random_access_iterator const rhs) {return (this->_pointer > rhs._pointer);};
 			bool operator<=(reverse_random_access_iterator const rhs) {return (this->_pointer >= rhs._pointer);};
 			bool operator>(reverse_random_access_iterator const rhs) {return (this->_pointer < rhs._pointer);};
 			bool operator>=(reverse_random_access_iterator const rhs) {return (this->_pointer <= rhs._pointer);};
+
+			reverse_random_access_iterator	operator+(difference_type n) const {return this->_pointer - n;};
+			reverse_random_access_iterator	operator-(difference_type n) const {return this->_pointer + n;};
+
+			reverse_random_access_iterator& operator+=(difference_type n)
+			{
+				this->_pointer -= n;
+				return (*this);
+			};
+			reverse_random_access_iterator& operator-=(difference_type n)
+			{
+				this->_pointer += n;
+				return (*this);
+			};
+
+			pointer operator->() const {return &(operator*());};
+			reference operator[](difference_type n) const {return *(operator+(n));};
 	};
 }

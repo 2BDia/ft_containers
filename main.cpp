@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 16:06:31 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/02/02 18:29:34 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/02/03 14:53:13 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,16 @@ int	main()
 		std::cout << "--it = " << *(--it) << std::endl;
 		std::cout << "it-- = " << *(it--) << std::endl;
 		std::cout << "it now = " << *it << std::endl;
+		it = it + 5;
+		std::cout << "it + 5 = " << *it << std::endl;
+		it = it - 3;
+		std::cout << "it - 3 = " << *it << std::endl;
+		it += 6;
+		std::cout << "it += 6 = " << *it << std::endl;
+		it -= 2;
+		std::cout << "it -= 2 = " << *it << std::endl;
+		it = mine.begin();
+		std::cout << "it[5] = " << it[5] << std::endl;
 		ft::vector<int>::iterator	one = mine.begin();
 		ft::vector<int>::iterator	two = mine.begin();
 		two++;
@@ -80,6 +90,16 @@ int	main()
 		std::cout << "--rit = " << *(--rit) << std::endl;
 		std::cout << "rit-- = " << *(rit--) << std::endl;
 		std::cout << "rit now = " << *rit << std::endl;
+		rit = rit + 5;
+		std::cout << "rit + 5 = " << *rit << std::endl;
+		rit = rit - 3;
+		std::cout << "rit - 3 = " << *rit << std::endl;
+		rit += 6;
+		std::cout << "rit += 6 = " << *rit << std::endl;
+		rit -= 2;
+		std::cout << "rit -= 2 = " << *rit << std::endl;
+		rit = mine.rbegin();
+		std::cout << "rit[5] = " << rit[5] << std::endl;
 		ft::vector<int>::reverse_iterator	rone = mine.rbegin();
 		ft::vector<int>::reverse_iterator	rtwo = mine.rbegin();
 		rone++;
@@ -167,6 +187,16 @@ int	main()
 		std::cout << "--it = " << *(--it) << std::endl;
 		std::cout << "it-- = " << *(it--) << std::endl;
 		std::cout << "it now = " << *it << std::endl;
+		it = it + 5;
+		std::cout << "it + 5 = " << *it << std::endl;
+		it = it - 3;
+		std::cout << "it - 3 = " << *it << std::endl;
+		it += 6;
+		std::cout << "it += 6 = " << *it << std::endl;
+		it -= 2;
+		std::cout << "it -= 2 = " << *it << std::endl;
+		it = real.begin();
+		std::cout << "it[5] = " << it[5] << std::endl;
 		std::vector<int>::iterator	one = real.begin();
 		std::vector<int>::iterator	two = real.begin();
 		two++;
@@ -206,6 +236,16 @@ int	main()
 		std::cout << "--rit = " << *(--rit) << std::endl;
 		std::cout << "rit-- = " << *(rit--) << std::endl;
 		std::cout << "rit now = " << *rit << std::endl;
+		rit = rit + 5;
+		std::cout << "rit + 5 = " << *rit << std::endl;
+		rit = rit - 3;
+		std::cout << "rit - 3 = " << *rit << std::endl;
+		rit += 6;
+		std::cout << "rit += 6 = " << *rit << std::endl;
+		rit -= 2;
+		std::cout << "rit -= 2 = " << *rit << std::endl;
+		rit = real.rbegin();
+		std::cout << "rit[5] = " << rit[5] << std::endl;
 		std::vector<int>::reverse_iterator	rone = real.rbegin();
 		std::vector<int>::reverse_iterator	rtwo = real.rbegin();
 		rone++;
@@ -268,6 +308,7 @@ int	main()
 	}
 	{
 		std::cout << std::endl << "*** TEST ***" << std::endl;
+
 		std::vector<int> test(10);
 		ft::vector<int>	mine(10);
 		std::vector<int> sec(10);
@@ -280,11 +321,7 @@ int	main()
 			thi[i] = i;
 		ft::vector<int>::iterator	mit = thi.begin();
 		ft::vector<int>::iterator	mite = thi.begin();
-		mite++;
-		mite++;
-		mite++;
-		mite++;
-		mite++;
+		mite += 5;
 
 		test.assign(it, it + 5);
 		for (size_t i = 0; i < test.size(); i++)
