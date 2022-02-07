@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 16:06:31 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/02/07 11:51:11 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/02/07 16:24:58 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -438,7 +438,19 @@ int	main()
 	{
 		std::cout << std::endl << "*** TEST ***" << std::endl;
 
-		
+		ft::vector<int>	mine(10);
+		for (size_t i = 0; i < mine.size(); i++)
+			mine[i] = i;
+		for (size_t i = 0; i < mine.size(); i++)
+			std::cout << mine[i] << std::endl;
+		std::cout << "size = " << mine.size() << std::endl;
+		std::cout << "capacity = " << mine.capacity() << std::endl;
+		ft::vector<int>::iterator it = mine.insert(mine.begin() + 6, 81);
+		std::cout << "pos = " << *it << std::endl;
+		for (size_t i = 0; i < mine.size(); i++)
+			std::cout << mine[i] << std::endl;
+		std::cout << "size = " << mine.size() << std::endl;
+		std::cout << "capacity = " << mine.capacity() << std::endl;
 	}
 	// system("leaks containers");
 }
