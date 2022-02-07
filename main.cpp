@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 16:06:31 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/02/07 10:46:19 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/02/07 11:51:11 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,60 @@
 
 int	main()
 {
-	{		
-		/*********************************/
-		/*              FT               */
-		/*********************************/
-		std::cout << "*** FT ***" << std::endl;
+	/*********************************/
+	/*              FT               */
+	/*********************************/
+	std::cout << "*** FT ***" << std::endl;
+	{
+		std::cout << std::endl << "- Constructors -" << std::endl;
+		ft::vector<int>	zero;
+		ft::vector<int>	one(10);
+		ft::vector<int>	two(10, 81);
+		ft::vector<int>	three(two.begin(), two.begin() + 6);
+		ft::vector<int>	four(three);
+
+		std::cout << "default :" << std::endl;
+		for (size_t i = 0; i < 5; i++)
+			zero.push_back(i);
+		for (size_t i = 0; i < zero.size(); i++)
+			std::cout << zero[i] << std::endl;
+		std::cout << "size = " << zero.size() << std::endl;
+		std::cout << "capacity = " << zero.capacity() << std::endl;
+
+		std::cout << std::endl << "fill 1 :" << std::endl;
+		for (size_t i = 0; i < one.size(); i++)
+			one[i] = i;
+		for (size_t i = 0; i < one.size(); i++)
+			std::cout << one[i] << std::endl;
+		std::cout << "size = " << one.size() << std::endl;
+		std::cout << "capacity = " << one.capacity() << std::endl;
+
+		std::cout << std::endl << "fill 2 :" << std::endl;
+		for (size_t i = 0; i < two.size(); i++)
+			std::cout << two[i] << std::endl;
+			std::cout << "size = " << two.size() << std::endl;
+		std::cout << "capacity = " << two.capacity() << std::endl;
+
+		std::cout << std::endl << "range :" << std::endl;
+		for (size_t i = 0; i < three.size(); i++)
+			std::cout << three[i] << std::endl;
+		std::cout << "size = " << three.size() << std::endl;
+		std::cout << "capacity = " << three.capacity() << std::endl;
+
+		std::cout << std::endl << "copy :" << std::endl;
+		for (size_t i = 0; i < four.size(); i++)
+			std::cout << four[i] << std::endl;
+		std::cout << "size = " << four.size() << std::endl;
+		std::cout << "capacity = " << four.capacity() << std::endl;
+	}
+	{
+		std::cout << std::endl << "- Iterators -" << std::endl;
 		ft::vector<int>	mine(10);
 		for (size_t i = 0; i < mine.size(); i++)
 			mine[i] = i;
 		for (size_t i = 0; i < mine.size(); i++)
 			std::cout << mine[i] << std::endl;
 
-		std::cout << std::endl << "- Iterators -" << std::endl;
 		ft::vector<int>::iterator	it = mine.begin();
 		std::cout << "begin = " << *it << std::endl;
 		it = mine.end();
@@ -183,12 +225,55 @@ int	main()
 		std::cout << "size = " << mine.size() << std::endl;
 		std::cout << "capacity = " << mine.capacity() << std::endl;
 	}
+	/*********************************/
+	/*              STD              */
+	/*********************************/
+	std::cout << std::endl << "-------------------------------------------------------" << std::endl;
+	std::cout << std::endl << "*** STD ***" << std::endl;
 	{
-		/*********************************/
-		/*              STD              */
-		/*********************************/
-		std::cout << std::endl << "-------------------------------------------------------" << std::endl;
-		std::cout << std::endl << "*** STD ***" << std::endl;
+		std::cout << std::endl << "- Constructors -" << std::endl;
+		std::vector<int>	zero;
+		std::vector<int>	one(10);
+		std::vector<int>	two(10, 81);
+		std::vector<int>	three(two.begin(), two.begin() + 6);
+		std::vector<int>	four(three);
+
+		std::cout << "default :" << std::endl;
+		for (size_t i = 0; i < 5; i++)
+			zero.push_back(i);
+		for (size_t i = 0; i < zero.size(); i++)
+			std::cout << zero[i] << std::endl;
+		std::cout << "size = " << zero.size() << std::endl;
+		std::cout << "capacity = " << zero.capacity() << std::endl;
+
+		std::cout << std::endl << "fill 1 :" << std::endl;
+		for (size_t i = 0; i < one.size(); i++)
+			one[i] = i;
+		for (size_t i = 0; i < one.size(); i++)
+			std::cout << one[i] << std::endl;
+		std::cout << "size = " << one.size() << std::endl;
+		std::cout << "capacity = " << one.capacity() << std::endl;
+
+		std::cout << std::endl << "fill 2 :" << std::endl;
+		for (size_t i = 0; i < two.size(); i++)
+			std::cout << two[i] << std::endl;
+			std::cout << "size = " << two.size() << std::endl;
+		std::cout << "capacity = " << two.capacity() << std::endl;
+
+		std::cout << std::endl << "range :" << std::endl;
+		for (size_t i = 0; i < three.size(); i++)
+			std::cout << three[i] << std::endl;
+		std::cout << "size = " << three.size() << std::endl;
+		std::cout << "capacity = " << three.capacity() << std::endl;
+
+		std::cout << std::endl << "copy :" << std::endl;
+		for (size_t i = 0; i < four.size(); i++)
+			std::cout << four[i] << std::endl;
+		std::cout << "size = " << four.size() << std::endl;
+		std::cout << "capacity = " << four.capacity() << std::endl;
+	}
+	{
+		std::cout << std::endl << "- Iterators -" << std::endl;
 		std::vector<int> real(10);
 
 		for (size_t i = 0; i < real.size(); i++)
@@ -196,7 +281,6 @@ int	main()
 		for (size_t i = 0; i < real.size(); i++)
 			std::cout << real[i] << std::endl;
 
-		std::cout << std::endl << "- Iterators -" << std::endl;
 		std::vector<int>::iterator	it = real.begin();
 		std::cout << "begin = " << *it << std::endl;
 		it = real.end();
@@ -354,6 +438,7 @@ int	main()
 	{
 		std::cout << std::endl << "*** TEST ***" << std::endl;
 
+		
 	}
 	// system("leaks containers");
 }
