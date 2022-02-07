@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 15:17:05 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/02/07 10:43:52 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/02/07 10:45:46 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -203,6 +203,12 @@ namespace	ft
 					this->reserve(this->_size + 1);
 				this->_alloc.construct(this->_data + this->_size, val);
 				this->_size++;
+			};
+
+			void pop_back()
+			{
+				this->_alloc.destroy(this->_data + this->_size);
+				this->_size--;
 			};
 
 			void clear()
