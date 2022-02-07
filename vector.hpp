@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 15:17:05 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/02/02 18:24:13 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/02/07 10:24:45 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,9 @@
 #include <stdexcept>
 
 #include "iterator.hpp"
+#include "utils.hpp"
 
-namespace ft
+namespace	ft
 {
 	template< class T, class Alloc = std::allocator<T> >
 	class	vector
@@ -175,19 +176,23 @@ namespace ft
 
 			//Modifiers
 			template <class InputIterator>
-			void assign (InputIterator first, InputIterator last)
+			void assign (InputIterator first, InputIterator last, typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type* = nullptr) //not compatible with list iterators (no last - first possible)
 			{
 				this->reserve(last - first);
 				this->clear();
-				for (int i = 0; i < (last - first); i++)
-					this->_alloc.construct(this->_data + i, first++);
-				this->_size = last - first;
+				size_type	size = last - first;
+				for (size_type i = 0; i < size; i++)
+				{
+					this->_alloc.construct(this->_data + i, *first);
+					first++;
+				}
+				this->_size = size;
 			};
 			void assign (size_type n, const value_type& val)
 			{
 				this->reserve(n);
 				this->clear();
-				for (size_t i = 0; i < n; i++)
+				for (size_type i = 0; i < n; i++)
 					this->_alloc.construct(this->_data + i, val);
 				this->_size = n;
 			};

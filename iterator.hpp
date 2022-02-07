@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 13:37:06 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/02/03 15:06:00 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/02/07 09:53:23 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <iostream>
 #include <memory>
 
-namespace ft
+namespace	ft
 {
 	/********************/
 	/*     Iterator     */
@@ -55,7 +55,7 @@ namespace ft
 			~random_access_iterator(void) {};
 
 			//https://www.cplusplus.com/reference/iterator/reverse_iterator/
-			//Operators missing a lot of them
+			//Operators missing a lot of them https://www.cplusplus.com/reference/iterator/RandomAccessIterator/
 			void operator=(random_access_iterator const &rhs) {this->_pointer = rhs._pointer;};
 
 			pointer base() const {return this->_pointer;}; //??
@@ -106,6 +106,8 @@ namespace ft
 				this->_pointer -= n;
 				return (*this);
 			};
+
+			difference_type operator-(random_access_iterator const &b) {return this->_pointer - b._pointer;};
 
 			pointer operator->() const {return &(operator*());};
 			reference operator[](difference_type n) const {return *(operator+(n));};
