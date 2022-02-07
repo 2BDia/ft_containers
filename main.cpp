@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 16:06:31 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/02/07 10:23:19 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/02/07 10:44:28 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,30 +51,30 @@ int	main()
 		std::cout << "it -= 2 = " << *it << std::endl;
 		it = mine.begin();
 		std::cout << "it[5] = " << it[5] << std::endl;
-		ft::vector<int>::iterator	one = mine.begin();
-		ft::vector<int>::iterator	two = mine.begin();
-		two++;
-		if (one != two)
+		ft::vector<int>::iterator	ione = mine.begin();
+		ft::vector<int>::iterator	itwo = mine.begin();
+		itwo++;
+		if (ione != itwo)
 			std::cout << "!= ok" << std::endl;
-		two--;
-		if (one == two)
+		itwo--;
+		if (ione == itwo)
 			std::cout << "== ok" << std::endl;
-		two++;
-		if (one < two)
+		itwo++;
+		if (ione < itwo)
 			std::cout << "< ok" << std::endl;
-		if (one <= two)
+		if (ione <= itwo)
 		{
-			one++;
-			if (one <= two)
+			ione++;
+			if (ione <= itwo)
 				std::cout << "<= ok" << std::endl;
 		}
-		one++;
-		if (one > two)
+		ione++;
+		if (ione > itwo)
 			std::cout << "> ok" << std::endl;
-		if (one >= two)
+		if (ione >= itwo)
 		{
-			one--;
-			if (one >= two)
+			ione--;
+			if (ione >= itwo)
 				std::cout << ">= ok" << std::endl;
 		}
 
@@ -154,12 +154,27 @@ int	main()
 		std::cout << "empty? : " << (mine.empty() ? "yes" : "no") << std::endl;
 
 		std::cout << std::endl << "- Modifiers -" << std::endl;
-		mine.assign(10, 42);
+		std::cout << "assign" << std::endl;
+		mine.assign(27, 42);
 		for (size_t i = 0; i < mine.size(); i++)
 			std::cout << mine[i] << std::endl;
 		std::cout << "size = " << mine.size() << std::endl;
 		std::cout << "capacity = " << mine.capacity() << std::endl;
-		
+		ft::vector<int>	test(15);
+		for (size_t i = 0; i < test.size(); i++)
+			test[i] = i;
+		mine.assign(test.begin(), test.begin() + 10);
+		for (size_t i = 0; i < mine.size(); i++)
+			std::cout << mine[i] << std::endl;
+		std::cout << "size = " << mine.size() << std::endl;
+		std::cout << "capacity = " << mine.capacity() << std::endl;
+
+		std::cout << std::endl << "push_back" << std::endl;
+		mine.push_back(42);
+		for (size_t i = 0; i < mine.size(); i++)
+			std::cout << mine[i] << std::endl;
+		std::cout << "size = " << mine.size() << std::endl;
+		std::cout << "capacity = " << mine.capacity() << std::endl;
 	}
 	{
 		/*********************************/
@@ -197,30 +212,30 @@ int	main()
 		std::cout << "it -= 2 = " << *it << std::endl;
 		it = real.begin();
 		std::cout << "it[5] = " << it[5] << std::endl;
-		std::vector<int>::iterator	one = real.begin();
-		std::vector<int>::iterator	two = real.begin();
-		two++;
-		if (one != two)
+		std::vector<int>::iterator	ione = real.begin();
+		std::vector<int>::iterator	itwo = real.begin();
+		itwo++;
+		if (ione != itwo)
 			std::cout << "!= ok" << std::endl;
-		two--;
-		if (one == two)
+		itwo--;
+		if (ione == itwo)
 			std::cout << "== ok" << std::endl;
-		two++;
-		if (one < two)
+		itwo++;
+		if (ione < itwo)
 			std::cout << "< ok" << std::endl;
-		if (one <= two)
+		if (ione <= itwo)
 		{
-			one++;
-			if (one <= two)
+			ione++;
+			if (ione <= itwo)
 				std::cout << "<= ok" << std::endl;
 		}
-		one++;
-		if (one > two)
+		ione++;
+		if (ione > itwo)
 			std::cout << "> ok" << std::endl;
-		if (one >= two)
+		if (ione >= itwo)
 		{
-			one--;
-			if (one >= two)
+			ione--;
+			if (ione >= itwo)
 				std::cout << ">= ok" << std::endl;
 		}
 
@@ -300,7 +315,23 @@ int	main()
 		std::cout << "empty? : " << (real.empty() ? "yes" : "no") << std::endl;
 
 		std::cout << std::endl << "- Modifiers -" << std::endl;
-		real.assign(10, 42);
+		std::cout << "assign" << std::endl;
+		real.assign(27, 42);
+		for (size_t i = 0; i < real.size(); i++)
+			std::cout << real[i] << std::endl;
+		std::cout << "size = " << real.size() << std::endl;
+		std::cout << "capacity = " << real.capacity() << std::endl;
+		std::vector<int>	test(15);
+		for (size_t i = 0; i < test.size(); i++)
+			test[i] = i;
+		real.assign(test.begin(), test.begin() + 10);
+		for (size_t i = 0; i < real.size(); i++)
+			std::cout << real[i] << std::endl;
+		std::cout << "size = " << real.size() << std::endl;
+		std::cout << "capacity = " << real.capacity() << std::endl;
+
+		std::cout << std::endl << "push_back" << std::endl;
+		real.push_back(42);
 		for (size_t i = 0; i < real.size(); i++)
 			std::cout << real[i] << std::endl;
 		std::cout << "size = " << real.size() << std::endl;
@@ -309,28 +340,6 @@ int	main()
 	{
 		std::cout << std::endl << "*** TEST ***" << std::endl;
 
-		std::vector<int> test(10);
-		ft::vector<int>	mine(10);
-		std::vector<int> sec(10);
-		ft::vector<int> thi(10);
-
-		for (size_t i = 0; i < sec.size(); i++)
-			sec[i] = i;
-		std::vector<int>::iterator	it = sec.begin();
-		for (size_t i = 0; i < thi.size(); i++)
-			thi[i] = i;
-		ft::vector<int>::iterator	mit = thi.begin();
-		ft::vector<int>::iterator	mite = thi.begin();
-		mite += 5;
-
-		test.assign(it, it + 5);
-		for (size_t i = 0; i < test.size(); i++)
-			std::cout << test[i] << std::endl;
-		std::cout << "capacity = " << test.capacity() << std::endl;
-		mine.assign(mit, mite);
-		for (size_t i = 0; i < mine.size(); i++)
-			std::cout << mine[i] << std::endl;
-		std::cout << "capacity = " << mine.capacity() << std::endl;
 	}
 	// system("leaks containers");
 }

@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 15:17:05 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/02/07 10:24:45 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/02/07 10:43:52 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,7 +196,15 @@ namespace	ft
 					this->_alloc.construct(this->_data + i, val);
 				this->_size = n;
 			};
-			
+
+			void push_back (const value_type& val)
+			{
+				if (this->_size == this->_capacity)
+					this->reserve(this->_size + 1);
+				this->_alloc.construct(this->_data + this->_size, val);
+				this->_size++;
+			};
+
 			void clear()
 			{
 				for(size_type i = 0; i < this->_size; i++)
