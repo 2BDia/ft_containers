@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 15:17:05 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/02/07 11:50:44 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/02/07 16:21:44 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ namespace	ft
 
 		public :
 
-			//Constructors : TODO range and operator=
+			//Constructors
 			explicit vector(const allocator_type& alloc = allocator_type())
 			:
 				_data(NULL),
@@ -95,12 +95,26 @@ namespace	ft
 					this->_alloc.construct(this->_data + i, x._data[i]);
 			};
 
-
 			//Detructor
 			~vector(void)
 			{
 				this->clear();
 				this->_alloc.deallocate(this->_data, this->_capacity);
+			};
+
+			//Operator=
+			vector& operator= (const vector& x)
+			{
+				for (size_type i = this->_size - 1; i >= 0; i--)
+					this->_alloc.destroy(this->_data + i);
+				this->_alloc.deallocate(this->_data, this->_capacity);
+				this->_size = x._size;
+				this->_capacity = x._capacity;
+				this->_alloc = x._capacity;
+				this->_data = this->_alloc.allocate(this->_capacity);
+				for (size_type i; i < this->_size; i++)
+					this->_alloc.construct(this->_data + i, x._data[i]);
+				return (*this);
 			};
 
 			//Iterators functions
@@ -230,12 +244,45 @@ namespace	ft
 				this->_size--;
 			};
 
-			// iterator insert (iterator position, const value_type& val)
-			// {
-			// 	if (this->_size == this->_capacity)
-			// 		this->reserve(this->_size + 1);
-				
-			// };
+			iterator insert (iterator position, const value_type& val)
+			{
+				pointer	tmp;
+				int	check = 0;
+				if (this->_size == this->_capacity)
+				{
+					tmp = this->_alloc.allocate(this->_capacity + 1);
+					check = 1;
+				}
+				else
+					tmp = this->_alloc.allocate(this->_capacity);
+				size_type	i = 0;
+				for (iterator it = this->begin(); it != position; it++)
+				{
+					this->_alloc.construct(tmp + i, this->_data[i]);
+					i++;
+				}
+				this->_alloc.construct(tmp + i, val);
+				size_type	j = i, pos = i;
+				i++;
+				for (iterator it = position + 1; it != this->end() + 1; it++)
+				{
+					this->_alloc.construct(tmp + i, this->_data[j]);
+					i++;
+					j++;
+				}
+				j--;
+				for (reverse_iterator it = this->rbegin(); it != this->rend(); it++)
+				{
+					this->_alloc.destroy(this->_data + j);
+					j--;
+				}
+				this->_alloc.deallocate(this->_data, this->_capacity);
+				this->_data = tmp;
+				this->_size += 1;
+				if (check == 1)
+					this->_capacity += 1;
+				return (this->_data + pos);
+			};
 
 			void clear()
 			{
