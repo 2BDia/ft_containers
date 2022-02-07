@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 13:37:06 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/02/07 09:53:23 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/02/07 10:36:37 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ namespace	ft
 				return (*this);
 			};
 
-			difference_type operator-(random_access_iterator const &b) {return this->_pointer - b._pointer;};
+			difference_type operator-(random_access_iterator const& b) {return this->_pointer - b._pointer;};
 
 			pointer operator->() const {return &(operator*());};
 			reference operator[](difference_type n) const {return *(operator+(n));};
