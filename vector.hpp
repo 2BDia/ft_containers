@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 15:17:05 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/02/07 10:45:46 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/02/07 11:50:44 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,22 @@ namespace	ft
 					this->_data[i] = val;
 			};
 
+			template <class InputIterator>
+			vector (InputIterator first, InputIterator last,
+				const allocator_type& alloc = allocator_type(),
+				typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type* = nullptr) //not compatible with list iterators (no last - first possible)
+			{
+				this->_size = last - first;
+				this->_alloc = alloc;
+				this->_data = this->_alloc.allocate(this->_size);
+				this->_capacity = this->_size;
+				for (size_type i = 0; i < this->_size; i++)
+				{
+					this->_alloc.construct(this->_data + i, *first);
+					first++;
+				}
+			};
+
 			vector(const vector& x)
 			{
 				this->_data = this->_alloc.allocate(x._capacity);
@@ -78,6 +94,7 @@ namespace	ft
 				for (size_type i = 0; i < this->_size; i++)
 					this->_alloc.construct(this->_data + i, x._data[i]);
 			};
+
 
 			//Detructor
 			~vector(void)
@@ -199,8 +216,10 @@ namespace	ft
 
 			void push_back (const value_type& val)
 			{
-				if (this->_size == this->_capacity)
-					this->reserve(this->_size + 1);
+				if (this->_capacity == 0)
+					this->reserve(1);
+				else if (this->_size == this->_capacity)
+					this->reserve(this->_size * 2);
 				this->_alloc.construct(this->_data + this->_size, val);
 				this->_size++;
 			};
@@ -210,6 +229,13 @@ namespace	ft
 				this->_alloc.destroy(this->_data + this->_size);
 				this->_size--;
 			};
+
+			// iterator insert (iterator position, const value_type& val)
+			// {
+			// 	if (this->_size == this->_capacity)
+			// 		this->reserve(this->_size + 1);
+				
+			// };
 
 			void clear()
 			{
