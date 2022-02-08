@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 16:06:31 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/02/08 11:06:11 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/02/08 11:22:40 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -264,6 +264,23 @@ int	main()
 			std::cout << mine[i] << std::endl;
 		std::cout << "size = " << mine.size() << std::endl;
 		std::cout << "capacity = " << mine.capacity() << std::endl;
+
+		std::cout << std::endl << "swap" << std::endl;
+		ft::vector<int>	one(5, 100);
+		ft::vector<int>	two(3, 200);
+		std::cout << "one :";
+		for (size_t i = 0; i < one.size(); i++)
+			std::cout << ' ' << one[i];
+		std::cout << std::endl << "two :";
+		for (size_t i = 0; i < two.size(); i++)
+			std::cout << ' ' << two[i];
+		one.swap(two);
+		std::cout << std::endl << "one :";
+		for (size_t i = 0; i < one.size(); i++)
+			std::cout << ' ' << one[i];
+		std::cout << std::endl << "two :";
+		for (size_t i = 0; i < two.size(); i++)
+			std::cout << ' ' << two[i];
 	}
 	/*********************************/
 	/*              STD              */
@@ -514,11 +531,27 @@ int	main()
 			std::cout << real[i] << std::endl;
 		std::cout << "size = " << real.size() << std::endl;
 		std::cout << "capacity = " << real.capacity() << std::endl;
+
+		std::cout << std::endl << "swap" << std::endl;
+		std::vector<int>	one(5, 100);
+		std::vector<int>	two(3, 200);
+		std::cout << "one :";
+		for (size_t i = 0; i < one.size(); i++)
+			std::cout << ' ' << one[i];
+		std::cout << std::endl << "two :";
+		for (size_t i = 0; i < two.size(); i++)
+			std::cout << ' ' << two[i];
+		one.swap(two);
+		std::cout << std::endl << "one :";
+		for (size_t i = 0; i < one.size(); i++)
+			std::cout << ' ' << one[i];
+		std::cout << std::endl << "two :";
+		for (size_t i = 0; i < two.size(); i++)
+			std::cout << ' ' << two[i];
 	}
 	{
 		std::cout << std::endl << "*** TEST ***" << std::endl;
 
-		
 	}
 	// system("leaks containers");
 }
