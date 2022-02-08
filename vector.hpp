@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 15:17:05 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/02/08 11:25:33 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/02/08 12:03:13 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -345,6 +345,40 @@ namespace	ft
 			};
 
 			//Allocator
-			allocator_type get_allocator() const {return this->_alloc};
+			allocator_type get_allocator() const {return this->_alloc;};
+	};
+
+	//Non-member function overloads
+	template <class T, class Alloc>
+	bool operator== (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs)
+	{
+		if (lhs.size() == rhs.size())
+		{
+			for (size_t i = 0; i < lhs.size(); i++)
+			{
+				if (!(lhs[i] == rhs[i]))
+					return (false);
+			}
+			return (true);
+		}
+		return (false);
+	};
+
+	template <class T, class Alloc>
+	bool operator!= (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs) {return (!(lhs == rhs));};
+
+	template <class T, class Alloc>
+	bool operator<  (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs)
+	{
+		for (size_t i = 0; i < lhs.size() && i < rhs.size(); i++)
+		{
+			if (lhs[i] < rhs[i])
+				return (true);
+			else if (rhs[i] < lhs[i])
+				return (false);
+		}
+		if (lhs.size() < rhs.size())
+			return (true);
+		return (false);
 	};
 }
