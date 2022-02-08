@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 15:17:05 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/02/08 10:30:46 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/02/08 11:04:08 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -255,7 +255,7 @@ namespace	ft
 				for (size_type end = this->_size; end != i; end--)
 					this->_data[end] = this->_data[end - 1];
 				this->_alloc.construct(this->_data + i, val);
-				this->_size += 1;
+				this->_size++;
 				return (iterator(this->_data + i));
 			};
 
@@ -293,6 +293,33 @@ namespace	ft
 				for (size_type j = 0; j < len; j++)
 					this->_alloc.construct(this->_data + (i + j), *(first + j));
 				this->_size += len;
+			};
+
+			iterator erase (iterator position)
+			{
+				size_type	i = 0;
+				for (iterator it = this->begin(); it != position; it++)
+					i++;
+				this->_alloc.destroy(this->_data + i);
+				for (size_type j = i; j < this->_size - 1; j++)
+					this->_data[j] = this->_data[j + 1];
+				this->_size--;
+				return (iterator(this->_data + i));
+			};
+
+			iterator erase (iterator first, iterator last)
+			{
+				size_type	i = 0, len = 0;
+				for (iterator it = first; it != last; it++)
+					len++;
+				for (iterator it = this->begin(); it != first; it++)
+					i++;
+				for (size_type j = 0; j < len; j++)
+					this->_alloc.destroy(this->_data + (i + j));
+				for (size_type j = i; j < this->_size - len; j++)
+					this->_data[j] = this->_data[j + len];
+				this->_size -= len;
+				return (iterator(this->_data + i));
 			};
 
 			void clear()
