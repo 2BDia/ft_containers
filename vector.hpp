@@ -19,8 +19,6 @@
 #include "iterator.hpp"
 #include "utils.hpp"
 
-//lol
-
 namespace	ft
 {
 	template< class T, class Alloc = std::allocator<T> >
