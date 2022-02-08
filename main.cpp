@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 16:06:31 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/02/08 10:38:41 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/02/08 11:06:11 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -249,6 +249,21 @@ int	main()
 			std::cout << mine[i] << std::endl;
 		std::cout << "size = " << mine.size() << std::endl;
 		std::cout << "capacity = " << mine.capacity() << std::endl;
+
+		std::cout << std::endl << "erase" << std::endl;
+		it = mine.erase(mine.begin() + 2);
+		std::cout << "pos = " << *it << std::endl;
+		for (size_t i = 0; i < mine.size(); i++)
+			std::cout << mine[i] << std::endl;
+		std::cout << "size = " << mine.size() << std::endl;
+		std::cout << "capacity = " << mine.capacity() << std::endl;
+		std::cout << std::endl << "erase range" << std::endl;
+		it = mine.erase(mine.begin() + 5, mine.begin() + 13);
+		std::cout << "pos = " << *it << std::endl;
+		for (size_t i = 0; i < mine.size(); i++)
+			std::cout << mine[i] << std::endl;
+		std::cout << "size = " << mine.size() << std::endl;
+		std::cout << "capacity = " << mine.capacity() << std::endl;
 	}
 	/*********************************/
 	/*              STD              */
@@ -484,41 +499,26 @@ int	main()
 			std::cout << real[i] << std::endl;
 		std::cout << "size = " << real.size() << std::endl;
 		std::cout << "capacity = " << real.capacity() << std::endl;
+
+		std::cout << std::endl << "erase" << std::endl;
+		it = real.erase(real.begin() + 2);
+		std::cout << "pos = " << *it << std::endl;
+		for (size_t i = 0; i < real.size(); i++)
+			std::cout << real[i] << std::endl;
+		std::cout << "size = " << real.size() << std::endl;
+		std::cout << "capacity = " << real.capacity() << std::endl;
+		std::cout << std::endl << "erase range" << std::endl;
+		it = real.erase(real.begin() + 5, real.begin() + 13);
+		std::cout << "pos = " << *it << std::endl;
+		for (size_t i = 0; i < real.size(); i++)
+			std::cout << real[i] << std::endl;
+		std::cout << "size = " << real.size() << std::endl;
+		std::cout << "capacity = " << real.capacity() << std::endl;
 	}
 	{
 		std::cout << std::endl << "*** TEST ***" << std::endl;
 
-		// ft::vector<int>	mine(7);
-		// for (size_t i = 0; i < mine.size(); i++)
-		// 	mine[i] = i;
-		// for (size_t i = 0; i < mine.size(); i++)
-		// 	std::cout << mine[i] << std::endl;
-		// std::cout << "size = " << mine.size() << std::endl;
-		// std::cout << "capacity = " << mine.capacity() << std::endl;
-		// ft::vector<int>	test1(20);
-		// for (size_t i = 0; i < test1.size(); i++)
-		// 	test1[i] = i * 10;
-		// mine.insert(mine.begin() + 4, test1.begin() + 1, test1.end() - 1);
-		// for (size_t i = 0; i < mine.size(); i++)
-		// 	std::cout << mine[i] << std::endl;
-		// std::cout << "size = " << mine.size() << std::endl;
-		// std::cout << "capacity = " << mine.capacity() << std::endl;
-
-		// std::vector<int>	real(7);
-		// for (size_t i = 0; i < real.size(); i++)
-		// 	real[i] = i;
-		// for (size_t i = 0; i < real.size(); i++)
-		// 	std::cout << real[i] << std::endl;
-		// std::cout << "size = " << real.size() << std::endl;
-		// std::cout << "capacity = " << real.capacity() << std::endl;
-		// std::vector<int>	test2(20);
-		// for (size_t i = 0; i < test2.size(); i++)
-		// 	test2[i] = i * 10;
-		// real.insert(real.begin() + 4, test2.begin() + 1, test2.end() - 1);
-		// for (size_t i = 0; i < real.size(); i++)
-		// 	std::cout << real[i] << std::endl;
-		// std::cout << "size = " << real.size() << std::endl;
-		// std::cout << "capacity = " << real.capacity() << std::endl;
+		
 	}
 	// system("leaks containers");
 }
