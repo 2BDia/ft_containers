@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 15:17:05 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/02/08 11:04:08 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/02/08 11:25:33 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -258,7 +258,6 @@ namespace	ft
 				this->_size++;
 				return (iterator(this->_data + i));
 			};
-
 			void insert (iterator position, size_type n, const value_type& val)
 			{
 				size_type	i = 0;
@@ -274,7 +273,6 @@ namespace	ft
 					this->_alloc.construct(this->_data + (i + j), val);
 				this->_size += n;
 			};
-
 			template <class InputIterator>
 			void insert (iterator position, InputIterator first, InputIterator last,
 				typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type* = nullptr)
@@ -306,7 +304,6 @@ namespace	ft
 				this->_size--;
 				return (iterator(this->_data + i));
 			};
-
 			iterator erase (iterator first, iterator last)
 			{
 				size_type	i = 0, len = 0;
@@ -322,11 +319,32 @@ namespace	ft
 				return (iterator(this->_data + i));
 			};
 
+			void swap (vector& x)
+			{
+				pointer			data = x._data;
+				size_type		size = x._size;
+				size_type		capacity = x._capacity;
+				allocator_type	alloc = x._alloc;
+
+				x._data = this->_data;
+				x._size = this->_size;
+				x._capacity = this->_capacity;
+				x._alloc = this->_alloc;
+
+				this->_data = data;
+				this->_size = size;
+				this->_capacity = capacity;
+				this->_alloc = alloc;
+			};
+
 			void clear()
 			{
 				for(size_type i = 0; i < this->_size; i++)
 					this->_alloc.destroy(this->_data + i);
 				this->_size = 0;
 			};
+
+			//Allocator
+			allocator_type get_allocator() const {return this->_alloc};
 	};
 }
