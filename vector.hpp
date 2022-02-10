@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 15:17:05 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/02/10 10:45:41 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/02/10 11:01:52 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <iostream>
 #include <memory>
 #include <stdexcept>
+#include <unistd.h>
 
 #include "iterator.hpp"
 #include "utils.hpp"
@@ -108,14 +109,14 @@ namespace	ft
 			//Operator=
 			vector& operator= (const vector& x)
 			{
-				for (size_type i = this->_size - 1; i >= 0; i--)
+				for (size_type i = 0; i < this->_size; i++)
 					this->_alloc.destroy(this->_data + i);
 				this->_alloc.deallocate(this->_data, this->_capacity);
 				this->_size = x._size;
 				this->_capacity = x._capacity;
-				this->_alloc = x._capacity;
+				this->_alloc = x._alloc;
 				this->_data = this->_alloc.allocate(this->_capacity);
-				for (size_type i; i < this->_size; i++)
+				for (size_type i = 0; i < this->_size; i++)
 					this->_alloc.construct(this->_data + i, x._data[i]);
 				return (*this);
 			};
