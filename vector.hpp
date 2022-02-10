@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 15:17:05 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/02/10 11:46:35 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/02/10 15:05:28 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,9 +175,11 @@ namespace	ft
 					pointer	tmp = this->_alloc.allocate(n);
 					for (size_type i = 0; i < n; i++)
 					{
-						if (i < this->_capacity)
+						if (i < this->_size)
+						{
 							this->_alloc.construct(tmp + i, this->_data[i]);
-						this->_alloc.destroy(this->_data + i);
+							this->_alloc.destroy(this->_data + i);
+						}
 					}
 					this->_alloc.deallocate(this->_data, this->_capacity);
 					this->_data = tmp;
@@ -239,7 +241,10 @@ namespace	ft
 				if (this->_capacity == 0)
 					this->reserve(1);
 				else if (this->_size == this->_capacity)
+				{
 					this->reserve(this->_size * 2);
+					std::cout << "hello" << std::endl;
+				}
 				this->_alloc.construct(this->_data + this->_size, val);
 				this->_size++;
 			};
