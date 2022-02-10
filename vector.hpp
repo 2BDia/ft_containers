@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 15:17:05 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/02/10 11:23:53 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/02/10 11:46:35 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -256,7 +256,12 @@ namespace	ft
 				for (iterator it = this->begin(); it != position; it++)
 					i++;
 				if (this->_size == this->_capacity)
-					this->reserve(this->_size * 2);
+				{
+					if (this->_size == 0)
+						this->reserve(1);
+					else
+						this->reserve(this->_size * 2);
+				}
 				for (size_type end = this->_size; end != i; end--)
 					this->_data[end] = this->_data[end - 1];
 				this->_alloc.construct(this->_data + i, val);
