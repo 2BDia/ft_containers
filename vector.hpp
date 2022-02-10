@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 15:17:05 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/02/08 13:10:37 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/02/10 10:45:41 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,10 @@ namespace	ft
 				const allocator_type& alloc = allocator_type(),
 				typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type* = nullptr) //not compatible with list iterators (no last - first possible)
 			{
-				this->_size = last - first;
+				size_type	size = 0;
+				for (; last != first; last--)
+					size++;
+				this->_size = size;
 				this->_alloc = alloc;
 				this->_data = this->_alloc.allocate(this->_size);
 				this->_capacity = this->_size;
@@ -210,9 +213,11 @@ namespace	ft
 			void assign (InputIterator first, InputIterator last,
 				typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type* = nullptr) //not compatible with list iterators (no last - first possible)
 			{
-				this->reserve(last - first);
+				size_type	size = 0;
+				for (; last != first; last--)
+					size++;
+				this->reserve(size);
 				this->clear();
-				size_type	size = last - first;
 				for (size_type i = 0; i < size; i++)
 				{
 					this->_alloc.construct(this->_data + i, *first);
@@ -278,7 +283,7 @@ namespace	ft
 				typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type* = nullptr)
 			{
 				size_type	i = 0, len = 0;
-				for (iterator it = first; it != last; it++)
+				for (InputIterator it = first; it != last; it++)
 					len++;
 				for (iterator it = this->begin(); it != position; it++)
 					i++;
@@ -286,10 +291,10 @@ namespace	ft
 					this->reserve(this->_capacity * 2);
 				else if (this->_size + len > this->_capacity * 2)
 					this->reserve(this->_size + len);
-				for (size_type end = this->_size + len; end != i; end--)
+				for (size_type end = this->_size + len - 1; end >= i + len; end--)
 					this->_data[end] = this->_data[end - len];
 				for (size_type j = 0; j < len; j++)
-					this->_alloc.construct(this->_data + (i + j), *(first + j));
+					this->_alloc.construct((this->_data + i) + j, *(first++));
 				this->_size += len;
 			};
 
