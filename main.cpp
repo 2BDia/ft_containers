@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 16:06:31 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/02/10 15:06:02 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/02/10 15:09:50 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -553,17 +553,7 @@ int	main()
 	{
 		std::cout << std::endl << "*** TEST ***" << std::endl;
 
-		std::list<int> lst;
-		for (int i = 1; i < 5; ++i)
-			lst.push_back(i * 3);
-		ft::vector<int> vct(lst.begin(), lst.end());
-
-		vct.insert(vct.end(), lst.rbegin(), lst.rend());
-
-		std::cout << "size = " << vct.size() << std::endl;
-		std::cout << "capacity = " << vct.capacity() << std::endl;
-		for (size_t i = 0; i < vct.size(); i++)
-			std::cout << vct[i] << std::endl;
+		
 	}
 	// system("leaks containers");
 }
