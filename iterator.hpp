@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 13:37:06 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/02/07 10:36:37 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/02/10 11:33:10 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,18 +47,26 @@ namespace	ft
 			typedef typename ft::iterator<random_access_iterator, T>::pointer			pointer;
 			typedef typename ft::iterator<random_access_iterator, T>::reference			reference;
 
-			//Constructors TODO copy and copy-assign
+			//Constructors
 			random_access_iterator(void) : _pointer(NULL) {};
 			random_access_iterator(pointer pointer) : _pointer(pointer) {};
+			template <class Iter>
+			random_access_iterator (const random_access_iterator<Iter>& it) : _pointer(it.base()) {};
 
 			//Destructor
 			~random_access_iterator(void) {};
 
-			//https://www.cplusplus.com/reference/iterator/reverse_iterator/
-			//Operators missing a lot of them https://www.cplusplus.com/reference/iterator/RandomAccessIterator/
-			void operator=(random_access_iterator const &rhs) {this->_pointer = rhs._pointer;};
+			//Operator=
+			random_access_iterator &operator=(const random_access_iterator& it)
+			{
+				if (this == &it)
+					return (*this);
+				this->_pointer = it._pointer;
+				return (*this);
+			}
 
-			pointer base() const {return this->_pointer;}; //??
+			//Member functions
+			pointer base() const {return this->_pointer;};
 
 			reference operator*() const {return *this->_pointer;};
 
@@ -204,5 +212,32 @@ namespace	ft
 
 			pointer operator->() const {return &(operator*());};
 			reference operator[](difference_type n) const {return *(operator+(n));};
+	};
+
+	//Non-member function overloads
+	//Still need non member relational operators
+
+	template <class Iterator>
+	ft::random_access_iterator<Iterator> operator+ (
+		typename ft::random_access_iterator<Iterator>::difference_type n,
+		const ft::random_access_iterator<Iterator>& it)
+	{
+		return (it + n);
+	};
+
+	template <class Iterator>
+	typename ft::random_access_iterator<Iterator>::difference_type operator- (
+		const ft::random_access_iterator<Iterator>& lhs,
+		const ft::random_access_iterator<Iterator>& rhs)
+	{
+		return (lhs.base() - rhs.base());
+	};
+
+	template <class Iterator_L, class Iterator_R>
+	typename ft::random_access_iterator<Iterator_L>::difference_type operator- (
+		const ft::random_access_iterator<Iterator_L>& lhs,
+		const ft::random_access_iterator<Iterator_R>& rhs)
+	{
+		return (lhs.base() - rhs.base());
 	};
 }
