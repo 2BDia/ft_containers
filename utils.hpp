@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 09:52:37 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/02/07 10:24:41 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/02/10 12:05:43 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,9 @@ namespace	ft
 	template <> struct is_integral <unsigned short int> : public is_integral_type<true, unsigned short int> {};
 	template <> struct is_integral <unsigned int> : public is_integral_type<true, unsigned int> {};
 	template <> struct is_integral <unsigned long int> : public is_integral_type<true, unsigned long int> {};
+
+	template<class T>
+	struct remove_const				{typedef T type;};
+	template<class T>
+	struct remove_const<const T>	{typedef T type;};
 }
