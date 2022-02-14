@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 16:06:31 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/02/14 09:46:09 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/02/14 11:52:32 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -552,7 +552,50 @@ int	main()
 	}
 	{
 		std::cout << std::endl << "*** TEST ***" << std::endl;
-		
+
+		// ft::vector<int>	mine(10);
+		// for (size_t i = 0; i < mine.size(); i++)
+		// 	mine[i] = i;
+		// for (size_t i = 0; i < mine.size(); i++)
+		// 	std::cout << mine[i] << std::endl;
+		// ft::vector<int>::reverse_iterator	mrit = mine.rbegin();
+		// std::cout << "base = " << int(*(mrit.base())) << std::endl;
+		// std::cout << "begin = " << *mrit << std::endl;
+		// std::cout << "++begin = " << *(++mrit) << std::endl;
+		// std::cout << "mrit++ = " << *(mrit++) << std::endl;
+		// std::cout << "mrit now = " << *mrit << std::endl;
+		// std::cout << "--mrit = " << *(--mrit) << std::endl;
+		// std::cout << "mrit-- = " << *(mrit--) << std::endl;
+		// std::cout << "mrit now = " << *mrit << std::endl;
+		// std::cout << "mrit + 5 = " << *(mrit + 5) << std::endl;
+		// mrit = mine.rend() - 5;
+		// std::cout << "mrit - 5 = " << *(mrit - 5) << std::endl;
+		// mrit -= 2;
+		// std::cout << "mrit -= 2 = " << *(mrit) << std::endl;
+		// mrit += 3;
+		// std::cout << "mrit += 3 = " << *(mrit) << std::endl;
+
+		// std::vector<int>	real(10);
+		// for (size_t i = 0; i < real.size(); i++)
+		// 	real[i] = i;
+		// for (size_t i = 0; i < real.size(); i++)
+		// 	std::cout << real[i] << std::endl;
+		// std::vector<int>::reverse_iterator	rit = real.rbegin();
+		// std::cout << "base = " << int(*(rit.base())) << std::endl;
+		// std::cout << "begin = " << *rit << std::endl;
+		// std::cout << "++begin = " << *(++rit) << std::endl;
+		// std::cout << "rit++ = " << *(rit++) << std::endl;
+		// std::cout << "rit now = " << *rit << std::endl;
+		// std::cout << "--rit = " << *(--rit) << std::endl;
+		// std::cout << "rit-- = " << *(rit--) << std::endl;
+		// std::cout << "rit now = " << *rit << std::endl;
+		// std::cout << "rit + 5 = " << *(rit + 5) << std::endl;
+		// rit = real.rend() - 5;
+		// std::cout << "rit - 5 = " << *(rit - 5) << std::endl;
+		// rit -= 2;
+		// std::cout << "rit -= 2 = " << *(rit) << std::endl;
+		// rit += 3;
+		// std::cout << "rit += 3 = " << *(rit) << std::endl;
 	}
 	// system("leaks containers");
 }

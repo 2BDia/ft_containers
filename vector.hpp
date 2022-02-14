@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 15:17:05 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/02/14 09:48:48 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/02/14 10:45:20 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include <stdexcept>
 
 #include "iterator.hpp"
+#include "reverse_iterator.hpp"
 #include "utils.hpp"
 
 namespace	ft
@@ -27,17 +28,17 @@ namespace	ft
 		public:
 
 			//Member types
-			typedef T 														value_type;
-			typedef Alloc 													allocator_type;
-			typedef typename allocator_type::reference 						reference;
-			typedef typename allocator_type::const_reference				const_reference;
-			typedef typename allocator_type::pointer 						pointer;
-			typedef typename allocator_type::const_pointer					const_pointer;
-			typedef ft::random_access_iterator<value_type>					iterator;
-			typedef ft::random_access_iterator<const value_type>			const_iterator;
-			typedef ft::reverse_random_access_iterator<value_type>			reverse_iterator;
-			typedef ft::reverse_random_access_iterator<const value_type>	const_reverse_iterator;
-			typedef size_t 													size_type;
+			typedef T 											value_type;
+			typedef Alloc 										allocator_type;
+			typedef typename allocator_type::reference 			reference;
+			typedef typename allocator_type::const_reference	const_reference;
+			typedef typename allocator_type::pointer 			pointer;
+			typedef typename allocator_type::const_pointer		const_pointer;
+			typedef ft::random_iterator<value_type>				iterator;
+			typedef ft::random_iterator<const value_type>		const_iterator;
+			typedef ft::reverse_iterator<iterator>				reverse_iterator;
+			typedef ft::reverse_iterator<const iterator>		const_reverse_iterator;
+			typedef size_t 										size_type;
 
 		private:
 
@@ -121,17 +122,17 @@ namespace	ft
 			};
 
 			//Iterators functions
-			iterator begin() {return this->_data;};
-			const_iterator begin() const {return this->_data;};
+			iterator begin() {return iterator(this->_data);};
+			const_iterator begin() const {return const_iterator(this->_data);};
 
-			iterator end() {return this->_data + this->_size;};
-			const_iterator end() const {return this->_data + this->_size;};
+			iterator end() {return iterator(this->_data + this->_size);};
+			const_iterator end() const {return const_iterator(this->_data + this->_size);};
 
-			reverse_iterator rbegin() {return this->_data + (this->_size - 1);};
-			const_reverse_iterator rbegin() const {return this->_data + (this->_size - 1);};
+			reverse_iterator rbegin() {return reverse_iterator(iterator(this->_data + (this->_size - 1)));};
+			const_reverse_iterator rbegin() const {return const_reverse_iterator(const_iterator(this->_data + (this->_size - 1)));};
 
-			reverse_iterator rend() {return this->_data - 1;};
-			const_reverse_iterator rend() const {return this->_data - 1;};
+			reverse_iterator rend() {return reverse_iterator(iterator(this->_data - 1));};
+			const_reverse_iterator rend() const {return const_reverse_iterator(const_iterator(this->_data - 1));};
 
 			//Capacity functions
 			size_type size() const {return this->_size;};
