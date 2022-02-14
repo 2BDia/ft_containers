@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 15:17:05 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/02/14 10:45:20 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/02/14 14:04:21 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ namespace	ft
 			typedef ft::random_iterator<value_type>				iterator;
 			typedef ft::random_iterator<const value_type>		const_iterator;
 			typedef ft::reverse_iterator<iterator>				reverse_iterator;
-			typedef ft::reverse_iterator<const iterator>		const_reverse_iterator;
+			typedef ft::reverse_iterator<const_iterator>		const_reverse_iterator;
 			typedef size_t 										size_type;
 
 		private:
@@ -128,11 +128,11 @@ namespace	ft
 			iterator end() {return iterator(this->_data + this->_size);};
 			const_iterator end() const {return const_iterator(this->_data + this->_size);};
 
-			reverse_iterator rbegin() {return reverse_iterator(iterator(this->_data + (this->_size - 1)));};
-			const_reverse_iterator rbegin() const {return const_reverse_iterator(const_iterator(this->_data + (this->_size - 1)));};
+			reverse_iterator rbegin() {return reverse_iterator(iterator(this->_data + this->_size));};
+			const_reverse_iterator rbegin() const {return const_reverse_iterator(const_iterator(this->_data + this->_size));};
 
-			reverse_iterator rend() {return reverse_iterator(iterator(this->_data - 1));};
-			const_reverse_iterator rend() const {return const_reverse_iterator(const_iterator(this->_data - 1));};
+			reverse_iterator rend() {return reverse_iterator(iterator(this->_data));};
+			const_reverse_iterator rend() const {return const_reverse_iterator(const_iterator(this->_data));};
 
 			//Capacity functions
 			size_type size() const {return this->_size;};
