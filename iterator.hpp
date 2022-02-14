@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 13:37:06 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/02/14 11:45:23 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/02/14 12:14:12 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,9 @@ namespace	ft
 	};
 
 	template <class T>
+	class	reverse_random_iterator;
+
+	template <class T>
 	class	random_iterator
 	{
 		private :
@@ -49,6 +52,7 @@ namespace	ft
 			random_iterator(void) : _pointer(NULL) {};
 			random_iterator(pointer pointer) : _pointer(pointer) {};
 			random_iterator(const random_iterator<typename remove_const<T>::type>& it) : _pointer(it.base()) {};
+			random_iterator(const reverse_random_iterator<typename remove_const<T>::type> & rit) : _pointer(rit.base()) {};
 
 			//Destructor
 			~random_iterator(void) {};
@@ -125,8 +129,7 @@ namespace	ft
 		return (lhs.base() == rhs.base());
 	};
 	template<typename T_L, typename T_R>
-	typename ft::random_iterator<T_L>::difference_type
-	operator==(const ft::random_iterator<T_L> lhs,
+	bool operator==(const ft::random_iterator<T_L> lhs,
 		const ft::random_iterator<T_R> rhs)
 	{
 		return (lhs.base() == rhs.base());
@@ -139,8 +142,7 @@ namespace	ft
 		return (lhs.base() != rhs.base());
 	};
 	template<typename T_L, typename T_R>
-	typename ft::random_iterator<T_L>::difference_type
-	operator!=(const ft::random_iterator<T_L> lhs,
+	bool operator!=(const ft::random_iterator<T_L> lhs,
 		const ft::random_iterator<T_R> rhs)
 	{
 		return (lhs.base() != rhs.base());
@@ -153,8 +155,7 @@ namespace	ft
 		return (lhs.base() < rhs.base());
 	};
 	template<typename T_L, typename T_R>
-	typename ft::random_iterator<T_L>::difference_type
-	operator<(const ft::random_iterator<T_L> lhs,
+	bool operator<(const ft::random_iterator<T_L> lhs,
 		const ft::random_iterator<T_R> rhs)
 	{
 		return (lhs.base() < rhs.base());
@@ -167,8 +168,7 @@ namespace	ft
 		return (lhs.base() <= rhs.base());
 	};
 	template<typename T_L, typename T_R>
-	typename ft::random_iterator<T_L>::difference_type
-	operator<=(const ft::random_iterator<T_L> lhs,
+	bool operator<=(const ft::random_iterator<T_L> lhs,
 		const ft::random_iterator<T_R> rhs)
 	{
 		return (lhs.base() <= rhs.base());
@@ -181,8 +181,7 @@ namespace	ft
 		return (lhs.base() > rhs.base());
 	};
 	template<typename T_L, typename T_R>
-	typename ft::random_iterator<T_L>::difference_type
-	operator>(const ft::random_iterator<T_L> lhs,
+	bool operator>(const ft::random_iterator<T_L> lhs,
 		const ft::random_iterator<T_R> rhs)
 	{
 		return (lhs.base() > rhs.base());
@@ -195,8 +194,7 @@ namespace	ft
 		return (lhs.base() >= rhs.base());
 	};
 	template<typename T_L, typename T_R>
-	typename ft::random_iterator<T_L>::difference_type
-	operator>=(const ft::random_iterator<T_L> lhs,
+	bool operator>=(const ft::random_iterator<T_L> lhs,
 		const ft::random_iterator<T_R> rhs)
 	{
 		return (lhs.base() >= rhs.base());
