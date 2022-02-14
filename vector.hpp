@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 15:17:05 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/02/10 16:07:00 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/02/14 09:48:48 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -241,10 +241,7 @@ namespace	ft
 				if (this->_capacity == 0)
 					this->reserve(1);
 				else if (this->_size == this->_capacity)
-				{
 					this->reserve(this->_size * 2);
-					std::cout << "hello" << std::endl;
-				}
 				this->_alloc.construct(this->_data + this->_size, val);
 				this->_size++;
 			};

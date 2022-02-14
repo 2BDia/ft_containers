@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 16:06:31 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/02/10 15:09:50 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/02/14 09:46:09 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -552,7 +552,6 @@ int	main()
 	}
 	{
 		std::cout << std::endl << "*** TEST ***" << std::endl;
-
 		
 	}
 	// system("leaks containers");
