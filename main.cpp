@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 16:06:31 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/02/16 09:35:05 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/02/16 09:53:10 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -288,6 +288,8 @@ int	main()
 	}
 	{
 		std::cout << std::endl << " --- Stack ---" << std::endl;
+
+		std::cout << std::endl << "Member functions" << std::endl;
 		ft::stack<int>	mine;
 		for (size_t i = 0; i < 5; i++)
 			mine.push(i);
@@ -299,6 +301,36 @@ int	main()
 		}
 		std::cout << std::endl;
 		std::cout << "size = " << mine.size() << std::endl;
+
+		std::cout << std::endl << "Relational operators" << std::endl;
+		ft::stack<int>	one;
+		for (size_t i = 0; i < 5; i++)
+			one.push(i);
+		ft::stack<int>	two;
+		for (size_t i = 0; i < 5; i++)
+			two.push(i);
+		if (one == two)
+			std::cout << "== ok" << std::endl;
+		one.push(6);
+		if (one != two)
+			std::cout << "=! ok" << std::endl;
+		if (one > two)
+			std::cout << "> ok" << std::endl;
+		if (one >= two)
+		{
+			one.pop();
+			if (one >= two)
+				std::cout << ">= ok" << std::endl;
+		}
+		if (one <= two)
+		{
+			one.pop();
+			if (one <= two)
+				std::cout << "<= ok" << std::endl;
+		}
+		one.pop();
+		if (one < two)
+			std::cout << "< ok" << std::endl;
 	}
 	/*********************************/
 	/*              STD              */
@@ -570,6 +602,8 @@ int	main()
 	}
 	{
 		std::cout << std::endl << " --- Stack ---" << std::endl;
+
+		std::cout << std::endl << "Member functions" << std::endl;
 		std::stack<int>	real;
 		for (size_t i = 0; i < 5; i++)
 			real.push(i);
@@ -581,6 +615,36 @@ int	main()
 		}
 		std::cout << std::endl;
 		std::cout << "size = " << real.size() << std::endl;
+
+		std::cout << std::endl << "Relational operators" << std::endl;
+		std::stack<int>	one;
+		for (size_t i = 0; i < 5; i++)
+			one.push(i);
+		std::stack<int>	two;
+		for (size_t i = 0; i < 5; i++)
+			two.push(i);
+		if (one == two)
+			std::cout << "== ok" << std::endl;
+		one.push(6);
+		if (one != two)
+			std::cout << "=! ok" << std::endl;
+		if (one > two)
+			std::cout << "> ok" << std::endl;
+		if (one >= two)
+		{
+			one.pop();
+			if (one >= two)
+				std::cout << ">= ok" << std::endl;
+		}
+		if (one <= two)
+		{
+			one.pop();
+			if (one <= two)
+				std::cout << "<= ok" << std::endl;
+		}
+		one.pop();
+		if (one < two)
+			std::cout << "< ok" << std::endl;
 	}
 	{
 		std::cout << std::endl << "*** TEST ***" << std::endl;
@@ -606,6 +670,7 @@ int	main()
 		// std::cout << "size = " << sreal.size() << std::endl;
 		// sreal.empty();
 		// std::cout << "size = " << sreal.size() << std::endl;
+
 	}
 	// system("leaks containers");
 }
