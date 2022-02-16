@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 09:53:14 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/02/14 14:12:14 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/02/16 08:55:08 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,9 @@ namespace	ft
 	template <class Iterator>
 	class	reverse_iterator
 	{
-		private :
+		public:
 
-			Iterator	_it;
-
-		public :
-
+			//Member types
 			typedef Iterator								iterator_type;
 			typedef typename Iterator::iterator_category	iterator_category;
 			typedef typename Iterator::value_type			value_type;
@@ -32,67 +29,73 @@ namespace	ft
 			typedef typename Iterator::pointer				pointer;
 			typedef typename Iterator::reference			reference;
 
-		//Constructors
-		reverse_iterator() : _it(NULL) {};
-		explicit reverse_iterator (iterator_type it) : _it(it) {};
-		template <class Iter>
-		reverse_iterator (const reverse_iterator<Iter>& rev_it) : _it(rev_it.base()) {};
+		private :
 
-		//Destructor
-		~reverse_iterator() {};
+			Iterator	_it;
 
-		//Operator=
-		reverse_iterator &operator=(const reverse_iterator& it)
-		{
-			this->_it = it.base();
-			return (*this);
-		}
+		public:
 
-		//Member functions
-		iterator_type base() const {return this->_it;};
+			//Constructors
+			reverse_iterator() : _it(NULL) {};
+			explicit reverse_iterator (iterator_type it) : _it(it) {};
+			template <class Iter>
+			reverse_iterator (const reverse_iterator<Iter>& rev_it) : _it(rev_it.base()) {};
 
-		reference operator*() const {return *(this->_it - 1);};
+			//Destructor
+			~reverse_iterator() {};
 
-		reverse_iterator operator+ (difference_type n) const {return reverse_iterator(this->_it - n);};
-		reverse_iterator operator- (difference_type n) const {return reverse_iterator(this->_it + n);};
+			//Operator=
+			reverse_iterator &operator=(const reverse_iterator& it)
+			{
+				this->_it = it.base();
+				return (*this);
+			}
 
-		reverse_iterator& operator++()
-		{
-			this->_it--;
-			return (*this);
-		};
-		reverse_iterator  operator++(int)
-		{
-			reverse_iterator	tmp = *this;
-			this->_it--;
-			return (tmp);
-		};
+			//Member functions
+			iterator_type base() const {return this->_it;};
 
-		reverse_iterator& operator--()
-		{
-			this->_it++;
-			return (*this);
-		};
-		reverse_iterator  operator--(int)
-		{
-			reverse_iterator	tmp = *this;
-			this->_it++;
-			return (tmp);
-		};
+			reference operator*() const {return *(this->_it - 1);};
 
-		reverse_iterator& operator+= (difference_type n)
-		{
-			this->_it -= n;
-			return (*this);
-		};
-		reverse_iterator& operator-= (difference_type n)
-		{
-			this->_it += n;
-			return (*this);
-		};
+			reverse_iterator operator+ (difference_type n) const {return reverse_iterator(this->_it - n);};
+			reverse_iterator operator- (difference_type n) const {return reverse_iterator(this->_it + n);};
 
-		pointer operator->() const {return &(operator*());};
-		reference operator[] (difference_type n) const {return *(operator+(n));}; //fix
+			reverse_iterator& operator++()
+			{
+				this->_it--;
+				return (*this);
+			};
+			reverse_iterator  operator++(int)
+			{
+				reverse_iterator	tmp = *this;
+				this->_it--;
+				return (tmp);
+			};
+
+			reverse_iterator& operator--()
+			{
+				this->_it++;
+				return (*this);
+			};
+			reverse_iterator  operator--(int)
+			{
+				reverse_iterator	tmp = *this;
+				this->_it++;
+				return (tmp);
+			};
+
+			reverse_iterator& operator+= (difference_type n)
+			{
+				this->_it -= n;
+				return (*this);
+			};
+			reverse_iterator& operator-= (difference_type n)
+			{
+				this->_it += n;
+				return (*this);
+			};
+
+			pointer operator->() const {return &(operator*());};
+			reference operator[] (difference_type n) const {return *(operator+(n));};
 	};
 
 	//Non-member function overloads

@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 13:37:06 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/02/14 12:14:12 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/02/16 08:51:44 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,17 +36,20 @@ namespace	ft
 	template <class T>
 	class	random_iterator
 	{
-		private :
-
-			T	*_pointer;
-
 		public:
 
+			//Member types
 			typedef typename ft::iterator<random_iterator, T>::iterator_category	iterator_category;
 			typedef typename ft::iterator<random_iterator, T>::value_type			value_type;
 			typedef typename ft::iterator<random_iterator, T>::difference_type		difference_type;
 			typedef typename ft::iterator<random_iterator, T>::pointer				pointer;
 			typedef typename ft::iterator<random_iterator, T>::reference			reference;
+
+		private:
+
+			T	*_pointer;
+
+		public:
 
 			//Constructors
 			random_iterator(void) : _pointer(NULL) {};

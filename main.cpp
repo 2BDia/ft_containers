@@ -6,15 +6,17 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 16:06:31 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/02/14 11:52:32 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/02/16 09:35:05 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <algorithm>
 #include <vector>
 #include <list>
+#include <stack>
 
 #include "vector.hpp"
+#include "stack.hpp"
 
 int	main()
 {
@@ -22,6 +24,7 @@ int	main()
 	/*              FT               */
 	/*********************************/
 	std::cout << "*** FT ***" << std::endl;
+	std::cout << std::endl << "--- Vector ---" << std::endl;
 	{
 		std::cout << std::endl << "- Constructors -" << std::endl;
 		ft::vector<int>	zero;
@@ -283,11 +286,26 @@ int	main()
 		for (size_t i = 0; i < two.size(); i++)
 			std::cout << ' ' << two[i];
 	}
+	{
+		std::cout << std::endl << " --- Stack ---" << std::endl;
+		ft::stack<int>	mine;
+		for (size_t i = 0; i < 5; i++)
+			mine.push(i);
+		std::cout << "size = " << mine.size() << std::endl;
+		while (!mine.empty())
+		{
+			std::cout << ' ' << mine.top();
+			mine.pop();
+		}
+		std::cout << std::endl;
+		std::cout << "size = " << mine.size() << std::endl;
+	}
 	/*********************************/
 	/*              STD              */
 	/*********************************/
 	std::cout << std::endl << "-------------------------------------------------------" << std::endl;
 	std::cout << std::endl << "*** STD ***" << std::endl;
+	std::cout << std::endl << "--- Vector ---" << std::endl;
 	{
 		std::cout << std::endl << "- Constructors -" << std::endl;
 		std::vector<int>	zero;
@@ -551,51 +569,43 @@ int	main()
 			std::cout << ' ' << two[i];
 	}
 	{
+		std::cout << std::endl << " --- Stack ---" << std::endl;
+		std::stack<int>	real;
+		for (size_t i = 0; i < 5; i++)
+			real.push(i);
+		std::cout << "size = " << real.size() << std::endl;
+		while (!real.empty())
+		{
+			std::cout << ' ' << real.top();
+			real.pop();
+		}
+		std::cout << std::endl;
+		std::cout << "size = " << real.size() << std::endl;
+	}
+	{
 		std::cout << std::endl << "*** TEST ***" << std::endl;
 
-		// ft::vector<int>	mine(10);
-		// for (size_t i = 0; i < mine.size(); i++)
-		// 	mine[i] = i;
-		// for (size_t i = 0; i < mine.size(); i++)
-		// 	std::cout << mine[i] << std::endl;
-		// ft::vector<int>::reverse_iterator	mrit = mine.rbegin();
-		// std::cout << "base = " << int(*(mrit.base())) << std::endl;
-		// std::cout << "begin = " << *mrit << std::endl;
-		// std::cout << "++begin = " << *(++mrit) << std::endl;
-		// std::cout << "mrit++ = " << *(mrit++) << std::endl;
-		// std::cout << "mrit now = " << *mrit << std::endl;
-		// std::cout << "--mrit = " << *(--mrit) << std::endl;
-		// std::cout << "mrit-- = " << *(mrit--) << std::endl;
-		// std::cout << "mrit now = " << *mrit << std::endl;
-		// std::cout << "mrit + 5 = " << *(mrit + 5) << std::endl;
-		// mrit = mine.rend() - 5;
-		// std::cout << "mrit - 5 = " << *(mrit - 5) << std::endl;
-		// mrit -= 2;
-		// std::cout << "mrit -= 2 = " << *(mrit) << std::endl;
-		// mrit += 3;
-		// std::cout << "mrit += 3 = " << *(mrit) << std::endl;
+		// ft::vector<int>	vmine(10);
+		// for (size_t i = 0; i < vmine.size(); i++)
+		// 	vmine[i] = i;
+		// for (size_t i = 0; i < vmine.size(); i++)
+		// 	std::cout << vmine[i] << std::endl;
+		// ft::stack<int, ft::vector<int> >	smine(vmine);
+		// std::cout << "size = " << smine.size() << std::endl;
+		// smine.empty();
+		// std::cout << "size = " << smine.size() << std::endl;
 
-		// std::vector<int>	real(10);
-		// for (size_t i = 0; i < real.size(); i++)
-		// 	real[i] = i;
-		// for (size_t i = 0; i < real.size(); i++)
-		// 	std::cout << real[i] << std::endl;
-		// std::vector<int>::reverse_iterator	rit = real.rbegin();
-		// std::cout << "base = " << int(*(rit.base())) << std::endl;
-		// std::cout << "begin = " << *rit << std::endl;
-		// std::cout << "++begin = " << *(++rit) << std::endl;
-		// std::cout << "rit++ = " << *(rit++) << std::endl;
-		// std::cout << "rit now = " << *rit << std::endl;
-		// std::cout << "--rit = " << *(--rit) << std::endl;
-		// std::cout << "rit-- = " << *(rit--) << std::endl;
-		// std::cout << "rit now = " << *rit << std::endl;
-		// std::cout << "rit + 5 = " << *(rit + 5) << std::endl;
-		// rit = real.rend() - 5;
-		// std::cout << "rit - 5 = " << *(rit - 5) << std::endl;
-		// rit -= 2;
-		// std::cout << "rit -= 2 = " << *(rit) << std::endl;
-		// rit += 3;
-		// std::cout << "rit += 3 = " << *(rit) << std::endl;
+		// std::cout << std::endl;
+
+		// std::vector<int>	vreal(10);
+		// for (size_t i = 0; i < vreal.size(); i++)
+		// 	vreal[i] = i;
+		// for (size_t i = 0; i < vreal.size(); i++)
+		// 	std::cout << vreal[i] << std::endl;
+		// std::stack<int, std::vector<int> >	sreal(vreal);
+		// std::cout << "size = " << sreal.size() << std::endl;
+		// sreal.empty();
+		// std::cout << "size = " << sreal.size() << std::endl;
 	}
 	// system("leaks containers");
 }
