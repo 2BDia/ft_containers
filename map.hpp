@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 11:59:39 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/02/16 12:07:06 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/02/17 13:41:55 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 
 namespace	ft
 {
-	template < class Key, class T, class Compare = less<Key>,
-		class Alloc = allocator< pair<const Key,T>> >
+	template < class Key, class T, class Compare = ft::less<Key>,
+		class Alloc = allocator< ft::pair<const Key,T>> >
 	class map
 	{
 		public:

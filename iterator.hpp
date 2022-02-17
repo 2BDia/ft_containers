@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 13:37:06 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/02/16 08:51:44 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/02/17 10:57:17 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,102 +128,72 @@ namespace	ft
 	template <class Iterator>
 	bool operator== (const ft::random_iterator<Iterator>& lhs,
 		const ft::random_iterator<Iterator>& rhs)
-	{
-		return (lhs.base() == rhs.base());
-	};
+	{return (lhs.base() == rhs.base());};
 	template<typename T_L, typename T_R>
 	bool operator==(const ft::random_iterator<T_L> lhs,
 		const ft::random_iterator<T_R> rhs)
-	{
-		return (lhs.base() == rhs.base());
-	};
+	{return (lhs.base() == rhs.base());};
 
 	template <class Iterator>
 	bool operator!= (const ft::random_iterator<Iterator>& lhs,
 		const ft::random_iterator<Iterator>& rhs)
-	{
-		return (lhs.base() != rhs.base());
-	};
+	{return (lhs.base() != rhs.base());};
 	template<typename T_L, typename T_R>
 	bool operator!=(const ft::random_iterator<T_L> lhs,
 		const ft::random_iterator<T_R> rhs)
-	{
-		return (lhs.base() != rhs.base());
-	};
+	{return (lhs.base() != rhs.base());};
 
 	template <class Iterator>
 	bool operator<  (const ft::random_iterator<Iterator>& lhs,
 		const ft::random_iterator<Iterator>& rhs)
-	{
-		return (lhs.base() < rhs.base());
-	};
+	{return (lhs.base() < rhs.base());};
 	template<typename T_L, typename T_R>
 	bool operator<(const ft::random_iterator<T_L> lhs,
 		const ft::random_iterator<T_R> rhs)
-	{
-		return (lhs.base() < rhs.base());
-	};
+	{return (lhs.base() < rhs.base());};
 
 	template <class Iterator>
 	bool operator<= (const ft::random_iterator<Iterator>& lhs,
 		const ft::random_iterator<Iterator>& rhs)
-	{
-		return (lhs.base() <= rhs.base());
-	};
+	{return (lhs.base() <= rhs.base());};
 	template<typename T_L, typename T_R>
 	bool operator<=(const ft::random_iterator<T_L> lhs,
 		const ft::random_iterator<T_R> rhs)
-	{
-		return (lhs.base() <= rhs.base());
-	};
+	{return (lhs.base() <= rhs.base());};
 
 	template <class Iterator>
 	bool operator>  (const ft::random_iterator<Iterator>& lhs,
 		const ft::random_iterator<Iterator>& rhs)
-	{
-		return (lhs.base() > rhs.base());
-	};
+	{return (lhs.base() > rhs.base());};
 	template<typename T_L, typename T_R>
 	bool operator>(const ft::random_iterator<T_L> lhs,
 		const ft::random_iterator<T_R> rhs)
-	{
-		return (lhs.base() > rhs.base());
-	};
+	{return (lhs.base() > rhs.base());};
 
 	template <class Iterator>
 	bool operator>= (const ft::random_iterator<Iterator>& lhs,
 		const ft::random_iterator<Iterator>& rhs)
-	{
-		return (lhs.base() >= rhs.base());
-	};
+	{return (lhs.base() >= rhs.base());};
 	template<typename T_L, typename T_R>
 	bool operator>=(const ft::random_iterator<T_L> lhs,
 		const ft::random_iterator<T_R> rhs)
-	{
-		return (lhs.base() >= rhs.base());
-	};
+	{return (lhs.base() >= rhs.base());};
 
 	//Operators + and -
 	template <class Iterator>
 	ft::random_iterator<Iterator> operator+ (
 		typename ft::random_iterator<Iterator>::difference_type n,
 		const ft::random_iterator<Iterator>& it)
-	{
-		return (it + n);
-	};
+	{return (it + n);};
 
 	template <class Iterator>
 	typename ft::random_iterator<Iterator>::difference_type operator- (
 		const ft::random_iterator<Iterator>& lhs,
 		const ft::random_iterator<Iterator>& rhs)
-	{
-		return (lhs.base() - rhs.base());
-	};
+	{return (lhs.base() - rhs.base());};
 	template <class Iterator_L, class Iterator_R>
 	typename ft::random_iterator<Iterator_L>::difference_type operator- (
 		const ft::random_iterator<Iterator_L>& lhs,
 		const ft::random_iterator<Iterator_R>& rhs)
-	{
-		return (lhs.base() - rhs.base());
-	};
+	{return (lhs.base() - rhs.base());};
 }
