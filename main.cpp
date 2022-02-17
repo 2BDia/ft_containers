@@ -6,17 +6,21 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 16:06:31 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/02/16 09:53:10 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/02/17 11:09:34 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <algorithm>
+#include <iterator>
 #include <vector>
 #include <list>
 #include <stack>
+#include <map>
 
 #include "vector.hpp"
 #include "stack.hpp"
+#include "map.hpp"
+#include "utils.hpp"
 
 int	main()
 {
@@ -649,28 +653,15 @@ int	main()
 	{
 		std::cout << std::endl << "*** TEST ***" << std::endl;
 
-		// ft::vector<int>	vmine(10);
-		// for (size_t i = 0; i < vmine.size(); i++)
-		// 	vmine[i] = i;
-		// for (size_t i = 0; i < vmine.size(); i++)
-		// 	std::cout << vmine[i] << std::endl;
-		// ft::stack<int, ft::vector<int> >	smine(vmine);
-		// std::cout << "size = " << smine.size() << std::endl;
-		// smine.empty();
-		// std::cout << "size = " << smine.size() << std::endl;
+		
 
-		// std::cout << std::endl;
-
-		// std::vector<int>	vreal(10);
-		// for (size_t i = 0; i < vreal.size(); i++)
-		// 	vreal[i] = i;
-		// for (size_t i = 0; i < vreal.size(); i++)
-		// 	std::cout << vreal[i] << std::endl;
-		// std::stack<int, std::vector<int> >	sreal(vreal);
-		// std::cout << "size = " << sreal.size() << std::endl;
-		// sreal.empty();
-		// std::cout << "size = " << sreal.size() << std::endl;
-
+		// std::map<int, int>	real;
+		// real.insert(std::pair<int, int>(2, 40));
+		// real.insert(std::pair<int, int>(1, 28));
+		// std::map<int, int>::iterator it = real.begin();
+		// std::cout << it->first << " " << it->second << std::endl;
+		// it++;
+		// std::cout << it->first << " " << it->second << std::endl;
 	}
 	// system("leaks containers");
 }
