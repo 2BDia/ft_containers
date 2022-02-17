@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 11:59:39 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/02/17 13:41:55 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/02/17 15:22:55 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 
 #include "iterator.hpp"
 #include "reverse_iterator.hpp"
+#include "utils.hpp"
 
 namespace	ft
 {
@@ -39,5 +40,11 @@ namespace	ft
 			typedef typename allocator_type::const_pointer		const_pointer;
 			//iterators and difference type
 			typedef size_t										size_type;
+
+		private:
+
+			allocator_type	_alloc;
+			Node			_root;
+			key_compare		_comp;
 	};
 }
