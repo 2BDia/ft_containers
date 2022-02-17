@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 16:06:31 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/02/17 11:09:34 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/02/17 15:23:29 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -655,13 +655,13 @@ int	main()
 
 		
 
-		// std::map<int, int>	real;
-		// real.insert(std::pair<int, int>(2, 40));
-		// real.insert(std::pair<int, int>(1, 28));
-		// std::map<int, int>::iterator it = real.begin();
-		// std::cout << it->first << " " << it->second << std::endl;
-		// it++;
-		// std::cout << it->first << " " << it->second << std::endl;
+		std::map<int, int>	real;
+		real.insert(std::pair<int, int>(2, 40));
+		real.insert(std::pair<int, int>(1, 28));
+		std::map<int, int>::iterator it = real.begin();
+		std::cout << it->first << " " << it->second << std::endl;
+		it++;
+		std::cout << it->first << " " << it->second << std::endl;
 	}
 	// system("leaks containers");
 }
