@@ -6,7 +6,7 @@
 #    By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/26 15:03:49 by rvan-aud          #+#    #+#              #
-#    Updated: 2022/02/10 15:08:26 by rvan-aud         ###   ########.fr        #
+#    Updated: 2022/02/22 15:25:15 by rvan-aud         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ CXX			= clang++
 
 RM			= rm -f
 
-CXXFLAGS	= -Wall -Wextra -Werror -std=c++98
+CXXFLAGS	= -Wall -Wextra -Werror -std=c++98 #-fsanitize=address -g
 
 OBJS		= $(SRCS:.cpp=.o)
 
