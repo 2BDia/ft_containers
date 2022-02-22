@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 09:52:37 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/02/22 11:18:57 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/02/22 15:46:12 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,45 +123,75 @@ namespace	ft
 		bool operator() (const T& x, const T& y) const {return x < y;};
 	};
 
-	template <class Key, class T, class Compare = ft::less<Key> >
+	template < class Key, class T, class Compare = ft::less<Key> >
 	class	Node
 	{
 		public:
+
+			typedef Key										key_type;
+			typedef T										mapped_type;
+			typedef ft::pair<const key_type, mapped_type>			value_type;
+			typedef std::allocator<Node>					allocator_type;
+			typedef std::allocator<ft::pair<const Key, T> >		pair_allocator_type;
 
 			Node					*parent;
 			Node					*left;
 			Node					*right;
 			bool					side;
-			ft::pair<Key, T>		data;
+			ft::pair<const Key, T>		*data;
 			Compare					comp;
-
-			typedef Key										key_type;
-			typedef T										mapped_type;
-			typedef ft::pair<key_type, mapped_type>			value_type;
+			allocator_type			alloc;
+			pair_allocator_type		pair_alloc;
 
 			//Constructors
 			Node(void) : parent(NULL), left(NULL), right(NULL), side(0) {};
 			Node(Node *parent, bool side) : parent(parent), left(NULL), right(NULL), side(side) {};
 
+			//Destructor
+			~Node()
+			{
+				if (this->data)
+				{
+					this->pair_alloc.destroy(this->data);
+					if (this->parent == NULL)
+						this->pair_alloc.deallocate(this->data, 1);
+				}
+			}
+
 			//Functions
 
 			void	create_node(const value_type& val)
 			{
-				this->left = new Node(this, L);
-				this->right = new Node(this, R);
-				this->data = value_type(val);
+				this->left = this->alloc.allocate(1);
+				this->alloc.construct(this->left, Node(this, L));
+				this->right = this->alloc.allocate(1);
+				this->alloc.construct(this->right, Node(this, R));
+				this->data = this->pair_alloc.allocate(1);
+				this->pair_alloc.construct(this->data, value_type(val));
 			}
 			
 			void	insert(const value_type& val)
 			{
 				if (this->left == NULL && this->right == NULL)
 					create_node(val);
-				else if (!this->comp(this->data.first, val.first))
+				else if (!this->comp(this->data->first, val.first))
 					this->left->insert(val);
-				else if (this->comp(this->data.first, val.first))
+				else if (this->comp(this->data->first, val.first))
 					this->right->insert(val);
 				// else
 				// 	key already exists
 			}
+
+			void	delete_tree()
+			{
+				if (!(this->left == NULL && this->right == NULL))
+				{
+					this->left->delete_tree();
+					this->right->delete_tree();
+				}
+				if (this->parent != NULL) //root is not malloced therefore no need to free it
+					this->alloc.deallocate(this, 1);
+			}
+
 	};
 }
