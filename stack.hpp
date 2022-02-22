@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 08:37:41 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/02/16 09:50:24 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/02/22 08:46:35 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ namespace	ft
 		public:
 
 			//Constructor
-			explicit stack (const container_type& ctnr = container_type()) : c(ctnr) {};
+			explicit stack(const container_type& ctnr = container_type()) : c(ctnr) {};
 
 			//Member functions
 			bool empty() const {return c.empty();};

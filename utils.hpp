@@ -6,11 +6,14 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 09:52:37 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/02/17 15:33:51 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/02/22 11:18:57 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
+
+# define L 0
+# define R 1
 
 namespace	ft
 {
@@ -61,7 +64,7 @@ namespace	ft
 			second_type	second;
 
 			//Constructors
-			pair() : first(), second() {};
+			pair() : first(first_type()), second(second_type()) {};
 			template<class U, class V>
 			pair (const pair<U,V>& pr)
 			:
@@ -117,17 +120,48 @@ namespace	ft
 	template <class T>
 	struct less : binary_function <T, T, bool>
 	{
-		bool operator() (const T& x, const T& y) const {return x<y;}
+		bool operator() (const T& x, const T& y) const {return x < y;};
 	};
 
-	//Binary tree
-	template <class T>
-	struct Node
+	template <class Key, class T, class Compare = ft::less<Key> >
+	class	Node
 	{
-		T		data;
-		Node	*left;
-		Node	*right;
-		Node	*parent;
-		bool	side;
-	}
+		public:
+
+			Node					*parent;
+			Node					*left;
+			Node					*right;
+			bool					side;
+			ft::pair<Key, T>		data;
+			Compare					comp;
+
+			typedef Key										key_type;
+			typedef T										mapped_type;
+			typedef ft::pair<key_type, mapped_type>			value_type;
+
+			//Constructors
+			Node(void) : parent(NULL), left(NULL), right(NULL), side(0) {};
+			Node(Node *parent, bool side) : parent(parent), left(NULL), right(NULL), side(side) {};
+
+			//Functions
+
+			void	create_node(const value_type& val)
+			{
+				this->left = new Node(this, L);
+				this->right = new Node(this, R);
+				this->data = value_type(val);
+			}
+			
+			void	insert(const value_type& val)
+			{
+				if (this->left == NULL && this->right == NULL)
+					create_node(val);
+				else if (!this->comp(this->data.first, val.first))
+					this->left->insert(val);
+				else if (this->comp(this->data.first, val.first))
+					this->right->insert(val);
+				// else
+				// 	key already exists
+			}
+	};
 }
