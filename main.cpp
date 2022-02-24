@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 16:06:31 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/02/24 14:15:36 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/02/24 15:01:23 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -656,8 +656,13 @@ int	main()
 		std::cout << std::endl << "*** TEST ***" << std::endl;
 
 		ft::map<int, int> mine;
+		std::cout << "empty ? " << mine.empty() << std::endl;
+		std::cout << "size = " << mine.size() << std::endl;
 		mine.insert(ft::pair<int, int>(2, 28));
+		std::cout << "size = " << mine.size() << std::endl;
 		mine.insert(ft::pair<int, int>(3, 40));
+		std::cout << "size = " << mine.size() << std::endl;
+		std::cout << "empty ? " << mine.empty() << std::endl;
 		mine.print();
 
 		std::map<int, int>	real;
