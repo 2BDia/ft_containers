@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 16:06:31 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/02/22 11:17:50 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/02/24 09:57:44 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,11 @@
 #include "stack.hpp"
 #include "map.hpp"
 #include "utils.hpp"
+#include <stdio.h>
 
 int	main()
 {
+	printf("Hi giiiiiiiiiirl\n");
 	/*********************************/
 	/*              FT               */
 	/*********************************/
