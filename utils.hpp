@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 09:52:37 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/02/24 14:08:07 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/02/24 14:21:43 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,90 +123,16 @@ namespace	ft
 		bool operator() (const T& x, const T& y) const {return x < y;};
 	};
 
-	// template < class Key, class T, class Compare = ft::less<Key> >
-	// class	Node
-	// {
-	// 	public:
-
-	// 		typedef Key										key_type;
-	// 		typedef T										mapped_type;
-	// 		typedef ft::pair<const key_type, mapped_type>	value_type;
-	// 		typedef std::allocator<Node>					allocator_type;
-	// 		typedef std::allocator<ft::pair<const Key, T> >	pair_allocator_type;
-
-	// 		Node					*parent;
-	// 		Node					*left;
-	// 		Node					*right;
-	// 		bool					side;
-	// 		ft::pair<const Key, T>	data;
-	// 		Compare					comp;
-	// 		allocator_type			alloc;
-	// 		pair_allocator_type		pair_alloc;
-
-	// 		//Constructors
-	// 		Node(void) : parent(NULL), left(NULL), right(NULL), side(0) {std::cout << "root" << std::endl;};
-	// 		Node(Node *parent, bool side) : parent(parent), left(NULL), right(NULL), side(side) {std::cout << "leaf" << std::endl;};
-
-	// 		//Destructor
-	// 		~Node()
-	// 		{
-	// 			if (this->data)
-	// 			{
-	// 				// this->pair_alloc.destroy(this->data);
-	// 				// this->pair_alloc.deallocate(this->data, 1);
-	// 			}
-	// 		}
-
-	// 		//Functions
-
-	// 		void	create_node(const value_type& val)
-	// 		{
-	// 			std::cout << "lol" << std::endl;
-	// 			this->left = this->alloc.allocate(1);
-	// 			this->alloc.construct(this->left, Node(this, L));
-	// 			this->right = this->alloc.allocate(1);
-	// 			this->alloc.construct(this->right, Node(this, R));
-	// 			this->data = this->pair_alloc.allocate(1);
-	// 			this->pair_alloc.construct(this->data, value_type(val));
-	// 		}
-			
-	// 		void	insert(const value_type& val)
-	// 		{
-	// 			if (this->left == NULL && this->right == NULL)
-	// 				create_node(val);
-	// 			else if (!this->comp(this->data->first, val.first))
-	// 				this->left->insert(val);
-	// 			else if (this->comp(this->data->first, val.first))
-	// 				this->right->insert(val);
-	// 			// else
-	// 			// 	key already exists
-	// 		}
-
-	// 		void	delete_tree()
-	// 		{
-	// 			if (!(this->left == NULL && this->right == NULL))
-	// 			{
-	// 				this->left->delete_tree();
-	// 				this->right->delete_tree();
-	// 			}
-	// 			if (this->parent != NULL)
-	// 			{
-	// 				this->alloc.destroy(this);
-	// 				this->alloc.deallocate(this, 1);
-	// 			}
-	// 		}
-	// };
-
 	template < class Key, class T >
 	class	Node
 	{
 		public:
 
-			Node					*parent;
-			Node					*left;
-			Node					*right;
-			bool					side;
-			ft::pair<Key, T>		data;
+			Node				*parent;
+			Node				*left;
+			Node				*right;
+			bool				side;
+			ft::pair<Key, T>	data;
 
 			Node() : parent(NULL), left(NULL), right(NULL), side(0) {};
 			Node(Node *parent, bool side) : parent(parent), left(NULL), right(NULL), side(side) {};
@@ -217,7 +143,6 @@ namespace	ft
 
 			void	delete_tree(std::allocator<Node<const Key, T> > alloc)
 			{
-				std::cout << "lol" << std::endl;
 				if (!(this->left == NULL && this->right == NULL))
 				{
 					this->left->delete_tree(alloc);
@@ -294,28 +219,6 @@ namespace	ft
 				// 	key already exists
 			}
 
-			void	delete_tree()
-			{
-				this->root->delete_tree(this->alloc);
-
-
-				
-				// this->node = this->root;
-				// if (this->node->left != NULL || this->node->right != NULL)
-				// {
-				// 	if (this->node->left != NULL)
-				// 	{
-				// 		this->node = this->node->left;
-				// 		this->delete_tree();
-				// 	}
-				// 	if (this->node->right != NULL)
-				// 	{
-				// 		this->node = this->node->right;
-				// 		this->delete_tree();
-				// 	}
-				// }
-				// this->alloc.destroy(this->node);
-				// this->alloc.deallocate(this->node, 1);
-			}
+			void	delete_tree() {this->root->delete_tree(this->alloc);};
 	};
 }
