@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 11:59:39 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/02/24 14:07:13 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/02/24 15:01:40 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ namespace	ft
 
 		public:
 
-			//Constructors
+			//Constructors TODO : range and copy
 			explicit map(const key_compare& comp = key_compare(),
               const allocator_type& alloc = allocator_type())
 			:
@@ -61,12 +61,15 @@ namespace	ft
 			// Destructor
 			~map() {this->_bst.delete_tree();};
 
-			//Member functions
+
+			//Capacity
+			bool empty() const {return this->_bst.empty();};
+
+			size_type size() const {return this->_bst.size();};
+
+			//Modifiers
 			//pair<iterator,bool> to check if already existing key and if so return iterator to that node
-			void insert (const value_type& val)
-			{
-				this->_bst.insert(val);
-			};
+			void insert (const value_type& val) {this->_bst.insert(val);};
 
 
 

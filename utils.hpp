@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 09:52:37 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/02/24 14:21:43 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/02/24 15:03:39 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,8 @@ namespace	ft
 	{
 		public:
 
+			typedef size_t	size_type;
+
 			Node				*parent;
 			Node				*left;
 			Node				*right;
@@ -151,6 +153,13 @@ namespace	ft
 				alloc.destroy(this);
 				alloc.deallocate(this, 1);
 			}
+
+			size_type	size() const
+			{
+				if (this->left == NULL && this->right == NULL)
+					return (0);
+				return(this->left->size() + this->right->size() + 1);
+			}
 	};
 
 	template < class Key, class T, class Compare = ft::less<Key>,
@@ -165,6 +174,7 @@ namespace	ft
 			typedef ft::pair<const key_type, mapped_type>	value_type;
 			typedef Alloc									allocator_type;
 			typedef Node<Key, T>							node_type;
+			typedef size_t									size_type;
 
 			node_type		*node;
 			node_type		*root;
@@ -200,6 +210,34 @@ namespace	ft
 				this->alloc.construct(this->node->right, node_type(this->node, R));
 			}
 
+			//Capacity
+			bool	empty() const
+			{
+				if (this->root->left == NULL && this->root->right == NULL)
+					return (true);
+				return (false);
+			}
+
+			size_type	size() const
+			{
+				return (this->root->size());
+				// size_type	i;
+				// if (this->node->left == NULL && this->node->right == NULL)
+				// 	return (0);
+				// if (this->node->left != NULL)
+				// {
+				// 	this->node = this->node->left;
+				// 	i += this->size() + 1;
+				// }
+				// if (this->node->right != NULL)
+				// {
+				// 	this->node = this->node->right;
+				// 	i += this->size() + 1;
+				// }
+				// return (i);
+			};
+
+			//Modifiers
 			void	insert(const value_type& val)
 			{
 				if (this->node->left == NULL && this->node->right == NULL)
