@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 09:52:37 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/02/25 10:45:38 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/02/25 10:48:48 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,5 +118,11 @@ namespace	ft
 	struct less : binary_function <T, T, bool>
 	{
 		bool operator() (const T& x, const T& y) const {return x < y;};
+	};
+
+	template <class T1,class T2>
+	pair<T1,T2> make_pair (T1 x, T2 y)
+	{
+		return ( pair<T1,T2>(x,y) );
 	};
 }
