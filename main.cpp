@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 16:06:31 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/02/24 15:01:23 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/02/25 10:43:41 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -663,15 +663,26 @@ int	main()
 		mine.insert(ft::pair<int, int>(3, 40));
 		std::cout << "size = " << mine.size() << std::endl;
 		std::cout << "empty ? " << mine.empty() << std::endl;
+		std::cout << "max_size = " << mine.max_size() << std::endl;
 		mine.print();
+		// std::cout << mine[4] << std::endl;
 
+		std::cout << std::endl;
 		std::map<int, int>	real;
+		std::cout << "empty ? " << real.empty() << std::endl;
+		std::cout << "size = " << real.size() << std::endl;
 		real.insert(std::pair<int, int>(2, 40));
+		std::cout << "size = " << real.size() << std::endl;
 		real.insert(std::pair<int, int>(1, 28));
+		real.insert(std::pair<int, int>(2, 96));
+		std::cout << real[4] << std::endl;
+		std::cout << "size = " << real.size() << std::endl;
+		std::cout << "empty ? " << real.empty() << std::endl;
 		std::map<int, int>::iterator it = real.begin();
 		std::cout << it->first << " " << it->second << std::endl;
 		it++;
 		std::cout << it->first << " " << it->second << std::endl;
+		std::cout << "max_size = " << real.max_size() << std::endl;
 	}
 	// system("leaks containers");
 }

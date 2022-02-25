@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 11:59:39 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/02/24 15:01:40 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/02/25 10:45:58 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include "iterator.hpp"
 #include "reverse_iterator.hpp"
 #include "utils.hpp"
+#include "bst.hpp"
 
 namespace	ft
 {
@@ -67,6 +68,12 @@ namespace	ft
 
 			size_type size() const {return this->_bst.size();};
 
+			size_type max_size() const {return this->_bst.max_size();};
+
+			//Element access
+			mapped_type& operator[] (const key_type& k)
+			{return (*((this->insert(make_pair(k,mapped_type()))).first)).second;};
+
 			//Modifiers
 			//pair<iterator,bool> to check if already existing key and if so return iterator to that node
 			void insert (const value_type& val) {this->_bst.insert(val);};
@@ -76,12 +83,10 @@ namespace	ft
 			//TEST
 			void	print()
 			{
-				std::cout << this->_bst.node->data.first << std::endl;
-				std::cout << this->_bst.node->data.second << std::endl;
-				std::cout << this->_bst.node->side << std::endl;
-				std::cout << this->_bst.node->right->data.first << std::endl;
-				std::cout << this->_bst.node->right->data.second << std::endl;
-				std::cout << this->_bst.node->right->side << std::endl;
+				std::cout << this->_bst.node->data.first << " " << this->_bst.node->data.second << std::endl;
+				std::cout << "side = " << this->_bst.node->side << std::endl;
+				std::cout << this->_bst.node->right->data.first << " " << this->_bst.node->right->data.second << std::endl;
+				std::cout << "side = " << this->_bst.node->side << std::endl;
 			}
 	};
 }
