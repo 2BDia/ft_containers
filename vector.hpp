@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 15:17:05 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/02/22 08:46:52 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/02/25 13:48:55 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -214,7 +214,7 @@ namespace	ft
 			//Modifiers
 			template <class InputIterator>
 			void assign (InputIterator first, InputIterator last,
-				typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type* = nullptr) //not compatible with list iterators (no last - first possible)
+				typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type* = nullptr)
 			{
 				size_type	size = 0;
 				for (; last != first; last--)

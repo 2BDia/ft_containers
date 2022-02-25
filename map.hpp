@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 11:59:39 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/02/25 10:45:58 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/02/25 15:42:46 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 #include "reverse_iterator.hpp"
 #include "utils.hpp"
 #include "bst.hpp"
+#include "map_iterator.hpp"
 
 namespace	ft
 {
@@ -39,14 +40,16 @@ namespace	ft
 			typedef typename allocator_type::const_reference	const_reference;
 			typedef typename allocator_type::pointer			pointer;
 			typedef typename allocator_type::const_pointer		const_pointer;
+			typedef ft::map_iterator<ft::pair<const Key, T> >	iterator;
+			typedef ft::map_iterator<ft::pair<const Key, T> >	const_iterator;
 			//iterators and difference type
 			typedef size_t										size_type;
 
 		private:
 
-			allocator_type	_alloc;
-			key_compare		_comp;
-			BST<const Key, T>	_bst;
+			allocator_type		_alloc;
+			key_compare			_comp;
+			BST<Key, T>	_bst;
 
 		public:
 
@@ -62,6 +65,16 @@ namespace	ft
 			// Destructor
 			~map() {this->_bst.delete_tree();};
 
+			//Iterators
+			iterator begin()
+			{
+				Node<Key, T>	*tmp = this->_bst.root;
+
+				while (tmp->left && !(tmp->left == NULL && tmp->right == NULL))
+					tmp = tmp->left;
+				return (iterator(tmp));
+			};
+
 
 			//Capacity
 			bool empty() const {return this->_bst.empty();};
@@ -70,13 +83,13 @@ namespace	ft
 
 			size_type max_size() const {return this->_bst.max_size();};
 
-			//Element access
+			// Element access
 			mapped_type& operator[] (const key_type& k)
-			{return (*((this->insert(make_pair(k,mapped_type()))).first)).second;};
+			{return (*((this->insert(ft::make_pair(k,mapped_type()))).first)).second;};
 
 			//Modifiers
 			//pair<iterator,bool> to check if already existing key and if so return iterator to that node
-			void insert (const value_type& val) {this->_bst.insert(val);};
+			pair<iterator,bool> insert (const value_type& val) {return this->_bst.insert(val);};
 
 
 

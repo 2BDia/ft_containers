@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 10:45:07 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/02/25 10:47:56 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/02/25 15:54:36 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 
 namespace	ft
 {
+	template <class T>class map_iterator;
+
 	template < class Key, class T >
 	class	Node
 	{
@@ -30,16 +32,16 @@ namespace	ft
 			Node				*left;
 			Node				*right;
 			bool				side;
-			ft::pair<Key, T>	data;
+			ft::pair<const Key, T>	data;
 
 			Node() : parent(NULL), left(NULL), right(NULL), side(0) {};
 			Node(Node *parent, bool side) : parent(parent), left(NULL), right(NULL), side(side) {};
-			Node(Node *parent, bool side, const ft::pair<const Key, T> val)
+			Node(Node *parent, bool side, const ft::pair<Key, T> val)
 			: parent(parent), left(NULL), right(NULL), side(side), data(val) {};
 
 			~Node() {};
 
-			void	delete_tree(std::allocator<Node<const Key, T> > alloc)
+			void	delete_tree(std::allocator<Node<Key, T> > alloc)
 			{
 				if (!(this->left == NULL && this->right == NULL))
 				{
@@ -59,18 +61,19 @@ namespace	ft
 	};
 
 	template < class Key, class T, class Compare = ft::less<Key>,
-		class Alloc = std::allocator<Node<const Key, T> > >
+		class Alloc = std::allocator<Node<Key, T> > >
 	class	BST
 	{
 		public:
 
-			typedef Key										key_type;
-			typedef T										mapped_type;
-			typedef Compare									key_compare;
-			typedef ft::pair<const key_type, mapped_type>	value_type;
-			typedef Alloc									allocator_type;
-			typedef Node<Key, T>							node_type;
-			typedef size_t									size_type;
+			typedef Key												key_type;
+			typedef T												mapped_type;
+			typedef Compare											key_compare;
+			typedef ft::pair<const key_type, mapped_type>			value_type;
+			typedef Alloc											allocator_type;
+			typedef Node<Key, T>									node_type;
+			typedef size_t											size_type;
+			typedef typename ft::map_iterator<pair<const Key, T> >	iterator;
 
 			node_type		*node;
 			node_type		*root;
@@ -90,8 +93,7 @@ namespace	ft
 			};
 
 			//Destructor
-			~BST()
-			{};
+			~BST() {};
 
 			void	new_node(const value_type& val)
 			{
@@ -125,7 +127,7 @@ namespace	ft
 			}
 
 			//Modifiers
-			void	insert(const value_type& val)
+			ft::pair<iterator,bool>	insert(const value_type& val)
 			{
 				if (this->node->left == NULL && this->node->right == NULL)
 					new_node(val);
@@ -139,9 +141,8 @@ namespace	ft
 					this->node = this->node->right;
 					this->insert(val);
 				}
-				this->node = this->root;
-				// else
-				// 	key already exists
+				this->node = this->root; //pas bon, créer fonction insert en récursif dans node serait plus simple
+				return (ft::pair<iterator, bool>(iterator(this->node), false));
 			}
 
 			void	delete_tree() {this->root->delete_tree(this->alloc);};
