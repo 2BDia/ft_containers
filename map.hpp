@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 11:59:39 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/02/25 15:42:46 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/01 13:15:23 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,9 @@ namespace	ft
 
 				while (tmp->left && !(tmp->left == NULL && tmp->right == NULL))
 					tmp = tmp->left;
-				return (iterator(tmp));
+				if (tmp->parent == NULL)
+					return (iterator(tmp));
+				return (iterator(tmp->parent));
 			};
 
 
@@ -89,7 +91,12 @@ namespace	ft
 
 			//Modifiers
 			//pair<iterator,bool> to check if already existing key and if so return iterator to that node
-			pair<iterator,bool> insert (const value_type& val) {return this->_bst.insert(val);};
+			pair<iterator,bool> insert (const value_type& val)
+			{
+				pair<iterator, bool>	tmp = this->_bst.insert(val);
+				this->_bst.node = this->_bst.root;
+				return (tmp);
+			};
 
 
 
