@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 16:06:31 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/01 13:16:27 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/01 13:36:36 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -658,6 +658,7 @@ int	main()
 		ft::map<int, int> mine;
 		mine.insert(ft::pair<int, int>(2, 28));
 		mine.insert(ft::pair<int, int>(1, 40));
+		mine.insert(ft::pair<int, int>(3,96));
 		ft::map<int, int>::iterator	mit = mine.begin();
 		std::cout << "begin = " << mit->first << " " << mit->second << std::endl;
 		mine.print();
@@ -668,11 +669,12 @@ int	main()
 		std::map<int, int>	real;
 		real.insert(std::pair<int, int>(2, 28));
 		real.insert(std::pair<int, int>(1, 40));
+		real.insert(std::pair<int, int>(3,96));
 		std::map<int, int>::iterator it = real.begin();
-		std::cout << it->first << " " << it->second << std::endl;
-		it++;
-		std::cout << it->first << " " << it->second << std::endl;
-		std::cout << "max_size = " << real.max_size() << std::endl;
+		std::cout << "begin = " << it->first << " " << it->second << std::endl;
+		// std::cout << it->first << " " << it->second << std::endl;
+		// it++;
+		// std::cout << it->first << " " << it->second << std::endl;
 		std::cout << "map[2] = " << real[2] << std::endl;
 		std::cout << "map[3] = " << real[3] << std::endl;
 	}

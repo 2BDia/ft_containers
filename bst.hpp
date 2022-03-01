@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 10:45:07 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/01 13:14:15 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/01 13:28:13 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ namespace	ft
 
 			typedef size_t	size_type;
 
-			Node				*parent;
-			Node				*left;
-			Node				*right;
-			bool				side;
+			Node					*parent;
+			Node					*left;
+			Node					*right;
+			bool					side;
 			ft::pair<const Key, T>	data;
 
 			Node() : parent(NULL), left(NULL), right(NULL), side(0) {};
