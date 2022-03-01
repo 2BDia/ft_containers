@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 10:45:07 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/02/25 15:54:36 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/01 13:14:15 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,7 +141,6 @@ namespace	ft
 					this->node = this->node->right;
 					this->insert(val);
 				}
-				this->node = this->root; //pas bon, créer fonction insert en récursif dans node serait plus simple
 				return (ft::pair<iterator, bool>(iterator(this->node), false));
 			}
 
