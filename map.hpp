@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 11:59:39 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/03 14:12:46 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/03 15:36:35 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ namespace	ft
 			//iterators and difference type
 			typedef size_t											size_type;
 
-		public:
+		private:
 
 			allocator_type		_alloc;
 			key_compare			_comp;

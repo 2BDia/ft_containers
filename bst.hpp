@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 10:45:07 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/03 14:16:20 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/03 14:17:17 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,41 +100,6 @@ namespace	ft
 
 		private:
 
-			// void	new_node(const value_type& val)
-			// {
-			// 	node_type	*tmp_parent = this->node->parent;
-			// 	bool		side = this->node->side;
-
-			// 	this->alloc.destroy(this->node);
-			// 	this->alloc.construct(this->node, node_type(tmp_parent, side, val));
-			// 	this->node->left = this->alloc.allocate(1);
-			// 	this->alloc.construct(this->node->left, node_type(this->node, L));
-			// 	this->node->right = this->alloc.allocate(1);
-			// 	this->alloc.construct(this->node->right, node_type(this->node, R));
-			// }
-
-		public:
-
-			//Capacity
-			bool	empty() const
-			{
-				if (this->root->left == NULL && this->root->right == NULL)
-					return (true);
-				return (false);
-			}
-
-			size_type	size() const
-			{
-				return (this->root->size());
-			};
-
-			size_type	max_size() const
-			{
-				return (this->alloc.max_size());
-			}
-
-			//Modifiers
-
 			void	new_node(const value_type& val, bool side)
 			{
 				if (this->node->side == -1)
@@ -159,6 +124,28 @@ namespace	ft
 					}
 				}
 			}
+
+		public:
+
+			//Capacity
+			bool	empty() const
+			{
+				if (this->root->left == NULL && this->root->right == NULL)
+					return (true);
+				return (false);
+			}
+
+			size_type	size() const
+			{
+				return (this->root->size());
+			};
+
+			size_type	max_size() const
+			{
+				return (this->alloc.max_size());
+			}
+
+			//Modifiers
 
 			ft::pair<iterator,bool>	insert(const value_type& val)
 			{
@@ -186,23 +173,6 @@ namespace	ft
 				}
 				return (ft::pair<iterator, bool>(iterator(this->node), false));
 			}
-			
-			// ft::pair<iterator,bool>	insert(const value_type& val)
-			// {
-			// 	if (this->node->left == NULL && this->node->right == NULL)
-			// 		this->new_node(val);
-			// 	else if (this->comp(val.first, this->node->data.first))
-			// 	{
-			// 		this->node = this->node->left;
-			// 		this->insert(val);
-			// 	}
-			// 	else if (this->comp(this->node->data.first, val.first))
-			// 	{
-			// 		this->node = this->node->right;
-			// 		this->insert(val);
-			// 	}
-			// 	return (ft::pair<iterator, bool>(iterator(this->node), false));
-			// }
 
 			void	delete_tree() {this->root->delete_tree(this->alloc);};
 	};
