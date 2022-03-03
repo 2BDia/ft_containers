@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 13:40:51 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/01 13:42:57 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/03 12:01:35 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,15 @@ namespace	ft
 		private:
 
 			node_type	*_nPointer;
+
+			// map_iterator	getLeftMost()
+			// {
+			// 	// node_type	*tmp = this->_nPointer;
+
+			// 	// while (tmp->left && (tmp->left != NULL && tmp->right != NULL))
+			// 	// 	tmp = tmp->left;
+			// 	// return (tmp)
+			// }
 
 		public:
 

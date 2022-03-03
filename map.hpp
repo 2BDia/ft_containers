@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 11:59:39 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/01 14:42:38 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/03 14:12:46 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,11 @@ namespace	ft
 			//iterators and difference type
 			typedef size_t											size_type;
 
-		private:
+		public:
 
 			allocator_type		_alloc;
 			key_compare			_comp;
-			BST<Key, T>	_bst;
+			BST<Key, T>			_bst;
 
 		public:
 
@@ -72,9 +72,7 @@ namespace	ft
 
 				while (tmp->left && !(tmp->left == NULL && tmp->right == NULL))
 					tmp = tmp->left;
-				if (tmp->parent == NULL)
-					return (iterator(tmp));
-				return (iterator(tmp->parent));
+				return (iterator(tmp));
 			};
 			const_iterator begin() const {return const_iterator(this->begin());};
 
@@ -114,9 +112,9 @@ namespace	ft
 			void	print()
 			{
 				std::cout << this->_bst.node->data.first << " " << this->_bst.node->data.second << std::endl;
-				std::cout << "side = " << this->_bst.node->side << std::endl;
+				std::cout << this->_bst.node->left->data.first << " " << this->_bst.node->left->data.second << std::endl;
 				std::cout << this->_bst.node->right->data.first << " " << this->_bst.node->right->data.second << std::endl;
-				std::cout << "side = " << this->_bst.node->side << std::endl;
+				std::cout << this->_bst.node->right->right->data.first << " " << this->_bst.node->right->right->data.second << std::endl;
 			}
 	};
 }
