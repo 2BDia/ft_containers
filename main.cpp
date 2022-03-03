@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 16:06:31 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/01 14:42:31 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/03 14:12:48 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -658,7 +658,8 @@ int	main()
 		ft::map<int, int> mine;
 		mine.insert(ft::pair<int, int>(2, 28));
 		mine.insert(ft::pair<int, int>(1, 40));
-		mine.insert(ft::pair<int, int>(3,96));
+		mine.insert(ft::pair<int, int>(3, 96));
+		mine.insert(ft::pair<int, int>(4, 100));
 		ft::map<int, int>::iterator	mit = mine.begin();
 		std::cout << "begin = " << mit->first << " " << mit->second << std::endl;
 		mine.print();

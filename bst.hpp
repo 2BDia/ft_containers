@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 10:45:07 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/01 13:28:13 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/03 14:16:20 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ namespace	ft
 			Node					*parent;
 			Node					*left;
 			Node					*right;
-			bool					side;
+			int						side;
 			ft::pair<const Key, T>	data;
 
 			Node() : parent(NULL), left(NULL), right(NULL), side(0) {};
@@ -45,8 +45,10 @@ namespace	ft
 			{
 				if (!(this->left == NULL && this->right == NULL))
 				{
-					this->left->delete_tree(alloc);
-					this->right->delete_tree(alloc);
+					if (this->left)
+						this->left->delete_tree(alloc);
+					if (this->right)
+						this->right->delete_tree(alloc);
 				}
 				alloc.destroy(this);
 				alloc.deallocate(this, 1);
@@ -90,23 +92,28 @@ namespace	ft
 				this->node = this->alloc.allocate(1);
 				this->alloc.construct(this->node, node_type());
 				this->root = this->node;
+				this->node->side = -1;
 			};
 
 			//Destructor
 			~BST() {};
 
-			void	new_node(const value_type& val)
-			{
-				node_type	*tmp_parent = this->node->parent;
-				bool		side = this->node->side;
+		private:
 
-				this->alloc.destroy(this->node);
-				this->alloc.construct(this->node, node_type(tmp_parent, side, val));
-				this->node->left = this->alloc.allocate(1);
-				this->alloc.construct(this->node->left, node_type(this->node, L));
-				this->node->right = this->alloc.allocate(1);
-				this->alloc.construct(this->node->right, node_type(this->node, R));
-			}
+			// void	new_node(const value_type& val)
+			// {
+			// 	node_type	*tmp_parent = this->node->parent;
+			// 	bool		side = this->node->side;
+
+			// 	this->alloc.destroy(this->node);
+			// 	this->alloc.construct(this->node, node_type(tmp_parent, side, val));
+			// 	this->node->left = this->alloc.allocate(1);
+			// 	this->alloc.construct(this->node->left, node_type(this->node, L));
+			// 	this->node->right = this->alloc.allocate(1);
+			// 	this->alloc.construct(this->node->right, node_type(this->node, R));
+			// }
+
+		public:
 
 			//Capacity
 			bool	empty() const
@@ -127,22 +134,75 @@ namespace	ft
 			}
 
 			//Modifiers
+
+			void	new_node(const value_type& val, bool side)
+			{
+				if (this->node->side == -1)
+				{
+					this->alloc.destroy(this->node);
+					this->alloc.construct(this->node, node_type(NULL, 0, val));
+				}
+				else
+				{
+					node_type	*tmp;
+
+					tmp = this->alloc.allocate(1);
+					if (side == L)
+					{
+						this->alloc.construct(tmp, node_type(this->node, L, val));
+						this->node->left = tmp;
+					}
+					else if (side == R)
+					{
+						this->alloc.construct(tmp, node_type(this->node, R, val));
+						this->node->right = tmp;
+					}
+				}
+			}
+
 			ft::pair<iterator,bool>	insert(const value_type& val)
 			{
-				if (this->node->left == NULL && this->node->right == NULL)
-					new_node(val);
+				if (this->node->side == -1)
+					this->new_node(val, 0);
 				else if (this->comp(val.first, this->node->data.first))
 				{
-					this->node = this->node->left;
-					this->insert(val);
+					if (this->node->left != NULL)
+					{
+						this->node = this->node->left;
+						return (this->insert(val));
+					}
+					else
+						this->new_node(val, L);
 				}
 				else if (this->comp(this->node->data.first, val.first))
 				{
-					this->node = this->node->right;
-					this->insert(val);
+					if (this->node->right != NULL)
+					{
+						this->node = this->node->right;
+						return (this->insert(val));
+					}
+					else
+						this->new_node(val, R);
 				}
 				return (ft::pair<iterator, bool>(iterator(this->node), false));
 			}
+			
+			// ft::pair<iterator,bool>	insert(const value_type& val)
+			// {
+			// 	if (this->node->left == NULL && this->node->right == NULL)
+			// 		this->new_node(val);
+			// 	else if (this->comp(val.first, this->node->data.first))
+			// 	{
+			// 		this->node = this->node->left;
+			// 		this->insert(val);
+			// 	}
+			// 	else if (this->comp(this->node->data.first, val.first))
+			// 	{
+			// 		this->node = this->node->right;
+			// 		this->insert(val);
+			// 	}
+			// 	return (ft::pair<iterator, bool>(iterator(this->node), false));
+			// }
 
 			void	delete_tree() {this->root->delete_tree(this->alloc);};
 	};
