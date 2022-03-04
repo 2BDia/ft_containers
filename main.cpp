@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 16:06:31 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/04 14:16:36 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/04 17:04:40 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@
 
 int	main()
 {
-	// printf("Hi giiiiiiiiiirl\n");
-	// /*********************************/
-	// /*              FT               */
-	// /*********************************/
-	// std::cout << "*** FT ***" << std::endl;
-	// std::cout << std::endl << "--- Vector ---" << std::endl;
+	printf("Hi giiiiiiiiiirl\n");
+	/*********************************/
+	/*              FT               */
+	/*********************************/
+	std::cout << "*** FT ***" << std::endl;
+	std::cout << std::endl << "--- Vector ---" << std::endl;
 	// {
 	// 	std::cout << std::endl << "- Constructors -" << std::endl;
 	// 	ft::vector<int>	zero;
@@ -338,12 +338,41 @@ int	main()
 	// 	if (one < two)
 	// 		std::cout << "< ok" << std::endl;
 	// }
-	// /*********************************/
-	// /*              STD              */
-	// /*********************************/
-	// std::cout << std::endl << "-------------------------------------------------------" << std::endl;
-	// std::cout << std::endl << "*** STD ***" << std::endl;
-	// std::cout << std::endl << "--- Vector ---" << std::endl;
+	{
+		std::cout << std::endl << std::endl << "--- Map ---" << std::endl;
+		std::cout << std::endl << "- Constructors -" << std::endl;
+
+		std::cout << "default :" << std::endl;
+		ft::map<int, int>	zero;
+		zero.insert(ft::pair<int, int>(2, 28));
+		zero.insert(ft::pair<int, int>(1, 40));
+		zero.insert(ft::pair<int, int>(3,96));
+		zero.insert(ft::pair<int, int>(4, 100));
+		for (ft::map<int, int>::iterator it = zero.begin(); it != zero.end(); it++)
+			std::cout << it->first << " " << it->second << std::endl;
+		std::cout << "size = " << zero.size() << std::endl;
+
+		std::cout << std::endl << "range :" << std::endl;
+		ft::map<int, int>::iterator	iter = zero.end();
+		iter--;
+		iter--;
+		ft::map<int, int>	one(zero.begin(), iter);
+		for (ft::map<int, int>::iterator it = one.begin(); it != one.end(); it++)
+			std::cout << it->first << " " << it->second << std::endl;
+		std::cout << "size = " << one.size() << std::endl;
+
+		// std::cout << std::endl << "copy :" << std::endl;
+		// ft::map<int, int>	two(one);
+		// for (ft::map<int, int>::iterator it = two.begin(); it != two.end(); it++)
+		// 	std::cout << it->first << " " << it->second << std::endl;
+		// std::cout << "size = " << two.size() << std::endl;
+	}
+	/*********************************/
+	/*              STD              */
+	/*********************************/
+	std::cout << std::endl << "-------------------------------------------------------" << std::endl;
+	std::cout << std::endl << "*** STD ***" << std::endl;
+	std::cout << std::endl << "--- Vector ---" << std::endl;
 	// {
 	// 	std::cout << std::endl << "- Constructors -" << std::endl;
 	// 	std::vector<int>	zero;
@@ -653,12 +682,41 @@ int	main()
 	// 		std::cout << "< ok" << std::endl;
 	// }
 	{
+		std::cout << std::endl << std::endl << "--- Map ---" << std::endl;
+		std::cout << std::endl << "- Constructors -" << std::endl;
+
+		std::cout << "default :" << std::endl;
+		std::map<int, int>	zero;
+		zero.insert(std::pair<int, int>(2, 28));
+		zero.insert(std::pair<int, int>(1, 40));
+		zero.insert(std::pair<int, int>(3,96));
+		zero.insert(std::pair<int, int>(4, 100));
+		for (std::map<int, int>::iterator it = zero.begin(); it != zero.end(); it++)
+			std::cout << it->first << " " << it->second << std::endl;
+		std::cout << "size = " << zero.size() << std::endl;
+
+		std::cout << std::endl << "range :" << std::endl;
+		std::map<int, int>::iterator	iter = zero.end();
+		iter--;
+		iter--;
+		std::map<int, int>	one(zero.begin(), iter);
+		for (std::map<int, int>::iterator it = one.begin(); it != one.end(); it++)
+			std::cout << it->first << " " << it->second << std::endl;
+		std::cout << "size = " << one.size() << std::endl;
+
+		std::cout << std::endl << "copy :" << std::endl;
+		std::map<int, int>	two(one);
+		for (std::map<int, int>::iterator it = two.begin(); it != two.end(); it++)
+			std::cout << it->first << " " << it->second << std::endl;
+		std::cout << "size = " << two.size() << std::endl;
+	}
+	{
 		std::cout << std::endl << "*** TEST ***" << std::endl;
 
-		// ft::map<int, int> mine;
-		// mine.insert(ft::pair<int, int>(8, 8));
-		// mine.insert(ft::pair<int, int>(3, 3));
-		// mine.insert(ft::pair<int, int>(1, 1));
+		ft::map<int, int> mine;
+		mine.insert(ft::pair<int, int>(8, 8));
+		mine.insert(ft::pair<int, int>(3, 3));
+		mine.insert(ft::pair<int, int>(1, 1));
 		// mine.insert(ft::pair<int, int>(6, 6));
 		// mine.insert(ft::pair<int, int>(4, 4));
 		// mine.insert(ft::pair<int, int>(7, 7));
@@ -666,7 +724,17 @@ int	main()
 		// mine.insert(ft::pair<int, int>(14, 14));
 		// mine.insert(ft::pair<int, int>(13, 13));
 
-		// ft::map<int, int>::iterator	mit = mine.end();
+		ft::map<int, int>::iterator	mit = mine.begin();
+		ft::map<int, int>::iterator	mite = mine.end();
+		ft::map<int, int>	neo;
+		neo.insert(mit, mite);
+		mit = neo.begin();
+		mite = neo.end();
+		while (mit != mite)
+		{
+			std::cout << mit->first << " " << mit->second << std::endl;
+			mit++;
+		}
 		// std::cout << "end = " << mit->first << " " << mit->second << std::endl;
 		// mit--;
 		// std::cout << "next = " << mit->first << " " << mit->second << std::endl;
@@ -685,34 +753,34 @@ int	main()
 		// ++mit;
 		// std::cout << "next = " << mit->first << " " << mit->second << std::endl;
 
-		ft::map<int, int> mine;
-		std::cout << "empty?" << mine.empty() << std::endl;
-		std::cout << "size = " << mine.size() << std::endl;
-		mine.insert(ft::pair<int, int>(2, 28));
-		mine.insert(ft::pair<int, int>(1, 40));
-		mine.insert(ft::pair<int, int>(3, 96));
-		mine.insert(ft::pair<int, int>(4, 100));
-		std::cout << "empty?" << mine.empty() << std::endl;
-		std::cout << "size = " << mine.size() << std::endl;
-		ft::map<int, int>::iterator	mit = mine.begin();
-		std::cout << "begin = " << mit->first << " " << mit->second << std::endl;
-		mine.print();
-		std::cout << "map[2] = " << mine[2] << std::endl;
-		std::cout << "map[3] = " << mine[3] << std::endl;
+		// ft::map<int, int> mine;
+		// std::cout << "empty?" << mine.empty() << std::endl;
+		// std::cout << "size = " << mine.size() << std::endl;
+		// mine.insert(ft::pair<int, int>(2, 28));
+		// mine.insert(ft::pair<int, int>(1, 40));
+		// mine.insert(ft::pair<int, int>(3, 96));
+		// mine.insert(ft::pair<int, int>(4, 100));
+		// std::cout << "empty?" << mine.empty() << std::endl;
+		// std::cout << "size = " << mine.size() << std::endl;
+		// ft::map<int, int>::iterator	mit = mine.begin();
+		// std::cout << "begin = " << mit->first << " " << mit->second << std::endl;
+		// mine.print();
+		// std::cout << "map[2] = " << mine[2] << std::endl;
+		// std::cout << "map[3] = " << mine[3] << std::endl;
 
-		std::cout << std::endl;
-		std::map<int, int>	real;
-		real.insert(std::pair<int, int>(2, 28));
-		real.insert(std::pair<int, int>(1, 40));
-		real.insert(std::pair<int, int>(3,96));
-		real.insert(std::pair<int, int>(4, 100));
-		std::map<int, int>::iterator it = real.begin();
-		std::cout << "begin = " << it->first << " " << it->second << std::endl;
+		// std::cout << std::endl;
+		// std::map<int, int>	real;
+		// real.insert(std::pair<int, int>(2, 28));
+		// real.insert(std::pair<int, int>(1, 40));
+		// real.insert(std::pair<int, int>(3,96));
+		// real.insert(std::pair<int, int>(4, 100));
+		// std::map<int, int>::iterator it = real.begin();
+		// std::cout << "begin = " << it->first << " " << it->second << std::endl;
 		// std::cout << it->first << " " << it->second << std::endl;
 		// it++;
 		// std::cout << it->first << " " << it->second << std::endl;
-		std::cout << "map[2] = " << real[2] << std::endl;
-		std::cout << "map[3] = " << real[3] << std::endl;
+		// std::cout << "map[2] = " << real[2] << std::endl;
+		// std::cout << "map[3] = " << real[3] << std::endl;
 	}
 	// system("leaks containers");
 }
