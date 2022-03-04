@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 13:40:51 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/03 15:35:09 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/03 17:36:06 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,27 +93,27 @@ namespace	ft
 				return (tmp);
 			}
 
-			map_iterator &	operator--()
-			{
-				node_type	*n = this->_nPointer;
+			// map_iterator &	operator--()
+			// {
+			// 	node_type	*n = this->_nPointer;
 
-				if (n->left)
-				{
-					n = n->left;
-					while (n->right)
-						n = n->right;
-				}
-				else if (n->side == R && n->parent)
-					n = n->parent;
-				else if (n->side == L && n->parent)
-				{
-					while (n->side == L && n->parent)
-						n = n->parent;
-					if (n->side == R && n->parent)
-						n = n->parent;
-				}
-				this->_nPointer = n;
-				return (*this);
-			}
+			// 	if (n->left)
+			// 	{
+			// 		n = n->left;
+			// 		while (n->right)
+			// 			n = n->right;
+			// 	}
+			// 	else if (n->side == R && n->parent)
+			// 		n = n->parent;
+			// 	else if (n->side == L && n->parent)
+			// 	{
+			// 		while (n->side == L && n->parent)
+			// 			n = n->parent;
+			// 		if (n->side == R && n->parent)
+			// 			n = n->parent;
+			// 	}
+			// 	this->_nPointer = n;
+			// 	return (*this);
+			// }
 	};
 }
