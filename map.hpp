@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 11:59:39 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/04 13:46:36 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/04 17:04:25 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ namespace	ft
 
 		public:
 
-			//Constructors TODO : range and copy
+			//Constructors TODO : copy
 			explicit map(const key_compare& comp = key_compare(),
               const allocator_type& alloc = allocator_type())
 			:
@@ -61,6 +61,27 @@ namespace	ft
 				_comp(comp),
 				_bst()
 			{};
+
+			template <class InputIterator>
+			map (InputIterator first, InputIterator last,
+				const key_compare& comp = key_compare(),
+				const allocator_type& alloc = allocator_type())
+			:
+				_alloc(alloc),
+				_comp(comp),
+				_bst()
+			{
+				this->insert(first, last);
+			};
+
+			// map (const map& x) : _bst()
+			// {
+			// 	this->_alloc = x._alloc;
+			// 	this->_comp = x._comp;
+			// 	iterator	first = x.begin();
+			// 	iterator	last = x.end();
+			// 	this->insert(first, last);
+			// };
 
 			// Destructor
 			~map() {this->_bst.delete_tree();};
@@ -105,7 +126,23 @@ namespace	ft
 				this->_bst.node = this->_bst.root;
 				return (tmp);
 			};
-
+			iterator insert (iterator position, const value_type& val)
+			{
+				static_cast<void>(position);
+				iterator	tmp = this->_bst.insert(val);
+				this->_bst.node = this->_bst.root;
+				return (tmp);
+			};
+			template <class InputIterator>
+			void insert (InputIterator first, InputIterator last)
+			{
+				while (first != last)
+				{
+					this->_bst.insert(*first);
+					this->_bst.node = this->_bst.root;
+					first++;
+				}
+			};
 
 
 			//TEST

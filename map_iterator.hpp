@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 13:40:51 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/04 14:00:27 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/04 16:59:19 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,5 +166,8 @@ namespace	ft
 				--(*this);
 				return (tmp);
 			}
+
+			bool	operator==(map_iterator const rhs) const {return (this->_nPointer == rhs._nPointer);};
+			bool	operator!=(map_iterator const rhs) const {return (this->_nPointer != rhs._nPointer);};
 	};
 }

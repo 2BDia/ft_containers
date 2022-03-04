@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 10:45:07 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/04 14:16:17 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/04 17:02:33 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ namespace	ft
 			int						side;
 			ft::pair<const Key, T>	data;
 
+			//Constructors
 			Node() : parent(NULL), left(NULL), right(NULL), side(0) {};
 			Node(Node *parent, int side) : parent(parent), left(NULL), right(NULL), side(side) {};
 			Node(Node *parent, int side, const ft::pair<Key, T> val, Node *null)
@@ -42,6 +43,7 @@ namespace	ft
 			Node(int side, const ft::pair<Key, T> val)
 			: parent(NULL), left(NULL), right(NULL), side(side), data(val) {};
 
+			//Destructor
 			~Node() {};
 
 			void	delete_tree(std::allocator<Node<Key, T> > alloc)
@@ -161,7 +163,6 @@ namespace	ft
 			}
 
 			//Modifiers
-
 			ft::pair<iterator,bool>	insert(const value_type& val)
 			{
 				if (this->node->side == -1)
