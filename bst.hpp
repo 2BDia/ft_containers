@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 10:45:07 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/04 13:16:53 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/04 13:53:33 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,14 @@ namespace	ft
 			Node					*parent;
 			Node					*left;
 			Node					*right;
+			Node					*null;
 			int						side;
 			ft::pair<const Key, T>	data;
 
 			Node() : parent(NULL), left(NULL), right(NULL), side(0) {};
 			Node(Node *parent, int side) : parent(parent), left(NULL), right(NULL), side(side) {};
 			Node(Node *parent, int side, const ft::pair<Key, T> val, Node *null)
-			: parent(parent), left(null), right(null), side(side), data(val) {};
+			: parent(parent), left(null), right(null), null(null), side(side), data(val) {};
 			Node(int side, const ft::pair<Key, T> val)
 			: parent(NULL), left(NULL), right(NULL), side(side), data(val) {};
 
@@ -103,6 +104,8 @@ namespace	ft
 				this->node->side = -1;
 				this->null = this->alloc.allocate(1);
 				this->alloc.construct(this->null, node_type(-1, value_type()));
+				this->null->null = this->null; //need pointer on null in the node as well for iterators
+				this->null->parent = this->root;
 			};
 
 			//Destructor

@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 16:06:31 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/04 13:14:31 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/04 14:00:34 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -666,17 +666,16 @@ int	main()
 		mine.insert(ft::pair<int, int>(14, 14));
 		// mine.insert(ft::pair<int, int>(13, 13));
 
-		// ft::map<int, int>::iterator	mit = mine.end();
-		// --mit;
-		// std::cout << "end = " << mit->first << " " << mit->second << std::endl;
-		// mit++;
-		// std::cout << "next = " << mit->first << " " << mit->second << std::endl;
-		// mit++;
-		// std::cout << "next = " << mit->first << " " << mit->second << std::endl;
-		// ++mit;
-		// std::cout << "next = " << mit->first << " " << mit->second << std::endl;
-		// ++mit;
-		// std::cout << "next = " << mit->first << " " << mit->second << std::endl;
+		ft::map<int, int>::iterator	mit = mine.end();
+		std::cout << "end = " << mit->first << " " << mit->second << std::endl;
+		mit--;
+		std::cout << "next = " << mit->first << " " << mit->second << std::endl;
+		mit--;
+		std::cout << "next = " << mit->first << " " << mit->second << std::endl;
+		mit--;
+		std::cout << "next = " << mit->first << " " << mit->second << std::endl;
+		mit--;
+		std::cout << "next = " << mit->first << " " << mit->second << std::endl;
 		// ++mit;
 		// std::cout << "next = " << mit->first << " " << mit->second << std::endl;
 		// ++mit;
@@ -698,8 +697,8 @@ int	main()
 		// mine.insert(ft::pair<int, int>(1, 40));
 		// mine.insert(ft::pair<int, int>(3, 96));
 		// mine.insert(ft::pair<int, int>(4, 100));
-		ft::map<int, int>::iterator	mit = mine.begin();
-		std::cout << "begin = " << mit->first << " " << mit->second << std::endl;
+		// ft::map<int, int>::iterator	mit = mine.begin();
+		// std::cout << "begin = " << mit->first << " " << mit->second << std::endl;
 		// mine.print();
 		// std::cout << "map[2] = " << mine[2] << std::endl;
 		// std::cout << "map[3] = " << mine[3] << std::endl;

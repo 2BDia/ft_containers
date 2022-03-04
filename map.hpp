@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 11:59:39 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/04 13:15:20 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/04 13:46:36 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ namespace	ft
 			{
 				Node<Key, T>	*tmp = this->_bst.root;
 
-				while (tmp->left && !(tmp->left == this->_bst.null && tmp->right == this->_bst.null))
+				while (tmp->left != tmp->null && !(tmp->left == tmp->null && tmp->right == tmp->null))
 					tmp = tmp->left;
 				return (iterator(tmp));
 			};
@@ -80,9 +80,9 @@ namespace	ft
 			{
 				Node<Key, T>	*tmp = this->_bst.root;
 
-				while (tmp->right && !(tmp->left == this->_bst.null && tmp->right == this->_bst.null))
+				while (tmp->right != tmp->null && !(tmp->left == this->_bst.null && tmp->right == this->_bst.null))
 					tmp = tmp->right;
-				return (iterator(tmp));
+				return (iterator(tmp->right));
 			};
 			const_iterator end() const {return const_iterator(this->end());};
 
