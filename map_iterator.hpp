@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 13:40:51 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/03 17:36:06 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/04 14:00:27 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,31 @@ namespace	ft
 
 			node_type	*getLeftMost(node_type *n)
 			{
-				while (n->left)
-					n = n->left;
-				return (n);
+				node_type	*tmp = n;
+				
+				while (tmp->parent)
+					tmp = tmp->parent;
+				while (tmp->left != tmp->null)
+					tmp = tmp->left;
+				return (tmp);
+			}
+
+			node_type	*getRightMost(node_type *n)
+			{
+				node_type	*tmp = n;
+				
+				while (tmp->parent)
+					tmp = tmp->parent;
+				while (tmp->right != tmp->null)
+					tmp = tmp->right;
+				return (tmp);
+			}
+
+			bool	isNull(node_type *n)
+			{
+				if (n == n->null)
+					return (1);
+				return (0);
 			}
 
 		public:
@@ -64,24 +86,39 @@ namespace	ft
 			{
 				node_type	*n = this->_nPointer;
 
+				// if we're at the last node + 1, return same iterator
+				if (n == n->null)
+				{
+					this->_nPointer = n;
+					return (*this);
+				}
+				// if we're at the last node, go to last node + 1
+				else if (n == getRightMost(n))
+					n = n->right;
 				// - if node has a right subtree, go to leftmost node of that subtree
-				if (n->right)
+				else if (!isNull(n->right))
 				{
 					n = n->right;
-					while (n->left)
+					while (!isNull(n->left))
 						n = n->left;
 				}
 				// - if it doesn't, traverse up the tree :
 				// if you make a right turn, parent is next
-				else if (n->side == L && n->parent)
-					n = n->parent;
-				// if you make a left turn, keep on traversing up the tree until a right turn or root
-				else if (n->side == R && n->parent)
+				else if (n->side == L && !isNull(n->parent))
 				{
-					while (n->side == R && n->parent)
+					n = n->parent;
+				}
+				// if you make a left turn, keep on traversing up the tree until a right turn or root
+				else if (n->side == R && !isNull(n->parent))
+				{
+					while (n->side == R && !isNull(n->parent))
 						n = n->parent;
-					if (n->side == L && n->parent)
+					if (n->side == L && !isNull(n->parent))
 						n = n->parent;
+				}
+				else
+				{
+					n = n->right;
 				}
 				this->_nPointer = n;
 				return (*this);
@@ -93,27 +130,41 @@ namespace	ft
 				return (tmp);
 			}
 
-			// map_iterator &	operator--()
-			// {
-			// 	node_type	*n = this->_nPointer;
+			// works the same as ++ but left is right and vice versa
+			map_iterator &	operator--()
+			{
+				node_type	*n = this->_nPointer;
 
-			// 	if (n->left)
-			// 	{
-			// 		n = n->left;
-			// 		while (n->right)
-			// 			n = n->right;
-			// 	}
-			// 	else if (n->side == R && n->parent)
-			// 		n = n->parent;
-			// 	else if (n->side == L && n->parent)
-			// 	{
-			// 		while (n->side == L && n->parent)
-			// 			n = n->parent;
-			// 		if (n->side == R && n->parent)
-			// 			n = n->parent;
-			// 	}
-			// 	this->_nPointer = n;
-			// 	return (*this);
-			// }
+				if (n == getLeftMost(n))
+				{
+					this->_nPointer = n;
+					return (*this);
+				}
+				else if (n == n->null)
+					n = getRightMost(n);
+				else if (!isNull(n->left))
+				{
+					n = n->left;
+					while (!isNull(n->right))
+						n = n->right;
+				}
+				else if (n->side == R && !isNull(n->parent))
+					n = n->parent;
+				else if (n->side == L && !isNull(n->parent))
+				{
+					while (n->side == L && !isNull(n->parent))
+						n = n->parent;
+					if (n->side == R && !isNull(n->parent))
+						n = n->parent;
+				}
+				this->_nPointer = n;
+				return (*this);
+			}
+			map_iterator 	operator--(int)
+			{
+				map_iterator	tmp = *this;
+				--(*this);
+				return (tmp);
+			}
 	};
 }
