@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 10:45:07 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/04 13:53:33 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/04 14:16:17 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,14 @@ namespace	ft
 
 			~Node() {};
 
-			void	delete_tree(std::allocator<Node<Key, T> > alloc, Node *null)
+			void	delete_tree(std::allocator<Node<Key, T> > alloc)
 			{
-				if (!(this->left == null && this->right == null))
+				if (!(this->left == this->null && this->right == this->null))
 				{
-					if (this->left)
-						this->left->delete_tree(alloc, null);
-					if (this->right)
-						this->right->delete_tree(alloc, null);
+					if (this->left != this->null)
+						this->left->delete_tree(alloc);
+					if (this->right != this->null)
+						this->right->delete_tree(alloc);
 				}
 				if (this->parent == NULL)
 				{
@@ -64,8 +64,8 @@ namespace	ft
 
 			size_type	size() const
 			{
-				if (this->left == NULL && this->right == NULL)
-					return (0); 
+				if (this == this->null || (this->left == NULL && this->right == NULL))
+					return (0);
 				return(this->left->size() + this->right->size() + 1);
 			}
 	};
@@ -150,6 +150,8 @@ namespace	ft
 
 			size_type	size() const
 			{
+				if (this->empty() == 1)
+					return (0);
 				return (this->root->size());
 			};
 
@@ -187,6 +189,6 @@ namespace	ft
 				return (ft::pair<iterator, bool>(iterator(this->node), false));
 			}
 
-			void	delete_tree() {this->root->delete_tree(this->alloc, this->null);};
+			void	delete_tree() {this->root->delete_tree(this->alloc);};
 	};
 }
