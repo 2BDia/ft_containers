@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 10:45:07 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/08 16:43:41 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/08 16:58:37 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -239,6 +239,8 @@ namespace	ft
 					node_type	*right = tmp->right;
 					int			side = tmp->side;
 
+					if (tmp == this->root)
+						this->root = save;
 					this->alloc.destroy(tmp);
 					this->alloc.deallocate(tmp, 1);
 					save->parent = parent;

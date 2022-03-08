@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 11:59:39 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/08 16:26:08 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/08 18:16:02 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,12 +74,12 @@ namespace	ft
 				this->insert(first, last);
 			};
 
-			map (map& x) //wrong prototype
+			map (const map& x) //wrong prototype
 			{
 				this->_alloc = x._alloc;
 				this->_comp = x._comp;
-				iterator	first = x.begin();
-				iterator	last = x.end();
+				const_iterator	first = x.begin();
+				const_iterator	last = x.end();
 				this->insert(first, last);
 			};
 
@@ -87,12 +87,12 @@ namespace	ft
 			~map() {this->_bst.delete_tree();};
 
 			//Operator=
-			map& operator= (map& x) //may leak? (valgrind and system don't show it) je dois free
+			map& operator= (const map& x) //may leak? (valgrind and system don't show it) je dois free
 			{
 				this->_alloc = x._alloc;
 				this->_comp = x._comp;
-				iterator	first = x.begin();
-				iterator	last = x.end();
+				const_iterator	first = x.begin();
+				const_iterator	last = x.end();
 				this->insert(first, last);
 				return (*this);
 			};
@@ -106,7 +106,15 @@ namespace	ft
 					tmp = tmp->left;
 				return (iterator(tmp));
 			};
-			const_iterator begin() const {return const_iterator(this->begin());};
+			
+			const_iterator begin() const
+			{
+				Node<Key, T>	*tmp = this->_bst.root;
+
+				while (tmp->left != tmp->null && !(tmp->left == tmp->null && tmp->right == tmp->null))
+					tmp = tmp->left;
+				return const_iterator(tmp);
+			};
 
 			iterator end()
 			{
@@ -116,7 +124,15 @@ namespace	ft
 					tmp = tmp->right;
 				return (iterator(tmp->right));
 			};
-			const_iterator end() const {return const_iterator(this->end());};
+			
+			const_iterator end() const
+			{
+				Node<Key, T>	*tmp = this->_bst.root;
+
+				while (tmp->right != tmp->null && !(tmp->left == this->_bst.null && tmp->right == this->_bst.null))
+					tmp = tmp->right;
+				return (const_iterator(tmp->right));
+			};
 
 			//Capacity
 			bool empty() const {return this->_bst.empty();};
