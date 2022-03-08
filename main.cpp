@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 16:06:31 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/08 16:49:17 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/08 18:26:05 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -369,10 +369,10 @@ int	main()
 
 		std::cout << std::endl << "operator= :" << std::endl;
 		ft::map<int, int>	three;
-		three = two;
-		for (ft::map<int, int>::iterator it = three.begin(); it != three.end(); it++)
+		one = two;
+		for (ft::map<int, int>::iterator it = one.begin(); it != one.end(); it++)
 			std::cout << it->first << " " << it->second << std::endl;
-		std::cout << "size = " << three.size() << std::endl;
+		std::cout << "size = " << one.size() << std::endl;
 	}
 	/*********************************/
 	/*              STD              */
@@ -722,7 +722,6 @@ int	main()
 		for (std::map<int, int>::iterator it = three.begin(); it != three.end(); it++)
 			std::cout << it->first << " " << it->second << std::endl;
 		std::cout << "size = " << three.size() << std::endl;
-		
 	}
 	{
 		std::cout << std::endl << "*** TEST ***" << std::endl;
