@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 11:59:39 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/08 15:10:01 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/08 16:26:08 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ namespace	ft
 			//iterators and difference type
 			typedef size_t											size_type;
 
-		private:
+		public:
 
 			allocator_type		_alloc;
 			key_compare			_comp;
@@ -87,7 +87,7 @@ namespace	ft
 			~map() {this->_bst.delete_tree();};
 
 			//Operator=
-			map& operator= (map& x) //may leak? (valgrind and system don't show it)
+			map& operator= (map& x) //may leak? (valgrind and system don't show it) je dois free
 			{
 				this->_alloc = x._alloc;
 				this->_comp = x._comp;
@@ -155,19 +155,10 @@ namespace	ft
 				}
 			};
 
-			// void erase (iterator position)
-			// {
-				
-			// };
-
-
-			//TEST
-			void	print()
+			void erase (iterator position)
 			{
-				std::cout << this->_bst.node->data.first << " " << this->_bst.node->data.second << std::endl;
-				std::cout << this->_bst.node->left->data.first << " " << this->_bst.node->left->data.second << std::endl;
-				std::cout << this->_bst.node->right->data.first << " " << this->_bst.node->right->data.second << std::endl;
-				std::cout << this->_bst.node->right->right->data.first << " " << this->_bst.node->right->right->data.second << std::endl;
-			}
+				this->_bst.erase(position);
+			};
+
 	};
 }
