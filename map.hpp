@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 11:59:39 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/04 17:04:25 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/08 15:10:01 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,17 +74,28 @@ namespace	ft
 				this->insert(first, last);
 			};
 
-			// map (const map& x) : _bst()
-			// {
-			// 	this->_alloc = x._alloc;
-			// 	this->_comp = x._comp;
-			// 	iterator	first = x.begin();
-			// 	iterator	last = x.end();
-			// 	this->insert(first, last);
-			// };
+			map (map& x) //wrong prototype
+			{
+				this->_alloc = x._alloc;
+				this->_comp = x._comp;
+				iterator	first = x.begin();
+				iterator	last = x.end();
+				this->insert(first, last);
+			};
 
-			// Destructor
+			//Destructor
 			~map() {this->_bst.delete_tree();};
+
+			//Operator=
+			map& operator= (map& x) //may leak? (valgrind and system don't show it)
+			{
+				this->_alloc = x._alloc;
+				this->_comp = x._comp;
+				iterator	first = x.begin();
+				iterator	last = x.end();
+				this->insert(first, last);
+				return (*this);
+			};
 
 			//Iterators
 			iterator begin()
@@ -143,6 +154,11 @@ namespace	ft
 					first++;
 				}
 			};
+
+			// void erase (iterator position)
+			// {
+				
+			// };
 
 
 			//TEST
