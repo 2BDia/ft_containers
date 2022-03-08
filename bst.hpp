@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 10:45:07 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/08 11:55:27 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/08 16:43:41 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,7 +138,7 @@ namespace	ft
 						this->node->right = tmp;
 					}
 				}
-			}
+			};
 
 		public:
 
@@ -148,7 +148,7 @@ namespace	ft
 				if (this->root->left == NULL && this->root->right == NULL)
 					return (true);
 				return (false);
-			}
+			};
 
 			size_type	size() const
 			{
@@ -160,7 +160,7 @@ namespace	ft
 			size_type	max_size() const
 			{
 				return (this->alloc.max_size());
-			}
+			};
 
 			//Modifiers
 			ft::pair<iterator,bool>	insert(const value_type& val)
@@ -188,12 +188,102 @@ namespace	ft
 						this->new_node(val, R);
 				}
 				return (ft::pair<iterator, bool>(iterator(this->node), false));
-			}
+			};
 
-			// void	erase(iterator position)
-			// {
-				
-			// }
+			// https://www.geeksforgeeks.org/binary-search-tree-set-2-delete/#:~:text=1)%20Node%20to%20be%20deleted,Simply%20remove%20from%20the%20tree.&text=3)%20Node%20to%20be%20deleted,predecessor%20can%20also%20be%20used.
+			void	erase(iterator position)
+			{
+				node_type	*tmp = position.getNPointer();
+				if (position.isNull(tmp->left) && position.isNull(tmp->right)) //if node is a leaf
+				{
+					node_type	*parent = tmp->parent;
+					int			side = tmp->side;
+
+					this->alloc.destroy(tmp);
+					this->alloc.deallocate(tmp, 1);
+					if (side == L)
+						parent->left = this->null;
+					else if (side == R)
+						parent->right = this->null;
+				}
+				else if ((!position.isNull(tmp->left) && position.isNull(tmp->right))
+					|| (position.isNull(tmp->left) && !position.isNull(tmp->right))) //if node has one child
+				{
+					node_type	*parent = tmp->parent;
+					int			side = tmp->side;
+					node_type	*save;
+
+					if (!position.isNull(tmp->left) && position.isNull(tmp->right)) //only left child
+						save = tmp->left;
+					else //only right child
+						save = tmp->right;
+					this->alloc.destroy(tmp);
+					this->alloc.deallocate(tmp, 1);
+					save->parent = parent;
+					save->side = side;
+					if (side == L)
+						parent->left = save;
+					else if (side == R)
+						parent->right = save;
+					save->side = side;
+				}
+				else //if node has two children
+				{
+					node_type	*save = (++position).getNPointer();
+					node_type	*s_parent = save->parent;
+					node_type	*s_left = save->left;
+					node_type	*s_right = save->right;
+					int			s_side = save->side;
+					node_type	*parent = tmp->parent;
+					node_type	*left = tmp->left;
+					node_type	*right = tmp->right;
+					int			side = tmp->side;
+
+					this->alloc.destroy(tmp);
+					this->alloc.deallocate(tmp, 1);
+					save->parent = parent;
+					save->left = left;
+					save->right = right;
+					save->side = side;
+					//placed save in tmp's spot
+
+					if (s_left == this->null && s_right == this->null) //if save is a leaf
+					{
+						if (s_side == L)
+							s_parent->left = this->null;
+						else if (s_side == R)
+							s_parent->right = this->null;
+					}
+					else if (s_left != this->null && s_right == this->null) //if save only has a left child
+					{
+						if (s_side == L) //save used to be left
+						{
+							s_parent->left = s_left;
+							s_left->parent = s_parent;
+						}
+						else if (s_side == R) //save used to be right
+						{
+							s_parent->right = s_left;
+							s_left->parent = s_parent;
+							s_left->side = R;
+						}
+					}
+					else if (s_left == this->null && s_right != this->null) //if save only has a right child
+					{
+						if (s_side == L) //save used to be left
+						{
+							s_parent->left = s_right;
+							s_right->parent = s_parent;
+							s_right->side = L;
+						}
+						else if (s_side == R) //save used to be right
+						{
+							s_parent->right = s_right;
+							s_right->parent = s_parent;
+						}
+					}
+				}
+			};
 
 			void	delete_tree() {this->root->delete_tree(this->alloc);};
 	};

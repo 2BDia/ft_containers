@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 13:40:51 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/04 16:59:19 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/08 16:31:43 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,35 +30,6 @@ namespace	ft
 
 			node_type	*_nPointer;
 
-			node_type	*getLeftMost(node_type *n)
-			{
-				node_type	*tmp = n;
-				
-				while (tmp->parent)
-					tmp = tmp->parent;
-				while (tmp->left != tmp->null)
-					tmp = tmp->left;
-				return (tmp);
-			}
-
-			node_type	*getRightMost(node_type *n)
-			{
-				node_type	*tmp = n;
-				
-				while (tmp->parent)
-					tmp = tmp->parent;
-				while (tmp->right != tmp->null)
-					tmp = tmp->right;
-				return (tmp);
-			}
-
-			bool	isNull(node_type *n)
-			{
-				if (n == n->null)
-					return (1);
-				return (0);
-			}
-
 		public:
 
 			//Constructors
@@ -74,7 +45,7 @@ namespace	ft
 			{
 				this->_nPointer = rhs._nPointer;
 				return (*this);
-			}
+			};
 
 			//Member functions
 			value_type	&operator*() const {return this->_nPointer->data;};
@@ -122,13 +93,13 @@ namespace	ft
 				}
 				this->_nPointer = n;
 				return (*this);
-			}
+			};
 			map_iterator 	operator++(int)
 			{
 				map_iterator	tmp = *this;
 				++(*this);
 				return (tmp);
-			}
+			};
 
 			// works the same as ++ but left is right and vice versa
 			map_iterator &	operator--()
@@ -159,15 +130,46 @@ namespace	ft
 				}
 				this->_nPointer = n;
 				return (*this);
-			}
+			};
 			map_iterator 	operator--(int)
 			{
 				map_iterator	tmp = *this;
 				--(*this);
 				return (tmp);
-			}
+			};
 
 			bool	operator==(map_iterator const rhs) const {return (this->_nPointer == rhs._nPointer);};
 			bool	operator!=(map_iterator const rhs) const {return (this->_nPointer != rhs._nPointer);};
+
+			node_type	*getNPointer() {return (this->_nPointer);};
+
+			node_type	*getLeftMost(node_type *n)
+			{
+				node_type	*tmp = n;
+				
+				while (tmp->parent)
+					tmp = tmp->parent;
+				while (tmp->left != tmp->null)
+					tmp = tmp->left;
+				return (tmp);
+			};
+
+			node_type	*getRightMost(node_type *n)
+			{
+				node_type	*tmp = n;
+				
+				while (tmp->parent)
+					tmp = tmp->parent;
+				while (tmp->right != tmp->null)
+					tmp = tmp->right;
+				return (tmp);
+			};
+
+			bool	isNull(node_type *n)
+			{
+				if (n == n->null)
+					return (1);
+				return (0);
+			};
 	};
 }
