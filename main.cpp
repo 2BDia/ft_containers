@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 16:06:31 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/08 16:43:47 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/08 16:49:17 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -783,19 +783,21 @@ int	main()
 		for (ft::map<int, int>::iterator mit = mine.begin(); mit != mine.end(); mit++)
 			std::cout << mit->first << " " << mit->second << std::endl;
 		ft::map<int, int>::iterator	miter = mine.begin();
-		mine.erase(miter);
+		mine.erase(miter); //20
 		std::cout << std::endl;
 		for (ft::map<int, int>::iterator mit = mine.begin(); mit != mine.end(); mit++)
 			std::cout << mit->first << " " << mit->second << std::endl;
 		miter = mine.begin();
-		mine.erase(miter);
+		mine.erase(miter); //30
 		std::cout << std::endl;
 		for (ft::map<int, int>::iterator mit = mine.begin(); mit != mine.end(); mit++)
 			std::cout << mit->first << " " << mit->second << std::endl;
-		// mine.erase(50);
-		// std::cout << std::endl;
-		// for (ft::map<int, int>::iterator mit = mine.begin(); mit != mine.end(); mit++)
-		// 	std::cout << mit->first << " " << mit->second << std::endl;
+		miter = mine.begin();
+		miter++;
+		mine.erase(miter); //50
+		std::cout << std::endl;
+		for (ft::map<int, int>::iterator mit = mine.begin(); mit != mine.end(); mit++)
+			std::cout << mit->first << " " << mit->second << std::endl;
 		// std::cout << "root = " << mine._bst.root->data->first << std::endl;
 
 		// std::cout << "lol = " << mine._bst.root->left->left->data.first << std::endl;

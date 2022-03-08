@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 13:40:51 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/08 16:31:43 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/08 18:12:49 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ namespace	ft
 			map_iterator() : _nPointer(NULL) {};
 			map_iterator(const map_iterator &src) : _nPointer(src._nPointer) {};
 			map_iterator(node_type *x) : _nPointer(x) {};
+			// map_iterator(node_type *x, int dummy) : _nPointer(x) { (void)dummy;};
 
 			//Destructor
 			~map_iterator() {};
