@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 11:59:39 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/09 13:58:55 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/09 17:23:13 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ namespace	ft
 
 		public:
 
-			//Constructors TODO : copy
 			explicit map(const key_compare& comp = key_compare(),
               const allocator_type& alloc = allocator_type())
 			:
@@ -97,6 +96,8 @@ namespace	ft
 			{
 				Node<Key, T>	*tmp = this->_bst.root;
 
+				if (tmp == tmp->null)
+					return (iterator(tmp));
 				while (tmp->left != tmp->null && !(tmp->left == tmp->null && tmp->right == tmp->null))
 					tmp = tmp->left;
 				return (iterator(tmp));
@@ -105,6 +106,8 @@ namespace	ft
 			{
 				Node<Key, T>	*tmp = this->_bst.root;
 
+				if (tmp == tmp->null)
+					return (const_iterator(tmp));
 				while (tmp->left != tmp->null && !(tmp->left == tmp->null && tmp->right == tmp->null))
 					tmp = tmp->left;
 				return const_iterator(tmp);
@@ -114,6 +117,8 @@ namespace	ft
 			{
 				Node<Key, T>	*tmp = this->_bst.root;
 
+				if (tmp == tmp->null)
+					return (iterator(tmp));
 				while (tmp->right != tmp->null && !(tmp->left == this->_bst.null && tmp->right == this->_bst.null))
 					tmp = tmp->right;
 				return (iterator(tmp->right));
@@ -122,6 +127,8 @@ namespace	ft
 			{
 				Node<Key, T>	*tmp = this->_bst.root;
 
+				if (tmp == tmp->null)
+					return (const_iterator(tmp));
 				while (tmp->right != tmp->null && !(tmp->left == this->_bst.null && tmp->right == this->_bst.null))
 					tmp = tmp->right;
 				return (const_iterator(tmp->right));

@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 16:06:31 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/09 13:58:03 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/09 17:20:23 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -793,38 +793,80 @@ int	main()
 			std::cout << mit->first << " " << mit->second << std::endl;
 		miter = mine.begin();
 		miter++;
+		mine.insert(ft::pair<int, int>(65, 65)); //
 		mine.erase(miter); //50
 		std::cout << std::endl;
 		for (ft::map<int, int>::iterator mit = mine.begin(); mit != mine.end(); mit++)
 			std::cout << mit->first << " " << mit->second << std::endl;
-		// std::cout << "root = " << mine._bst.root->data->first << std::endl;
+		miter = mine.begin();
+		miter++;
+		mine.erase(miter); //60
+		std::cout << std::endl;
+		for (ft::map<int, int>::iterator mit = mine.begin(); mit != mine.end(); mit++)
+			std::cout << mit->first << " " << mit->second << std::endl;
+		miter = mine.begin();
+		miter++;
+		mine.erase(miter); //65
+		std::cout << std::endl;
+		for (ft::map<int, int>::iterator mit = mine.begin(); mit != mine.end(); mit++)
+			std::cout << mit->first << " " << mit->second << std::endl;
+		miter = mine.begin();
+		miter++;
+		mine.erase(miter); //70
+		std::cout << std::endl;
+		for (ft::map<int, int>::iterator mit = mine.begin(); mit != mine.end(); mit++)
+			std::cout << mit->first << " " << mit->second << std::endl;
+		miter = mine.begin();
+		miter++;
+		mine.erase(miter); //80
+		std::cout << std::endl;
+		for (ft::map<int, int>::iterator mit = mine.begin(); mit != mine.end(); mit++)
+			std::cout << mit->first << " " << mit->second << std::endl;
+		miter = mine.begin();
+		mine.erase(miter); //40
+		std::cout << std::endl;
+		for (ft::map<int, int>::iterator mit = mine.begin(); mit != mine.end(); mit++)
+			std::cout << mit->first << " " << mit->second << std::endl;
 
-		// std::cout << "lol = " << mine._bst.root->left->left->data.first << std::endl;
-		std::cout << std::endl << "real" << std::endl;
-		std::map<int, int>	real;
-		real.insert(std::pair<int, int>(50, 5));
-		real.insert(std::pair<int, int>(30, 3));
-		real.insert(std::pair<int, int>(40, 4));
-		real.insert(std::pair<int, int>(20, 2));
-		real.insert(std::pair<int, int>(70, 7));
-		real.insert(std::pair<int, int>(60, 6));
-		real.insert(std::pair<int, int>(80, 8));
-		for (std::map<int, int>::iterator it = real.begin(); it != real.end(); it++)
-			std::cout << it->first << " " << it->second << std::endl;
-		real.erase(20);
-		std::cout << std::endl;
-		for (std::map<int, int>::iterator it = real.begin(); it != real.end(); it++)
-			std::cout << it->first << " " << it->second << std::endl;
-		real.erase(30);
-		std::cout << std::endl;
-		for (std::map<int, int>::iterator it = real.begin(); it != real.end(); it++)
-			std::cout << it->first << " " << it->second << std::endl;
+		// std::cout << std::endl << "real" << std::endl;
+		// std::map<int, int>	real;
+		// real.insert(std::pair<int, int>(50, 5));
+		// real.insert(std::pair<int, int>(30, 3));
+		// real.insert(std::pair<int, int>(40, 4));
+		// real.insert(std::pair<int, int>(20, 2));
+		// real.insert(std::pair<int, int>(70, 7));
+		// real.insert(std::pair<int, int>(60, 6));
+		// real.insert(std::pair<int, int>(80, 8));
+		// for (std::map<int, int>::iterator it = real.begin(); it != real.end(); it++)
+		// 	std::cout << it->first << " " << it->second << std::endl;
+		// real.erase(20);
+		// std::cout << std::endl;
+		// for (std::map<int, int>::iterator it = real.begin(); it != real.end(); it++)
+		// 	std::cout << it->first << " " << it->second << std::endl;
+		// real.erase(30);
+		// std::cout << std::endl;
+		// for (std::map<int, int>::iterator it = real.begin(); it != real.end(); it++)
+		// 	std::cout << it->first << " " << it->second << std::endl;
+		// real.erase(50);
+		// std::cout << std::endl;
+		// for (std::map<int, int>::iterator it = real.begin(); it != real.end(); it++)
+		// 	std::cout << it->first << " " << it->second << std::endl;
 		// std::cout << "begin = " << it->first << " " << it->second << std::endl;
 		// std::cout << it->first << " " << it->second << std::endl;
 		// it++;
 		// std::cout << it->first << " " << it->second << std::endl;
 		// std::cout << "map[2] = " << real[2] << std::endl;
 		// std::cout << "map[3] = " << real[3] << std::endl;
+
+
+		std::cout << std::endl << "real" << std::endl;
+		std::map<int, int>	real;
+		real.insert(std::pair<int, int>(50, 5));
+		real.insert(std::pair<int, int>(30, 3));
+		real.insert(std::pair<int, int>(40, 4));
+		real.erase(50);
+		for (std::map<int, int>::iterator it = real.begin(); it != real.end(); it++)
+			std::cout << it->first << " " << it->second << std::endl;
 	}
 	// system("leaks containers");
 }

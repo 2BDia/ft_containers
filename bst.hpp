@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 10:45:07 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/09 13:47:01 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/09 17:24:50 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,12 @@ namespace	ft
 
 			void	delete_tree(std::allocator<Node<Key, T> > alloc)
 			{
+				if (this == this->null)
+				{
+					alloc.destroy(this);
+					alloc.deallocate(this, 1);
+					return ;
+				}	
 				if (!(this->left == this->null && this->right == this->null))
 				{
 					if (this->left != this->null)
@@ -100,14 +106,11 @@ namespace	ft
 				alloc(alloc),
 				comp(comp)
 			{
-				this->node = this->alloc.allocate(1);
-				this->alloc.construct(this->node, node_type());
-				this->root = this->node;
-				this->node->side = -1;
 				this->null = this->alloc.allocate(1);
 				this->alloc.construct(this->null, node_type(-1, value_type()));
 				this->null->null = this->null; //need pointer on null in the node as well for iterators
-				this->null->parent = this->root;
+				this->root = this->null;
+				this->node = this->null;
 			};
 
 			//Destructor
@@ -119,8 +122,10 @@ namespace	ft
 			{
 				if (this->node->side == -1)
 				{
-					this->alloc.destroy(this->node);
+					this->node = this->alloc.allocate(1);
 					this->alloc.construct(this->node, node_type(NULL, 0, val, this->null));
+					this->root = this->node;
+					this->null->parent = this->root;
 				}
 				else
 				{
@@ -201,9 +206,11 @@ namespace	ft
 
 					this->alloc.destroy(tmp);
 					this->alloc.deallocate(tmp, 1);
-					if (side == L)
+					if (!parent)
+						this->root = this->null;
+					if (side == L && parent)
 						parent->left = this->null;
-					else if (side == R)
+					else if (side == R && parent)
 						parent->right = this->null;
 				}
 				else if ((!position.isNull(tmp->left) && position.isNull(tmp->right))
@@ -217,13 +224,15 @@ namespace	ft
 						save = tmp->left;
 					else //only right child
 						save = tmp->right;
+					if (tmp == this->root)
+						this->root = save;
 					this->alloc.destroy(tmp);
 					this->alloc.deallocate(tmp, 1);
 					save->parent = parent;
 					save->side = side;
-					if (side == L)
+					if (side == L && parent)
 						parent->left = save;
-					else if (side == R)
+					else if (side == R && parent)
 						parent->right = save;
 					save->side = side;
 				}
@@ -243,12 +252,26 @@ namespace	ft
 						this->root = save;
 					this->alloc.destroy(tmp);
 					this->alloc.deallocate(tmp, 1);
-					save->parent = parent;
+					if (save == left || save == right) //there can't be a left child in this case, ex :
+					//40 50 (root) 70 80, 50 will be replaced by 70 which has no left child,
+					//if 40 50 (root) 65 70 80, 50 will be replaced by 65 which has no left child either
+					//can happen with key ugh
+					{
+						if (save == right)
+						{
+							right = s_right;
+							s_parent = save;
+						}
+					}
 					save->left = left;
 					save->right = right;
+					save->parent = parent;
 					save->side = side;
+					left->parent = save;
+					right->parent = save;
 					//placed save in tmp's spot
 
+					// there's no way for the successor (position++) to have two children -- with key though?? (:
 					if (s_left == this->null && s_right == this->null) //if save is a leaf
 					{
 						if (s_side == L)
