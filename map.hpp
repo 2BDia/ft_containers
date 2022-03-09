@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 11:59:39 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/08 18:25:39 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/09 13:58:55 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,26 +74,18 @@ namespace	ft
 				this->insert(first, last);
 			};
 
-			map (const map& x) //wrong prototype
+			map (const map& x)
 			{
-				this->_alloc = x._alloc;
-				this->_comp = x._comp;
-				const_iterator	first = x.begin();
-				const_iterator	last = x.end();
-				this->insert(first, last);
+				*this = x;
 			};
 
 			//Destructor
 			~map() {this->_bst.delete_tree();};
 
 			//Operator=
-			map& operator= (const map& x) //may leak? (valgrind and system don't show it) je dois free
+			map& operator= (const map& x)//may leak? (valgrind and system don't show it) je dois free
+			//still segfaults if we try to assign new map to existing
 			{
-				std::cout << "ok" << std::endl;
-				if (this->_bst.root->side != -1)
-					this->_bst.delete_tree();
-				this->_alloc = x._alloc;
-				this->_comp = x._comp;
 				const_iterator	first = x.begin();
 				const_iterator	last = x.end();
 				this->insert(first, last);

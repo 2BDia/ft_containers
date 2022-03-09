@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 16:06:31 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/08 18:26:05 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/09 13:58:03 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -369,10 +369,10 @@ int	main()
 
 		std::cout << std::endl << "operator= :" << std::endl;
 		ft::map<int, int>	three;
-		one = two;
-		for (ft::map<int, int>::iterator it = one.begin(); it != one.end(); it++)
+		three = two;
+		for (ft::map<int, int>::iterator it = three.begin(); it != three.end(); it++)
 			std::cout << it->first << " " << it->second << std::endl;
-		std::cout << "size = " << one.size() << std::endl;
+		std::cout << "size = " << three.size() << std::endl;
 	}
 	/*********************************/
 	/*              STD              */
