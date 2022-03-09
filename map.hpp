@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 11:59:39 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/09 17:23:13 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/09 17:46:10 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,6 +174,20 @@ namespace	ft
 			void erase (iterator position)
 			{
 				this->_bst.erase(position);
+			};
+			size_type erase (const key_type& k)
+			{
+				iterator	first = this->begin();
+				iterator	last = this->end();
+				for (; first != last; first++)
+				{
+					if ((*first.getNPointer()).data.first == k)
+					{
+						this->_bst.erase(first);
+						return (1);
+					}
+				}
+				return (0);
 			};
 	};
 }
