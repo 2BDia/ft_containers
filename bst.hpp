@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 10:45:07 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/10 17:36:33 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/10 18:18:57 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -305,6 +305,11 @@ namespace	ft
 			void	delete_tree(bool mod)
 			{
 				this->root->delete_tree(this->alloc, mod);
+				if (mod)
+				{
+					this->root = this->null;
+					this->node = this->null;
+				}
 			};
 	};
 }
