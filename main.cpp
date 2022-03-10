@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 16:06:31 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/10 18:25:42 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/10 18:35:29 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -339,40 +339,40 @@ int	main()
 	// 		std::cout << "< ok" << std::endl;
 	// }
 	{
-		std::cout << std::endl << std::endl << "--- Map ---" << std::endl;
-		std::cout << std::endl << "- Constructors -" << std::endl;
+		// std::cout << std::endl << std::endl << "--- Map ---" << std::endl;
+		// std::cout << std::endl << "- Constructors -" << std::endl;
 
-		std::cout << "default :" << std::endl;
-		ft::map<int, int>	zero;
-		zero.insert(ft::pair<int, int>(2, 28));
-		zero.insert(ft::pair<int, int>(1, 40));
-		zero.insert(ft::pair<int, int>(3,96));
-		zero.insert(ft::pair<int, int>(4, 100));
-		for (ft::map<int, int>::iterator it = zero.begin(); it != zero.end(); it++)
-			std::cout << it->first << " " << it->second << std::endl;
-		std::cout << "size = " << zero.size() << std::endl;
+		// std::cout << "default :" << std::endl;
+		// ft::map<int, int>	zero;
+		// zero.insert(ft::pair<int, int>(2, 28));
+		// zero.insert(ft::pair<int, int>(1, 40));
+		// zero.insert(ft::pair<int, int>(3,96));
+		// zero.insert(ft::pair<int, int>(4, 100));
+		// for (ft::map<int, int>::iterator it = zero.begin(); it != zero.end(); it++)
+		// 	std::cout << it->first << " " << it->second << std::endl;
+		// std::cout << "size = " << zero.size() << std::endl;
 
-		std::cout << std::endl << "range :" << std::endl;
-		ft::map<int, int>::iterator	iter = zero.end();
-		iter--;
-		iter--;
-		ft::map<int, int>	one(zero.begin(), iter);
-		for (ft::map<int, int>::iterator it = one.begin(); it != one.end(); it++)
-			std::cout << it->first << " " << it->second << std::endl;
-		std::cout << "size = " << one.size() << std::endl;
+		// std::cout << std::endl << "range :" << std::endl;
+		// ft::map<int, int>::iterator	iter = zero.end();
+		// iter--;
+		// iter--;
+		// ft::map<int, int>	one(zero.begin(), iter);
+		// for (ft::map<int, int>::iterator it = one.begin(); it != one.end(); it++)
+		// 	std::cout << it->first << " " << it->second << std::endl;
+		// std::cout << "size = " << one.size() << std::endl;
 
-		std::cout << std::endl << "copy :" << std::endl;
-		ft::map<int, int>	two(one);
-		for (ft::map<int, int>::iterator it = two.begin(); it != two.end(); it++)
-			std::cout << it->first << " " << it->second << std::endl;
-		std::cout << "size = " << two.size() << std::endl;
+		// std::cout << std::endl << "copy :" << std::endl;
+		// ft::map<int, int>	two(one);
+		// for (ft::map<int, int>::iterator it = two.begin(); it != two.end(); it++)
+		// 	std::cout << it->first << " " << it->second << std::endl;
+		// std::cout << "size = " << two.size() << std::endl;
 
-		std::cout << std::endl << "operator= :" << std::endl;
-		ft::map<int, int>	three;
-		three = two;
-		for (ft::map<int, int>::iterator it = three.begin(); it != three.end(); it++)
-			std::cout << it->first << " " << it->second << std::endl;
-		std::cout << "size = " << three.size() << std::endl;
+		// std::cout << std::endl << "operator= :" << std::endl;
+		// ft::map<int, int>	three;
+		// three = two;
+		// for (ft::map<int, int>::iterator it = three.begin(); it != three.end(); it++)
+		// 	std::cout << it->first << " " << it->second << std::endl;
+		// std::cout << "size = " << three.size() << std::endl;
 	}
 	/*********************************/
 	/*              STD              */
@@ -689,40 +689,40 @@ int	main()
 	// 		std::cout << "< ok" << std::endl;
 	// }
 	{
-		std::cout << std::endl << std::endl << "--- Map ---" << std::endl;
-		std::cout << std::endl << "- Constructors -" << std::endl;
+		// std::cout << std::endl << std::endl << "--- Map ---" << std::endl;
+		// std::cout << std::endl << "- Constructors -" << std::endl;
 
-		std::cout << "default :" << std::endl;
-		std::map<int, int>	zero;
-		zero.insert(std::pair<int, int>(2, 28));
-		zero.insert(std::pair<int, int>(1, 40));
-		zero.insert(std::pair<int, int>(3,96));
-		zero.insert(std::pair<int, int>(4, 100));
-		for (std::map<int, int>::iterator it = zero.begin(); it != zero.end(); it++)
-			std::cout << it->first << " " << it->second << std::endl;
-		std::cout << "size = " << zero.size() << std::endl;
+		// std::cout << "default :" << std::endl;
+		// std::map<int, int>	zero;
+		// zero.insert(std::pair<int, int>(2, 28));
+		// zero.insert(std::pair<int, int>(1, 40));
+		// zero.insert(std::pair<int, int>(3,96));
+		// zero.insert(std::pair<int, int>(4, 100));
+		// for (std::map<int, int>::iterator it = zero.begin(); it != zero.end(); it++)
+		// 	std::cout << it->first << " " << it->second << std::endl;
+		// std::cout << "size = " << zero.size() << std::endl;
 
-		std::cout << std::endl << "range :" << std::endl;
-		std::map<int, int>::iterator	iter = zero.end();
-		iter--;
-		iter--;
-		std::map<int, int>	one(zero.begin(), iter);
-		for (std::map<int, int>::iterator it = one.begin(); it != one.end(); it++)
-			std::cout << it->first << " " << it->second << std::endl;
-		std::cout << "size = " << one.size() << std::endl;
+		// std::cout << std::endl << "range :" << std::endl;
+		// std::map<int, int>::iterator	iter = zero.end();
+		// iter--;
+		// iter--;
+		// std::map<int, int>	one(zero.begin(), iter);
+		// for (std::map<int, int>::iterator it = one.begin(); it != one.end(); it++)
+		// 	std::cout << it->first << " " << it->second << std::endl;
+		// std::cout << "size = " << one.size() << std::endl;
 
-		std::cout << std::endl << "copy :" << std::endl;
-		std::map<int, int>	two(one);
-		for (std::map<int, int>::iterator it = two.begin(); it != two.end(); it++)
-			std::cout << it->first << " " << it->second << std::endl;
-		std::cout << "size = " << two.size() << std::endl;
+		// std::cout << std::endl << "copy :" << std::endl;
+		// std::map<int, int>	two(one);
+		// for (std::map<int, int>::iterator it = two.begin(); it != two.end(); it++)
+		// 	std::cout << it->first << " " << it->second << std::endl;
+		// std::cout << "size = " << two.size() << std::endl;
 
-		std::cout << std::endl << "operator= :" << std::endl;
-		std::map<int, int>	three;
-		three = two;
-		for (std::map<int, int>::iterator it = three.begin(); it != three.end(); it++)
-			std::cout << it->first << " " << it->second << std::endl;
-		std::cout << "size = " << three.size() << std::endl;
+		// std::cout << std::endl << "operator= :" << std::endl;
+		// std::map<int, int>	three;
+		// three = two;
+		// for (std::map<int, int>::iterator it = three.begin(); it != three.end(); it++)
+		// 	std::cout << it->first << " " << it->second << std::endl;
+		// std::cout << "size = " << three.size() << std::endl;
 	}
 	{
 		std::cout << std::endl << "*** TEST ***" << std::endl;
