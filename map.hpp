@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 11:59:39 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/10 17:05:13 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/10 17:36:19 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,12 +79,12 @@ namespace	ft
 			};
 
 			//Destructor
-			~map() {this->_bst.delete_tree();};
+			~map() {this->_bst.delete_tree(0);};
 
 			//Operator=
-			map& operator= (const map& x)//may leak? (valgrind and system don't show it) je dois free
-			//still segfaults if we try to assign new map to existing
+			map& operator= (const map& x)
 			{
+				this->_bst.delete_tree(1);
 				const_iterator	first = x.begin();
 				const_iterator	last = x.end();
 				this->insert(first, last);
