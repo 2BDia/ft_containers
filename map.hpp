@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 11:59:39 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/10 14:40:33 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/10 17:05:13 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,6 +188,11 @@ namespace	ft
 					}
 				}
 				return (0);
+			};
+			void erase (iterator first, iterator last)
+			{
+				for (; first != last; first++)
+					this->_bst.erase(first);
 			};
 	};
 }

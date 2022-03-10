@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 16:06:31 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/10 15:26:17 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/10 17:05:43 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -774,13 +774,14 @@ int	main()
 		ft::map<int, int>	mine;
 		mine.insert(ft::pair<int, int>(50, 5));
 		mine.insert(ft::pair<int, int>(30, 3));
-		// mine.insert(ft::pair<int, int>(40, 4));
-		// mine.insert(ft::pair<int, int>(20, 2));
-		// mine.insert(ft::pair<int, int>(70, 7));
+		mine.insert(ft::pair<int, int>(40, 4));
+		mine.insert(ft::pair<int, int>(20, 2));
+		mine.insert(ft::pair<int, int>(70, 7));
 		mine.insert(ft::pair<int, int>(60, 6));
-		// mine.insert(ft::pair<int, int>(100, 10));
-		// mine.insert(ft::pair<int, int>(90, 9));
-		// mine.insert(ft::pair<int, int>(110, 11));
+		mine.insert(ft::pair<int, int>(100, 10));
+		mine.insert(ft::pair<int, int>(90, 9));
+		mine.insert(ft::pair<int, int>(95, 9));
+		mine.insert(ft::pair<int, int>(110, 11));
 		for (ft::map<int, int>::iterator mit = mine.begin(); mit != mine.end(); mit++)
 			std::cout << mit->first << " " << mit->second << std::endl;
 		mine.erase(50);
