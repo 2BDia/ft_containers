@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 16:06:31 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/10 17:05:43 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/10 17:36:02 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -718,7 +718,8 @@ int	main()
 		std::cout << "size = " << two.size() << std::endl;
 
 		std::cout << std::endl << "operator= :" << std::endl;
-		std::map<int, int>	three = two;
+		std::map<int, int>	three;
+		three = two;
 		for (std::map<int, int>::iterator it = three.begin(); it != three.end(); it++)
 			std::cout << it->first << " " << it->second << std::endl;
 		std::cout << "size = " << three.size() << std::endl;
@@ -726,6 +727,7 @@ int	main()
 	{
 		std::cout << std::endl << "*** TEST ***" << std::endl;
 
+		//ITERATORS TESTS
 		// ft::map<int, int> mine;
 		// mine.insert(ft::pair<int, int>(2, 2));
 		// mine.insert(ft::pair<int, int>(3, 3));
@@ -736,7 +738,6 @@ int	main()
 		// mine.insert(ft::pair<int, int>(10, 10));
 		// mine.insert(ft::pair<int, int>(14, 14));
 		// mine.insert(ft::pair<int, int>(13, 13));
-
 		// std::cout << "end = " << mit->first << " " << mit->second << std::endl;
 		// mit--;
 		// std::cout << "next = " << mit->first << " " << mit->second << std::endl;
@@ -755,6 +756,7 @@ int	main()
 		// ++mit;
 		// std::cout << "next = " << mit->first << " " << mit->second << std::endl;
 
+		//GENERAL TESTS
 		// ft::map<int, int> mine;
 		// std::cout << "empty?" << mine.empty() << std::endl;
 		// std::cout << "size = " << mine.size() << std::endl;
@@ -770,26 +772,27 @@ int	main()
 		// std::cout << "map[2] = " << mine[2] << std::endl;
 		// std::cout << "map[3] = " << mine[3] << std::endl;
 
-		std::cout << std::endl;
-		ft::map<int, int>	mine;
-		mine.insert(ft::pair<int, int>(50, 5));
-		mine.insert(ft::pair<int, int>(30, 3));
-		mine.insert(ft::pair<int, int>(40, 4));
-		mine.insert(ft::pair<int, int>(20, 2));
-		mine.insert(ft::pair<int, int>(70, 7));
-		mine.insert(ft::pair<int, int>(60, 6));
-		mine.insert(ft::pair<int, int>(100, 10));
-		mine.insert(ft::pair<int, int>(90, 9));
-		mine.insert(ft::pair<int, int>(95, 9));
-		mine.insert(ft::pair<int, int>(110, 11));
-		for (ft::map<int, int>::iterator mit = mine.begin(); mit != mine.end(); mit++)
-			std::cout << mit->first << " " << mit->second << std::endl;
-		mine.erase(50);
-		std::cout << std::endl;
-		for (ft::map<int, int>::iterator mit = mine.begin(); mit != mine.end(); mit++)
-		{
-			std::cout << mit->first << " " << mit->second << std::endl;
-		}
+		//ERASE TESTS
+		// std::cout << std::endl;
+		// ft::map<int, int>	mine;
+		// mine.insert(ft::pair<int, int>(50, 5));
+		// mine.insert(ft::pair<int, int>(30, 3));
+		// mine.insert(ft::pair<int, int>(40, 4));
+		// mine.insert(ft::pair<int, int>(20, 2));
+		// mine.insert(ft::pair<int, int>(70, 7));
+		// mine.insert(ft::pair<int, int>(60, 6));
+		// mine.insert(ft::pair<int, int>(100, 10));
+		// mine.insert(ft::pair<int, int>(90, 9));
+		// mine.insert(ft::pair<int, int>(95, 9));
+		// mine.insert(ft::pair<int, int>(110, 11));
+		// for (ft::map<int, int>::iterator mit = mine.begin(); mit != mine.end(); mit++)
+		// 	std::cout << mit->first << " " << mit->second << std::endl;
+		// mine.erase(50);
+		// std::cout << std::endl;
+		// for (ft::map<int, int>::iterator mit = mine.begin(); mit != mine.end(); mit++)
+		// {
+		// 	std::cout << mit->first << " " << mit->second << std::endl;
+		// }
 		
 
 		// std::cout << std::endl << "real" << std::endl;
@@ -821,16 +824,6 @@ int	main()
 		// std::cout << it->first << " " << it->second << std::endl;
 		// std::cout << "map[2] = " << real[2] << std::endl;
 		// std::cout << "map[3] = " << real[3] << std::endl;
-
-
-		std::cout << std::endl << "real" << std::endl;
-		std::map<int, int>	real;
-		real.insert(std::pair<int, int>(50, 5));
-		real.insert(std::pair<int, int>(30, 3));
-		real.insert(std::pair<int, int>(40, 4));
-		real.erase(50);
-		for (std::map<int, int>::iterator it = real.begin(); it != real.end(); it++)
-			std::cout << it->first << " " << it->second << std::endl;
 	}
 	// system("leaks containers");
 }

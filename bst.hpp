@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 10:45:07 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/10 17:00:45 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/10 17:36:33 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,20 +46,23 @@ namespace	ft
 			//Destructor
 			~Node() {};
 
-			void	delete_tree(std::allocator<Node<Key, T> > alloc)
+			void	delete_tree(std::allocator<Node<Key, T> > alloc, bool mod)
 			{
 				if (this == this->null)
 				{
-					alloc.destroy(this);
-					alloc.deallocate(this, 1);
+					if (!mod)
+					{	
+						alloc.destroy(this);
+						alloc.deallocate(this, 1);
+					}
 					return ;
-				}	
+				}
 				if (!(this->left == this->null && this->right == this->null))
 				{
 					if (this->left != this->null)
-						this->left->delete_tree(alloc);
+						this->left->delete_tree(alloc, 0);
 					if (this->right != this->null)
-						this->right->delete_tree(alloc);
+						this->right->delete_tree(alloc, 0);
 				}
 				if (this->parent == NULL)
 				{
@@ -299,6 +302,9 @@ namespace	ft
 				}
 			}
 
-			void	delete_tree() {this->root->delete_tree(this->alloc);};
+			void	delete_tree(bool mod)
+			{
+				this->root->delete_tree(this->alloc, mod);
+			};
 	};
 }
