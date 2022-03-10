@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 10:45:07 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/10 14:42:31 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/10 15:23:35 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -362,18 +362,15 @@ namespace	ft
 					{
 						this->root = old->left;
 						this->node = old->left;
-						if (old->side == L)
-							old->left = old->parent;
-						else if (old->side == R)
-							old->left = old->parent;
 					}
 					{
-						old->left->parent = old->parent;
 						if (old->side == L)
 							old->parent->left = old->left;
 						else if (old->side == R)
 							old->parent->right = old->left;
 					}
+					old->left->parent = old->parent;
+					old->left->side = old->side;
 					this->alloc.destroy(old);
 					this->alloc.deallocate(old, 1);
 				}
@@ -381,25 +378,60 @@ namespace	ft
 				{
 					if (old == this->root)
 					{
-						std::cout << "coucou" << std::endl;
 						this->root = old->right;
 						this->node = old->right;
-						old->right->parent = old->parent;
 					}
 					else
 					{
-						old->right->parent = old->parent;
 						if (old->side == L)
 							old->parent->left = old->right;
 						else if (old->side == R)
 							old->parent->right = old->right;
 					}
+					old->right->parent = old->parent;
+					old->right->side = old->side;
 					this->alloc.destroy(old);
 					this->alloc.deallocate(old, 1);
 				}
 				else //if node has 2 children
 				{
-					
+					node_type	*tmp = old->right;
+
+					while (tmp->left != this->null) //get minimum in right subtree
+						tmp = tmp->left;
+					tmp->left = old->left;
+					tmp->left->parent = tmp;
+					if (tmp->right)
+					{
+						tmp->right->parent = tmp->parent;
+						tmp->right->side = tmp->side;
+						if (tmp->side == L)
+							tmp->parent->left = tmp->right;
+						else if (tmp->side == R)
+							tmp->parent->right = tmp->right;
+					}
+					else if (tmp->side == L)
+						tmp->parent->left = this->null;
+					else if (tmp->side == R)
+						tmp->parent->right = this->null;
+					tmp->right = old->right;
+					tmp->right->parent = tmp;
+					tmp->parent = old->parent;
+					tmp->side = old->side;
+					if (old == this->root)
+					{
+						this->root = tmp;
+						this->node = tmp;
+					}
+					else
+					{
+						if (old->side == L)
+							old->parent->left = tmp;
+						else if (old->side == R)
+							old->parent->right = tmp;
+					}
+					this->alloc.destroy(old);
+					this->alloc.deallocate(old, 1);
 				}
 			}
 
