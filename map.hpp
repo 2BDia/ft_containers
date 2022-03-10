@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 11:59:39 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/10 18:26:38 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/10 18:37:27 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,7 +166,7 @@ namespace	ft
 				std::cout << "start" << std::endl;
 				while (first != last)
 				{
-					std::cout << "first = " <<  << std::endl;
+					std::cout << "first = " << first.getNPointer()->data.first << std::endl;
 					this->_bst.insert(*first);
 					this->_bst.node = this->_bst.root;
 					first++;
@@ -211,6 +211,8 @@ namespace	ft
 				first = tmp.begin();
 				last = tmp.end();
 				this->insert(first, last);
+				for (iterator it = this->begin(); it != this->end(); it++)
+					std::cout << "in = " << it->first << std::endl;
 			};
 	};
 }
