@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 10:45:07 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/09 19:03:06 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/10 14:42:31 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -331,18 +331,20 @@ namespace	ft
 			// 	}
 			// };
 
-			void	erase(iterator position) // /!\ 
+			void	erase(iterator position)
 			{
 				node_type	*old = position.getNPointer();
 
-				if (old->left == this->null && old->right == this->null)
+				if (old->left == this->null && old->right == this->null) //if node is a leaf
 				{
 					if (old == this->root)
 					{
-						this->alloc.destroy(old);
-						this->alloc.deallocate(old, 1);
 						this->root = this->null;
 						this->node = this->null;
+						if (old->side == L)
+							old->left = old->parent;
+						else if (old->side == R)
+							old->left = old->parent;
 					}
 					else
 					{
@@ -350,11 +352,55 @@ namespace	ft
 							old->parent->left = this->null;
 						else if (old->side == R)
 							old->parent->right = this->null;
-						this->alloc.destroy(old);
-						this->alloc.deallocate(old, 1);
 					}
+					this->alloc.destroy(old);
+					this->alloc.deallocate(old, 1);
 				}
-				else if ()
+				else if (old->left != this->null && old->right == this->null) //if node has a left child
+				{
+					if (old == this->root)
+					{
+						this->root = old->left;
+						this->node = old->left;
+						if (old->side == L)
+							old->left = old->parent;
+						else if (old->side == R)
+							old->left = old->parent;
+					}
+					{
+						old->left->parent = old->parent;
+						if (old->side == L)
+							old->parent->left = old->left;
+						else if (old->side == R)
+							old->parent->right = old->left;
+					}
+					this->alloc.destroy(old);
+					this->alloc.deallocate(old, 1);
+				}
+				else if (old->left == this->null && old->right != this->null) //if node has a right child
+				{
+					if (old == this->root)
+					{
+						std::cout << "coucou" << std::endl;
+						this->root = old->right;
+						this->node = old->right;
+						old->right->parent = old->parent;
+					}
+					else
+					{
+						old->right->parent = old->parent;
+						if (old->side == L)
+							old->parent->left = old->right;
+						else if (old->side == R)
+							old->parent->right = old->right;
+					}
+					this->alloc.destroy(old);
+					this->alloc.deallocate(old, 1);
+				}
+				else //if node has 2 children
+				{
+					
+				}
 			}
 
 			void	delete_tree() {this->root->delete_tree(this->alloc);};

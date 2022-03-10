@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 11:59:39 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/09 17:46:10 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/10 14:40:33 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,7 @@ namespace	ft
 
 				if (tmp == tmp->null)
 					return (iterator(tmp));
-				while (tmp->right != tmp->null && !(tmp->left == this->_bst.null && tmp->right == this->_bst.null))
+				while (tmp->right != tmp->null && !(tmp->left == tmp->null && tmp->right == tmp->null))
 					tmp = tmp->right;
 				return (iterator(tmp->right));
 			};
@@ -129,7 +129,7 @@ namespace	ft
 
 				if (tmp == tmp->null)
 					return (const_iterator(tmp));
-				while (tmp->right != tmp->null && !(tmp->left == this->_bst.null && tmp->right == this->_bst.null))
+				while (tmp->right != tmp->null && !(tmp->left == tmp->null && tmp->right == tmp->null))
 					tmp = tmp->right;
 				return (const_iterator(tmp->right));
 			};
