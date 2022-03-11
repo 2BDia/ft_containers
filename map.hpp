@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 11:59:39 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/11 16:26:39 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/11 17:03:07 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -243,5 +243,60 @@ namespace	ft
 				}
 				return (0);
 			};
+
+			iterator lower_bound (const key_type& k)
+			{
+				iterator	first = this->begin();
+				iterator	last = this->end();
+				for (; first != last; first++)
+				{
+					if ((*first.getNPointer()).data.first >= k)
+						break ;
+				}
+				return (first);
+			};
+			const_iterator lower_bound (const key_type& k) const
+			{
+				const_iterator	first = this->begin();
+				const_iterator	last = this->end();
+				for (; first != last; first++)
+				{
+					if ((*first.getNPointer()).data.first >= k)
+						break ;
+				}
+				return (first);
+			};
+
+			iterator upper_bound (const key_type& k)
+			{
+				iterator	first = this->begin();
+				iterator	last = this->end();
+				for (; first != last; first++)
+				{
+					if ((*first.getNPointer()).data.first > k)
+						break ;
+				}
+				return (first);
+			};
+			const_iterator upper_bound (const key_type& k) const
+			{
+				const_iterator	first = this->begin();
+				const_iterator	last = this->end();
+				for (; first != last; first++)
+				{
+					if ((*first.getNPointer()).data.first > k)
+						break ;
+				}
+				return (first);
+			};
+
+
+			pair<const_iterator,const_iterator> equal_range (const key_type& k) const
+			{
+				
+			};
+
+			//Allocator
+			allocator_type get_allocator() const {return (this->_alloc);};
 	};
 }
