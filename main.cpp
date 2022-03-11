@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 16:06:31 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/11 14:40:02 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/11 15:16:27 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -796,33 +796,19 @@ int	main()
 
 		std::cout << std::endl;
 		ft::map<int, int>	one;
-		// one.insert(ft::pair<int, int>(50, 5));
-		// one.insert(ft::pair<int, int>(30, 3));
-		// one.insert(ft::pair<int, int>(40, 4));
-		// one.insert(ft::pair<int, int>(20, 2));
-		// one.erase(50);
-		// one.erase(30);
-		// one.erase(40);
-		// one.erase(20);
 		one.insert(ft::pair<int, int>(50, 5));
 		one.insert(ft::pair<int, int>(30, 3));
 		one.insert(ft::pair<int, int>(40, 4));
+		one.insert(ft::pair<int, int>(20, 2));
 		ft::map<int, int>	two;
 		two.insert(ft::pair<int, int>(5, 5));
 		two.insert(ft::pair<int, int>(3, 3));
-		std::cout << "before swap" << std::endl;
 		one.swap(two);
 		for (ft::map<int, int>::iterator mit = one.begin(); mit != one.end(); mit++)
 			std::cout << mit->first << " " << mit->second << std::endl;
-		std::cout << "one = " << one._bst.root->left->data.first << std::endl;
 		std::cout << std::endl;
 		for (ft::map<int, int>::iterator mit = two.begin(); mit != two.end(); mit++)
 			std::cout << mit->first << " " << mit->second << std::endl;
-		std::cout << "a = " << two._bst.root->data.first << std::endl;
-		std::cout << "a = " << two._bst.root->right->data.first << std::endl;
-		std::cout << "a = " << two._bst.root->right->right->data.first << std::endl;
-		std::cout << "a = " << two._bst.root->right->right->right->data.first << std::endl;
-		std::cout << "a = " << two._bst.root->right->right->right->data.first << std::endl;
 		
 
 		// std::cout << std::endl << "real" << std::endl;

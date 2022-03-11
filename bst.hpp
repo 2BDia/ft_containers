@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 10:45:07 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/11 15:08:02 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/11 15:17:34 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,23 +46,16 @@ namespace	ft
 			//Destructor
 			~Node() {};
 
-			void	delete_tree(std::allocator<Node<Key, T> > alloc, bool mod)
+			void	delete_tree(std::allocator<Node<Key, T> > alloc)
 			{
 				if (this == this->null)
-				{
-					if (!mod)
-					{	
-						alloc.destroy(this);
-						alloc.deallocate(this, 1);
-					}
 					return ;
-				}
 				if (!(this->left == this->null && this->right == this->null))
 				{
 					if (this->left != this->null)
-						this->left->delete_tree(alloc, 0);
+						this->left->delete_tree(alloc);
 					if (this->right != this->null)
-						this->right->delete_tree(alloc, 0);
+						this->right->delete_tree(alloc);
 				}
 				if (this->parent == NULL)
 				{
@@ -143,10 +136,7 @@ namespace	ft
 					else if (side == R)
 					{
 						this->alloc.construct(tmp, node_type(this->node, R, val, this->null));
-						std::cout << "this->null = " << this->null->data.first << std::endl;
-						std::cout << "this->root->left->data.first = " << this->root->left->data.first << std::endl;
 						this->node->right = tmp;
-						std::cout << "this->node->right = " << this->node->right->data.first << std::endl;
 					}
 				}
 			};
@@ -190,19 +180,13 @@ namespace	ft
 				}
 				else if (this->comp(this->node->data.first, val.first))
 				{
-					std::cout << "ok" << std::endl;
 					if (this->node->right != this->null)
 					{
 						this->node = this->node->right;
 						return (this->insert(val));
 					}
 					else
-					{
-						std::cout << "ok1" << std::endl;
-						std::cout << "this->node->side = " << this->node->side << std::endl;
 						this->new_node(val, R);
-						std::cout << "lol? = " << this->root->left->data.first << std::endl;
-					}
 				}
 				return (ft::pair<iterator, bool>(iterator(this->node), false));
 			};
@@ -316,14 +300,9 @@ namespace	ft
 				}
 			}
 
-			void	delete_tree(bool mod)
+			void	delete_tree()
 			{
-				this->root->delete_tree(this->alloc, mod);
-				if (mod)
-				{
-					this->root = this->null;
-					this->node = this->null;
-				}
+				this->root->delete_tree(this->alloc);
 			};
 	};
 }
