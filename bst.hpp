@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 10:45:07 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/11 14:10:35 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/11 14:23:56 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -216,8 +216,6 @@ namespace	ft
 						this->node = this->null;
 						if (old->side == L)
 							old->left = old->parent;
-						else if (old->side == R)
-							old->left = old->parent;
 					}
 					else
 					{
@@ -275,7 +273,7 @@ namespace	ft
 						tmp = tmp->left;
 					tmp->left = old->left;
 					tmp->left->parent = tmp;
-					if (tmp->right)
+					if (tmp->right != this->null)
 					{
 						tmp->right->parent = tmp->parent;
 						tmp->right->side = tmp->side;
