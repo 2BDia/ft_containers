@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 16:06:31 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/11 16:26:52 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/11 17:01:16 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -818,9 +818,29 @@ int	main()
 		one.insert(ft::pair<int, int>(30, 3));
 		one.insert(ft::pair<int, int>(40, 4));
 		one.insert(ft::pair<int, int>(20, 2));
-		// ft::map<int, int>::iterator	mit = one.find(30);
+		ft::map<int, int>::iterator	mit;
+		// mit = one.find(30);
 		// std::cout << "find = " << mit->first << " " << mit->second << std::endl;
 		// std::cout << "count = " << one.count(30) << std::endl;
+		mit = one.lower_bound(30);
+		std::cout << "lower_bound = " << mit->first << " " << mit->second << std::endl;
+		mit = one.upper_bound(30);
+		std::cout << "upper_bound = " << mit->first << " " << mit->second << std::endl;
+
+		std::cout << std::endl;
+		std::map<int, int>	two;
+		two.insert(std::pair<int, int>(50, 5));
+		two.insert(std::pair<int, int>(30, 3));
+		two.insert(std::pair<int, int>(40, 4));
+		two.insert(std::pair<int, int>(20, 2));
+		std::map<int, int>::iterator	it;
+		// it = two.find(30);
+		// std::cout << "find = " << it->first << " " << it->second << std::endl;
+		// std::cout << "count = " << two.count(30) << std::endl;
+		it = two.lower_bound(30);
+		std::cout << "lower_bound = " << it->first << " " << it->second << std::endl;
+		it = two.upper_bound(30);
+		std::cout << "upper_bound = " << it->first << " " << it->second << std::endl;
 
 		// std::cout << std::endl << "real" << std::endl;
 		// std::map<int, int>	real;
