@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 10:45:07 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/10 18:18:57 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/11 14:10:35 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -198,6 +198,12 @@ namespace	ft
 				return (ft::pair<iterator, bool>(iterator(this->node), false));
 			};
 
+			//https://www.youtube.com/watch?v=DkOswl0k7s4
+			//https://www.geeksforgeeks.org/binary-search-tree-set-2-delete/#:~:text=1)%20Node%20to%20be%20deleted,Simply%20remove%20from%20the%20tree.&text=3)%20Node%20to%20be%20deleted,predecessor%20can%20also%20be%20used.
+			//If leaf : delete node and parent’s left or right child to null
+			//If one child : parent of node points to child, child points to parent and delete node
+			//If 2 children : get min in right subtree (last left), assign that min to node, parent of node points to min,
+			//min points to old left and right child, min points to old parent, old min parent points to null and delete node
 			void	erase(iterator position)
 			{
 				node_type	*old = position.getNPointer();
@@ -230,6 +236,7 @@ namespace	ft
 						this->root = old->left;
 						this->node = old->left;
 					}
+					else
 					{
 						if (old->side == L)
 							old->parent->left = old->left;

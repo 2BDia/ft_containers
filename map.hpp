@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 11:59:39 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/10 18:37:27 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/11 14:06:43 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,10 +163,8 @@ namespace	ft
 			template <class InputIterator>
 			void insert (InputIterator first, InputIterator last)
 			{
-				std::cout << "start" << std::endl;
 				while (first != last)
 				{
-					std::cout << "first = " << first.getNPointer()->data.first << std::endl;
 					this->_bst.insert(*first);
 					this->_bst.node = this->_bst.root;
 					first++;
@@ -200,19 +198,29 @@ namespace	ft
 			void swap (map& x)
 			{
 				map	tmp = x;
+				x = *this;
+				std::cout << x._bst.root->data.first << std::endl;
+				std::cout << x._bst.root->right->data.first << std::endl;
+				std::cout << x._bst.root->right->right->data.first << std::endl;
+				std::cout << x._bst.root->right->right->right->data.first << std::endl;
+				for (iterator it = x.begin(); it != x.end(); it++)
+					std::cout << "inx = " << it->first << std::endl;
+				*this = tmp;
 
-				std::cout << "ok" << std::endl;
-				x._bst.delete_tree(1);
-				iterator	first = this->begin();
-				iterator	last = this->end();
-				x.insert(first, last);
+				// std::cout << "ok" << std::endl;
+				// x._bst.delete_tree(1);
+				// iterator	first = this->begin();
+				// iterator	last = this->end();
+				// x.insert(first, last);
+				// for (iterator it = x.begin(); it != x.end(); it++)
+				// 	std::cout << "inx = " << it->first << std::endl;
 
-				this->_bst.delete_tree(1);
-				first = tmp.begin();
-				last = tmp.end();
-				this->insert(first, last);
-				for (iterator it = this->begin(); it != this->end(); it++)
-					std::cout << "in = " << it->first << std::endl;
+				// this->_bst.delete_tree(1);
+				// first = tmp.begin();
+				// last = tmp.end();
+				// this->insert(first, last);
+				// for (iterator it = this->begin(); it != this->end(); it++)
+				// 	std::cout << "inthis = " << it->first << std::endl;
 			};
 	};
 }
