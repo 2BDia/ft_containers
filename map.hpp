@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 11:59:39 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/11 15:18:17 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/11 16:26:39 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,11 +84,8 @@ namespace	ft
 			//Operator=
 			map& operator= (const map& x)
 			{
-				while (this->_bst.root != this->_bst.null)
-					this->erase(this->_bst.root->data.first);
-				const_iterator	first = x.begin();
-				const_iterator	last = x.end();
-				this->insert(first, last);
+				this->clear();
+				this->insert(x.begin(), x.end());
 				return (*this);
 			};
 
@@ -201,6 +198,50 @@ namespace	ft
 				map	tmp = x;
 				x = *this;
 				*this = tmp;
+			};
+
+			void clear()
+			{
+				while (this->_bst.root != this->_bst.null)
+					this->erase(this->_bst.root->data.first);
+			};
+
+			//Observers
+
+			//Operations
+			iterator find (const key_type& k)
+			{
+				iterator	first = this->begin();
+				iterator	last = this->end();
+				for (; first != last; first++)
+				{
+					if ((*first.getNPointer()).data.first == k)
+						break ;
+				}
+				return (first);
+			};
+			const_iterator find (const key_type& k) const
+			{
+				const_iterator	first = this->begin();
+				const_iterator	last = this->end();
+				for (; first != last; first++)
+				{
+					if ((*first.getNPointer()).data.first == k)
+						break ;
+				}
+				return (first);
+			};
+
+			size_type count (const key_type& k) const
+			{
+				const_iterator	first = this->begin();
+				const_iterator	last = this->end();
+				for (; first != last; first++)
+				{
+					if ((*first.getNPointer()).data.first == k)
+						return (1);
+				}
+				return (0);
 			};
 	};
 }
