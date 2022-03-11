@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 10:45:07 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/11 14:23:56 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/11 15:08:02 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,7 +143,10 @@ namespace	ft
 					else if (side == R)
 					{
 						this->alloc.construct(tmp, node_type(this->node, R, val, this->null));
+						std::cout << "this->null = " << this->null->data.first << std::endl;
+						std::cout << "this->root->left->data.first = " << this->root->left->data.first << std::endl;
 						this->node->right = tmp;
+						std::cout << "this->node->right = " << this->node->right->data.first << std::endl;
 					}
 				}
 			};
@@ -187,13 +190,19 @@ namespace	ft
 				}
 				else if (this->comp(this->node->data.first, val.first))
 				{
+					std::cout << "ok" << std::endl;
 					if (this->node->right != this->null)
 					{
 						this->node = this->node->right;
 						return (this->insert(val));
 					}
 					else
+					{
+						std::cout << "ok1" << std::endl;
+						std::cout << "this->node->side = " << this->node->side << std::endl;
 						this->new_node(val, R);
+						std::cout << "lol? = " << this->root->left->data.first << std::endl;
+					}
 				}
 				return (ft::pair<iterator, bool>(iterator(this->node), false));
 			};
