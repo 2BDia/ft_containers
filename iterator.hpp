@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 13:37:06 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/02/17 10:57:17 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/12 21:19:48 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 namespace	ft
 {
-	template <class Category, class T, class Distance = ptrdiff_t,
+	template <class Category, class T, class Distance = __gnu_cxx::ptrdiff_t, //remove the part before ::
 				class Pointer = T*, class Reference = T&>
 	struct iterator
 	{
