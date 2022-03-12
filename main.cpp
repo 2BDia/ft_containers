@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 16:06:31 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/11 17:01:16 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/12 21:47:57 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -826,6 +826,9 @@ int	main()
 		std::cout << "lower_bound = " << mit->first << " " << mit->second << std::endl;
 		mit = one.upper_bound(30);
 		std::cout << "upper_bound = " << mit->first << " " << mit->second << std::endl;
+		ft::pair<ft::map<int, int>::iterator, ft::map<int, int>::iterator>	mpair = one.equal_range(60);
+		std::cout << "lower = " << mpair.first->first << " " << mpair.first->second << std::endl;
+		std::cout << "upper = " << mpair.second->first << " " << mpair.second->second << std::endl;
 
 		std::cout << std::endl;
 		std::map<int, int>	two;
@@ -841,6 +844,9 @@ int	main()
 		std::cout << "lower_bound = " << it->first << " " << it->second << std::endl;
 		it = two.upper_bound(30);
 		std::cout << "upper_bound = " << it->first << " " << it->second << std::endl;
+		std::pair<std::map<int, int>::iterator, std::map<int, int>::iterator>	pair = two.equal_range(60);
+		std::cout << "lower = " << pair.first->first << " " << pair.first->second << std::endl;
+		std::cout << "upper = " << pair.second->first << " " << pair.second->second << std::endl;
 
 		// std::cout << std::endl << "real" << std::endl;
 		// std::map<int, int>	real;

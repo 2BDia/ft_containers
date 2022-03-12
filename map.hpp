@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 11:59:39 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/11 17:03:07 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/12 22:05:49 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -290,11 +290,34 @@ namespace	ft
 				return (first);
 			};
 
-
-			pair<const_iterator,const_iterator> equal_range (const key_type& k) const
+			pair<iterator,iterator> equal_range (const key_type& k)
 			{
+				return (ft::make_pair(this->lower_bound(k), this->upper_bound(k)));
+			}
+
+			// pair<iterator,iterator> equal_range (const key_type& k)
+			// {
+			// 	iterator	first = this->begin();
+			// 	iterator	last = this->end();
+			// 	for (; first != last; first++)
+			// 	{
+			// 		if ((*first.getNPointer()).data.first >= k)
+			// 		{
+			// 			if ((*first.getNPointer()).data.first == k)
+			// 				return	(ft::make_pair(first, ++first));
+			// 			else
+			// 				return	(ft::make_pair(first, first));
+			// 		}
+			// 	}
+			// 	std::cout << "size : " << (*(--first).getNPointer()).size() << std::endl;
+			// 	size_type	s = (*(--first).getNPointer()).size();
+			// 	return (ft::make_pair(s, first));
+			// };
+
+			// pair<const_iterator,const_iterator> equal_range (const key_type& k) const
+			// {
 				
-			};
+			// };
 
 			//Allocator
 			allocator_type get_allocator() const {return (this->_alloc);};
