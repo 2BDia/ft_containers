@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 11:59:39 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/12 22:05:49 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/13 20:12:53 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,19 @@ namespace	ft
 			typedef T												mapped_type;
 			typedef ft::pair<const key_type, mapped_type>			value_type;
 			typedef Compare											key_compare;
-			//value_compare to do
+			class value_compare : ft::binary_function<value_type, value_type, bool>
+			{
+				friend class map<key_type, mapped_type, key_compare, Alloc>;
+
+				protected:
+					Compare comp;
+					value_compare (Compare c) : comp(c) {}
+
+				public:
+
+					bool operator() (const value_type& x, const value_type& y) const
+						{return (comp(x.first, y.first));}
+			};
 			typedef Alloc											allocator_type;
 			typedef typename allocator_type::reference				reference;
 			typedef typename allocator_type::const_reference		const_reference;
@@ -45,7 +57,7 @@ namespace	ft
 			//iterators and difference type
 			typedef size_t											size_type;
 
-		public:
+		private:
 
 			allocator_type		_alloc;
 			key_compare			_comp;
@@ -207,6 +219,15 @@ namespace	ft
 			};
 
 			//Observers
+			key_compare key_comp() const
+			{
+				return (this->_comp);
+			};
+
+			value_compare value_comp() const
+			{
+				return (value_compare(key_compare()));
+			};
 
 			//Operations
 			iterator find (const key_type& k)
@@ -295,29 +316,10 @@ namespace	ft
 				return (ft::make_pair(this->lower_bound(k), this->upper_bound(k)));
 			}
 
-			// pair<iterator,iterator> equal_range (const key_type& k)
-			// {
-			// 	iterator	first = this->begin();
-			// 	iterator	last = this->end();
-			// 	for (; first != last; first++)
-			// 	{
-			// 		if ((*first.getNPointer()).data.first >= k)
-			// 		{
-			// 			if ((*first.getNPointer()).data.first == k)
-			// 				return	(ft::make_pair(first, ++first));
-			// 			else
-			// 				return	(ft::make_pair(first, first));
-			// 		}
-			// 	}
-			// 	std::cout << "size : " << (*(--first).getNPointer()).size() << std::endl;
-			// 	size_type	s = (*(--first).getNPointer()).size();
-			// 	return (ft::make_pair(s, first));
-			// };
-
-			// pair<const_iterator,const_iterator> equal_range (const key_type& k) const
-			// {
-				
-			// };
+			pair<const_iterator,const_iterator> equal_range (const key_type& k) const
+			{
+				return (ft::make_pair(this->lower_bound(k), this->upper_bound(k)));
+			};
 
 			//Allocator
 			allocator_type get_allocator() const {return (this->_alloc);};
