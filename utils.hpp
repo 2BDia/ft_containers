@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 09:52:37 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/02/25 10:48:48 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/13 21:00:43 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,9 +120,52 @@ namespace	ft
 		bool operator() (const T& x, const T& y) const {return x < y;};
 	};
 
+	//Make pair
 	template <class T1,class T2>
 	pair<T1,T2> make_pair (T1 x, T2 y)
 	{
 		return ( pair<T1,T2>(x,y) );
+	};
+
+	//Iterator
+	template <class Category, class T, class Distance = ptrdiff_t,
+	class Pointer = T*, class Reference = T&>
+	class iterator
+	{
+		public:
+
+			typedef T			value_type;
+			typedef Distance	difference_type;
+			typedef Pointer		pointer;
+			typedef Reference	reference;
+			typedef Category	iterator_category;
+	};
+
+	//Iterator traits
+	template <class Iterator> class iterator_traits
+	{
+		typedef typename Iterator::difference_type		difference_type;
+		typedef typename Iterator::value_type			value_type;
+		typedef typename Iterator::pointe				pointer;
+		typedef typename Iterator::reference			reference;
+		typedef typename Iterator::iterator_category	iterator_category;
+	};
+
+	template <class T> struct iterator_traits<T*>
+    {
+		typedef ptrdiff_t						difference_type;
+		typedef T								value_type;
+		typedef T*								pointer;
+		typedef T&								reference;
+		typedef ft::random_access_iterator_tag	iterator_category;
+    };
+
+	template <class T> class iterator_traits<const T*>
+	{
+		typedef ptrdiff_t						difference_type;
+		typedef T								value_type;
+		typedef const T*						pointer;
+		typedef const T&						reference;
+		typedef ft::random_access_iterator_tag	iterator_category;
 	};
 }
