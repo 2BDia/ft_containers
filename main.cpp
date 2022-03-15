@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 16:06:31 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/15 11:55:48 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/15 20:46:17 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -756,6 +756,27 @@ int	main()
 		// ++mit;
 		// std::cout << "next = " << mit->first << " " << mit->second << std::endl;
 
+		//ITERATORS TESTS
+		ft::map<int, int> mine;
+		mine.insert(ft::pair<int, int>(50, 5));
+		mine.insert(ft::pair<int, int>(30, 3));
+		mine.insert(ft::pair<int, int>(40, 4));
+		mine.insert(ft::pair<int, int>(20, 2));
+		ft::map<int, int>::reverse_iterator	mit = mine.rbegin();
+		std::cout << "begin = " << mit->first << std::endl;
+
+		std::cout << std::endl;
+		std::map<int, int>	real;
+		real.insert(std::pair<int, int>(50, 5));
+		real.insert(std::pair<int, int>(30, 3));
+		real.insert(std::pair<int, int>(40, 4));
+		real.insert(std::pair<int, int>(20, 2));
+		std::map<int, int>::reverse_iterator	it = real.rbegin();
+		std::cout << "begin = " << it->first << std::endl;
+		it++;
+		it--;
+		std::cout << "-- = " << it->first << std::endl;
+
 		//GENERAL TESTS
 		// ft::map<int, int> mine;
 		// std::cout << "empty?" << mine.empty() << std::endl;
@@ -811,42 +832,24 @@ int	main()
 		// for (ft::map<int, int>::iterator mit = two.begin(); mit != two.end(); mit++)
 		// 	std::cout << mit->first << " " << mit->second << std::endl;
 		
-
-		std::cout << std::endl;
-		ft::map<int, int>	one;
-		one.insert(ft::pair<int, int>(50, 5));
-		one.insert(ft::pair<int, int>(30, 3));
-		one.insert(ft::pair<int, int>(40, 4));
-		one.insert(ft::pair<int, int>(20, 2));
-		ft::map<int, int>::iterator	mit;
-		// mit = one.find(30);
-		// std::cout << "find = " << mit->first << " " << mit->second << std::endl;
-		// std::cout << "count = " << one.count(30) << std::endl;
-		mit = one.lower_bound(30);
-		std::cout << "lower_bound = " << mit->first << " " << mit->second << std::endl;
-		mit = one.upper_bound(30);
-		std::cout << "upper_bound = " << mit->first << " " << mit->second << std::endl;
-		ft::pair<ft::map<int, int>::iterator, ft::map<int, int>::iterator>	mpair = one.equal_range(60);
-		std::cout << "lower = " << mpair.first->first << " " << mpair.first->second << std::endl;
-		std::cout << "upper = " << mpair.second->first << " " << mpair.second->second << std::endl;
-
-		std::cout << std::endl;
-		std::map<int, int>	two;
-		two.insert(std::pair<int, int>(50, 5));
-		two.insert(std::pair<int, int>(30, 3));
-		two.insert(std::pair<int, int>(40, 4));
-		two.insert(std::pair<int, int>(20, 2));
-		std::map<int, int>::iterator	it;
-		// it = two.find(30);
-		// std::cout << "find = " << it->first << " " << it->second << std::endl;
-		// std::cout << "count = " << two.count(30) << std::endl;
-		it = two.lower_bound(30);
-		std::cout << "lower_bound = " << it->first << " " << it->second << std::endl;
-		it = two.upper_bound(30);
-		std::cout << "upper_bound = " << it->first << " " << it->second << std::endl;
-		std::pair<std::map<int, int>::iterator, std::map<int, int>::iterator>	pair = two.equal_range(60);
-		std::cout << "lower = " << pair.first->first << " " << pair.first->second << std::endl;
-		std::cout << "upper = " << pair.second->first << " " << pair.second->second << std::endl;
+		// LAST FUNCTIONS MAP TEST
+		// std::cout << std::endl;
+		// ft::map<int, int>	one;
+		// one.insert(ft::pair<int, int>(50, 5));
+		// one.insert(ft::pair<int, int>(30, 3));
+		// one.insert(ft::pair<int, int>(40, 4));
+		// one.insert(ft::pair<int, int>(20, 2));
+		// ft::map<int, int>::iterator	mit;
+		// // mit = one.find(30);
+		// // std::cout << "find = " << mit->first << " " << mit->second << std::endl;
+		// // std::cout << "count = " << one.count(30) << std::endl;
+		// mit = one.lower_bound(30);
+		// std::cout << "lower_bound = " << mit->first << " " << mit->second << std::endl;
+		// mit = one.upper_bound(30);
+		// std::cout << "upper_bound = " << mit->first << " " << mit->second << std::endl;
+		// ft::pair<ft::map<int, int>::iterator, ft::map<int, int>::iterator>	mpair = one.equal_range(60);
+		// std::cout << "lower = " << mpair.first->first << " " << mpair.first->second << std::endl;
+		// std::cout << "upper = " << mpair.second->first << " " << mpair.second->second << std::endl;
 
 		// std::cout << std::endl << "real" << std::endl;
 		// std::map<int, int>	real;
