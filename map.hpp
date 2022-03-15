@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 11:59:39 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/13 20:12:53 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/15 19:01:30 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,15 +47,16 @@ namespace	ft
 					bool operator() (const value_type& x, const value_type& y) const
 						{return (comp(x.first, y.first));}
 			};
-			typedef Alloc											allocator_type;
-			typedef typename allocator_type::reference				reference;
-			typedef typename allocator_type::const_reference		const_reference;
-			typedef typename allocator_type::pointer				pointer;
-			typedef typename allocator_type::const_pointer			const_pointer;
-			typedef ft::map_iterator<ft::pair<const Key, T> >		iterator;
-			typedef ft::map_iterator<const ft::pair<const Key, T> >	const_iterator;
-			//iterators and difference type
-			typedef size_t											size_type;
+			typedef Alloc																allocator_type;
+			typedef typename allocator_type::reference									reference;
+			typedef typename allocator_type::const_reference							const_reference;
+			typedef typename allocator_type::pointer									pointer;
+			typedef typename allocator_type::const_pointer								const_pointer;
+			typedef ft::map_iterator<ft::pair<const Key, T> >							iterator;
+			typedef ft::map_iterator<const ft::pair<const Key, T> >						const_iterator;
+			typedef typename ft::map_iterator<ft::pair<const Key, T> >::difference_type	difference_type;
+			//iterators
+			typedef size_t																size_type;
 
 		private:
 
