@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 13:40:51 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/15 19:00:08 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/15 20:37:48 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,13 @@ namespace	ft
 	{
 		public:
 
+			//Member types
+			typedef typename ft::iterator<map_iterator, T>::value_type									value_type;
+			typedef typename ft::iterator<map_iterator, T>::iterator_category							iterator_category;
+			typedef typename ft::iterator<map_iterator, T>::difference_type								difference_type;
+			typedef typename ft::iterator<map_iterator, T>::pointer										pointer;
+			typedef typename ft::iterator<map_iterator, T>::reference									reference;
 			typedef Node<typename remove_const<typename T::first_type>::type, typename T::second_type>	node_type;
-			typedef T	value_type;
-			typedef typename ft::iterator<random_access_iterator_tag, value_type>::difference_type difference_type;
 
 		private:
 
@@ -51,7 +55,7 @@ namespace	ft
 			//Member functions
 			value_type	&operator*() const {return this->_nPointer->data;};
 
-			T* operator->() const {return &this->_nPointer->data;};
+			value_type* operator->() const {return &this->_nPointer->data;};
 
 			// https://stackoverflow.com/questions/2942517/how-do-i-iterate-over-binary-tree
 			map_iterator	&operator++() //might have to point on end after last
@@ -142,7 +146,7 @@ namespace	ft
 			bool	operator==(map_iterator const rhs) const {return (this->_nPointer == rhs._nPointer);};
 			bool	operator!=(map_iterator const rhs) const {return (this->_nPointer != rhs._nPointer);};
 
-			node_type	*getNPointer() {return (this->_nPointer);};
+			node_type	*base() const {return (this->_nPointer);};
 
 			node_type	*getLeftMost(node_type *n)
 			{

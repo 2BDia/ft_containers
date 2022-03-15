@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 11:59:39 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/15 19:01:30 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/15 20:31:23 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 #include "utils.hpp"
 #include "bst.hpp"
 #include "map_iterator.hpp"
+#include "reverse_map_iterator.hpp"
 
 namespace	ft
 {
@@ -30,10 +31,10 @@ namespace	ft
 	{
 		public:
 
-			typedef Key												key_type;
-			typedef T												mapped_type;
-			typedef ft::pair<const key_type, mapped_type>			value_type;
-			typedef Compare											key_compare;
+			typedef Key																	key_type;
+			typedef T																	mapped_type;
+			typedef ft::pair<const key_type, mapped_type>								value_type;
+			typedef Compare																key_compare;
 			class value_compare : ft::binary_function<value_type, value_type, bool>
 			{
 				friend class map<key_type, mapped_type, key_compare, Alloc>;
@@ -54,8 +55,9 @@ namespace	ft
 			typedef typename allocator_type::const_pointer								const_pointer;
 			typedef ft::map_iterator<ft::pair<const Key, T> >							iterator;
 			typedef ft::map_iterator<const ft::pair<const Key, T> >						const_iterator;
+			typedef ft::reverse_map_iterator<iterator>									reverse_iterator;
+			typedef ft::reverse_map_iterator<const_iterator>							const_reverse_iterator;
 			typedef typename ft::map_iterator<ft::pair<const Key, T> >::difference_type	difference_type;
-			//iterators
 			typedef size_t																size_type;
 
 		private:
@@ -145,6 +147,27 @@ namespace	ft
 				return (const_iterator(tmp->right));
 			};
 
+			reverse_iterator rbegin()
+			{
+				Node<Key, T>	*tmp = this->_bst.root;
+
+				if (tmp == tmp->null)
+					return (reverse_iterator(tmp));
+				while (tmp->right != tmp->null && !(tmp->left == tmp->null && tmp->right == tmp->null))
+					tmp = tmp->right;
+				return (reverse_iterator(tmp));
+			};
+			const_reverse_iterator rbegin() const
+			{
+				Node<Key, T>	*tmp = this->_bst.root;
+
+				if (tmp == tmp->null)
+					return (const_reverse_iterator(tmp));
+				while (tmp->right != tmp->null && !(tmp->left == tmp->null && tmp->right == tmp->null))
+					tmp = tmp->right;
+				return (const_reverse_iterator(tmp));
+			};
+
 			//Capacity
 			bool empty() const {return this->_bst.empty();};
 
@@ -192,7 +215,7 @@ namespace	ft
 				iterator	last = this->end();
 				for (; first != last; first++)
 				{
-					if ((*first.getNPointer()).data.first == k)
+					if ((*first.base()).data.first == k)
 					{
 						this->_bst.erase(first);
 						return (1);
@@ -237,7 +260,7 @@ namespace	ft
 				iterator	last = this->end();
 				for (; first != last; first++)
 				{
-					if ((*first.getNPointer()).data.first == k)
+					if ((*first.base()).data.first == k)
 						break ;
 				}
 				return (first);
@@ -248,7 +271,7 @@ namespace	ft
 				const_iterator	last = this->end();
 				for (; first != last; first++)
 				{
-					if ((*first.getNPointer()).data.first == k)
+					if ((*first.base()).data.first == k)
 						break ;
 				}
 				return (first);
@@ -260,7 +283,7 @@ namespace	ft
 				const_iterator	last = this->end();
 				for (; first != last; first++)
 				{
-					if ((*first.getNPointer()).data.first == k)
+					if ((*first.base()).data.first == k)
 						return (1);
 				}
 				return (0);
@@ -272,7 +295,7 @@ namespace	ft
 				iterator	last = this->end();
 				for (; first != last; first++)
 				{
-					if ((*first.getNPointer()).data.first >= k)
+					if ((*first.base()).data.first >= k)
 						break ;
 				}
 				return (first);
@@ -283,7 +306,7 @@ namespace	ft
 				const_iterator	last = this->end();
 				for (; first != last; first++)
 				{
-					if ((*first.getNPointer()).data.first >= k)
+					if ((*first.base()).data.first >= k)
 						break ;
 				}
 				return (first);
@@ -295,7 +318,7 @@ namespace	ft
 				iterator	last = this->end();
 				for (; first != last; first++)
 				{
-					if ((*first.getNPointer()).data.first > k)
+					if ((*first.base()).data.first > k)
 						break ;
 				}
 				return (first);
@@ -306,7 +329,7 @@ namespace	ft
 				const_iterator	last = this->end();
 				for (; first != last; first++)
 				{
-					if ((*first.getNPointer()).data.first > k)
+					if ((*first.base()).data.first > k)
 						break ;
 				}
 				return (first);
