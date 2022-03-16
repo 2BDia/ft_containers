@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 16:06:31 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/15 20:46:17 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/16 13:44:13 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -764,6 +764,22 @@ int	main()
 		mine.insert(ft::pair<int, int>(20, 2));
 		ft::map<int, int>::reverse_iterator	mit = mine.rbegin();
 		std::cout << "begin = " << mit->first << std::endl;
+		mit++;
+		std::cout << "-- = " << mit->first << std::endl;
+		mit++;
+		std::cout << "-- = " << mit->first << std::endl;
+		mit++;
+		std::cout << "-- = " << mit->first << std::endl;
+		mit++;
+		std::cout << "-- = " << mit->first << std::endl;
+		mit--;
+		std::cout << "-- = " << mit->first << std::endl;
+		mit--;
+		std::cout << "-- = " << mit->first << std::endl;
+		mit--;
+		std::cout << "-- = " << mit->first << std::endl;
+		mit--;
+		std::cout << "-- = " << mit->first << std::endl;
 
 		std::cout << std::endl;
 		std::map<int, int>	real;
@@ -773,7 +789,20 @@ int	main()
 		real.insert(std::pair<int, int>(20, 2));
 		std::map<int, int>::reverse_iterator	it = real.rbegin();
 		std::cout << "begin = " << it->first << std::endl;
-		it++;
+		++it;
+		std::cout << "-- = " << it->first << std::endl;
+		++it;
+		std::cout << "-- = " << it->first << std::endl;
+		++it;
+		std::cout << "-- = " << it->first << std::endl;
+		++it;
+		std::cout << "-- = " << it->first << std::endl;
+		it--;
+		std::cout << "-- = " << it->first << std::endl;
+		it--;
+		std::cout << "-- = " << it->first << std::endl;
+		it--;
+		std::cout << "-- = " << it->first << std::endl;
 		it--;
 		std::cout << "-- = " << it->first << std::endl;
 

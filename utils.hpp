@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 09:52:37 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/15 18:58:55 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/16 13:31:09 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,7 +130,7 @@ namespace	ft
 	class random_access_iterator_tag {};
 
 	//Iterator
-	template <class Category, class T, class Distance = __gnu_cxx::ptrdiff_t,
+	template <class Category, class T, class Distance = ptrdiff_t,
 	class Pointer = T*, class Reference = T&>
 	class iterator
 	{
@@ -155,7 +155,7 @@ namespace	ft
 
 	template <class T> class iterator_traits<T*>
 	{
-			typedef __gnu_cxx::ptrdiff_t			difference_type;
+			typedef ptrdiff_t					difference_type;
 			typedef T								value_type;
 			typedef T*								pointer;
 			typedef T&								reference;
@@ -164,7 +164,7 @@ namespace	ft
 
 	template <class T> class iterator_traits<const T*>
 	{
-		typedef __gnu_cxx::ptrdiff_t			difference_type;
+		typedef ptrdiff_t						difference_type;
 		typedef T								value_type;
 		typedef const T*						pointer;
 		typedef const T&						reference;

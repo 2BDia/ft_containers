@@ -57,9 +57,36 @@ namespace	ft
 
 			reverse_map_iterator	&operator++()
 			{
-				this->_it--;
+				if (this->_it == this->_it.getLeftMost(this->_it.base()))
+					this->_it = this->_it.base()->null;
+				else
+					this->_it--;
 				return (*this);
 			};
+			reverse_map_iterator 	operator++(int)
+			{
+				reverse_map_iterator	tmp = *this;
+				++(*this);
+				return (tmp);
+			};
+
+			reverse_map_iterator	&operator--()
+			{
+				if (this->_it == this->_it.base()->null)
+					this->_it = this->_it.getLeftMost(this->_it.base());
+				else
+					this->_it++;
+				return (*this);
+			};
+			reverse_map_iterator 	operator--(int)
+			{
+				reverse_map_iterator	tmp = *this;
+				--(*this);
+				return (tmp);
+			};
+
+			bool	operator==(reverse_map_iterator const rhs) const {return (this->it.base() == rhs.it.base());};
+			bool	operator!=(reverse_map_iterator const rhs) const {return (this->it.base() != rhs.it.base());};
 
 			iterator_type base() const {return this->_it;};
 	};

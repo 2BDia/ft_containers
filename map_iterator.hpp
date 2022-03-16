@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 13:40:51 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/15 20:37:48 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/16 13:42:53 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ namespace	ft
 			};
 
 			// works the same as ++ but left is right and vice versa
-			map_iterator &	operator--()
+			map_iterator	&operator--()
 			{
 				node_type	*n = this->_nPointer;
 
