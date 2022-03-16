@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 11:59:39 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/16 15:03:28 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/16 15:58:27 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ namespace	ft
 			typedef typename ft::map_iterator<ft::pair<const Key, T> >::difference_type	difference_type;
 			typedef size_t																size_type;
 
-		private:
+		public:
 
 			allocator_type		_alloc;
 			key_compare			_comp;
@@ -253,8 +253,22 @@ namespace	ft
 			};
 			void erase (iterator first, iterator last)
 			{
-				for (; first != last; first++)
-					this->_bst.erase(first);
+				iterator	tmp;
+
+				while (first != this->_bst.null && first != last)
+				{
+					tmp = first;
+					if (++tmp == this->_bst.null)
+					{
+						this->_bst.erase(first);
+						break ;
+					}
+					else
+					{
+						this->_bst.erase(first);
+						first++;
+					}
+				}
 			};
 
 			void swap (map& x)
