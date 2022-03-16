@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 11:59:39 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/16 16:15:38 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/16 16:45:34 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,9 @@ namespace	ft
 
 		private:
 
-			allocator_type		_alloc;
-			key_compare			_comp;
-			BST<Key, T>			_bst;
+			allocator_type				_alloc;
+			key_compare					_comp;
+			BST<Key, T, key_compare>	_bst;
 
 		public:
 
@@ -73,7 +73,7 @@ namespace	ft
 			:
 				_alloc(alloc),
 				_comp(comp),
-				_bst()
+				_bst(comp, alloc, 0)
 			{};
 
 			template <class InputIterator>
@@ -83,7 +83,7 @@ namespace	ft
 			:
 				_alloc(alloc),
 				_comp(comp),
-				_bst()
+				_bst(comp, alloc, 0)
 			{
 				this->insert(first, last);
 			};
@@ -100,6 +100,8 @@ namespace	ft
 			map& operator= (const map& x)
 			{
 				this->clear();
+				// this->_alloc = x._alloc;
+				// this->_comp = x._alloc;
 				this->insert(x.begin(), x.end());
 				return (*this);
 			};
