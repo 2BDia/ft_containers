@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 11:59:39 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/16 13:42:13 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/16 13:47:55 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,6 +166,27 @@ namespace	ft
 				while (tmp->right != tmp->null && !(tmp->left == tmp->null && tmp->right == tmp->null))
 					tmp = tmp->right;
 				return (const_reverse_iterator(tmp));
+			};
+
+			reverse_iterator rend()
+			{
+				Node<Key, T>	*tmp = this->_bst.root;
+
+				if (tmp == tmp->null)
+					return (reverse_iterator(tmp));
+				while (tmp->left != tmp->null && !(tmp->left == tmp->null && tmp->right == tmp->null))
+					tmp = tmp->left;
+				return (reverse_iterator(tmp->left));
+			};
+			const_reverse_iterator rend() const
+			{
+				Node<Key, T>	*tmp = this->_bst.root;
+
+				if (tmp == tmp->null)
+					return (const_reverse_iterator(tmp));
+				while (tmp->left != tmp->null && !(tmp->left == tmp->null && tmp->right == tmp->null))
+					tmp = tmp->left;
+				return (const_reverse_iterator(tmp->left));
 			};
 
 			//Capacity
