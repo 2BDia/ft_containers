@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 10:45:07 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/16 15:38:25 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/16 16:26:17 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,7 +167,10 @@ namespace	ft
 			ft::pair<iterator,bool>	insert(const value_type& val)
 			{
 				if (this->node->side == -1)
+				{
 					this->new_node(val, 0);
+					return (ft::pair<iterator, bool>(iterator(this->node), true));
+				}
 				else if (this->comp(val.first, this->node->data.first))
 				{
 					if (this->node->left != this->null)
@@ -176,7 +179,10 @@ namespace	ft
 						return (this->insert(val));
 					}
 					else
+					{
 						this->new_node(val, L);
+						return (ft::pair<iterator, bool>(iterator(this->node->left), true));
+					}
 				}
 				else if (this->comp(this->node->data.first, val.first))
 				{
@@ -186,7 +192,10 @@ namespace	ft
 						return (this->insert(val));
 					}
 					else
+					{
 						this->new_node(val, R);
+						return (ft::pair<iterator, bool>(iterator(this->node->right), true));
+					}
 				}
 				return (ft::pair<iterator, bool>(iterator(this->node), false));
 			};

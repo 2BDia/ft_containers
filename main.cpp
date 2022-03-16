@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 16:06:31 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/16 15:59:57 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/16 16:10:13 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -726,6 +726,14 @@ int	main()
 	}
 	{
 		std::cout << std::endl << "*** TEST ***" << std::endl;
+
+		std::map<int, std::string>	real;
+		real.insert(real.begin(), std::map<int, std::string>::value_type(50, "oki"));
+		std::cout << "insert = " << (real.begin())->first << std::endl;
+
+		ft::map<int, std::string>	mine;
+		mine.insert(mine.begin(), ft::map<int, std::string>::value_type(50, "oki"));
+		std::cout << "insert = " << (mine.begin())->first << std::endl;
 
 		//ITERATORS TESTS
 		// ft::map<int, int> mine;
