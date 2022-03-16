@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 10:45:07 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/16 16:26:17 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/16 16:47:26 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ namespace	ft
 			}
 	};
 
-	template < class Key, class T, class Compare = ft::less<Key>,
+	template < class Key, class T, class Compare,
 		class Alloc = std::allocator<Node<Key, T> > >
 	class	BST
 	{
@@ -97,11 +97,25 @@ namespace	ft
 
 			//Constructor
 			BST(const key_compare& comp = key_compare(),
-				const allocator_type& alloc = allocator_type())
+				const allocator_type& alloc = allocator_type()) //default constructor
 			:
 				alloc(alloc),
 				comp(comp)
 			{
+				this->null = this->alloc.allocate(1);
+				this->alloc.construct(this->null, node_type(-1, value_type()));
+				this->null->null = this->null; //need pointer on null in the node as well for iterators
+				this->root = this->null;
+				this->node = this->null;
+			};
+
+			BST(const key_compare& comp,
+				const allocator_type& alloc, bool dummy) //dummy necessary because same as default except comp and alloc MUST be defined
+			:
+				alloc(alloc),
+				comp(comp)
+			{
+				(void)dummy;
 				this->null = this->alloc.allocate(1);
 				this->alloc.construct(this->null, node_type(-1, value_type()));
 				this->null->null = this->null; //need pointer on null in the node as well for iterators
