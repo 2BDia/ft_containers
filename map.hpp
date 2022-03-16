@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 11:59:39 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/16 15:58:27 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/16 16:15:38 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ namespace	ft
 			typedef typename ft::map_iterator<ft::pair<const Key, T> >::difference_type	difference_type;
 			typedef size_t																size_type;
 
-		public:
+		private:
 
 			allocator_type		_alloc;
 			key_compare			_comp;
@@ -208,7 +208,6 @@ namespace	ft
 			};
 
 			//Modifiers
-			//pair<iterator,bool> to check if already existing key and if so return iterator to that node
 			pair<iterator,bool> insert (const value_type& val)
 			{
 				pair<iterator, bool>	tmp = this->_bst.insert(val);
@@ -218,9 +217,9 @@ namespace	ft
 			iterator insert (iterator position, const value_type& val)
 			{
 				static_cast<void>(position);
-				iterator	tmp = this->_bst.insert(val);
+				pair<iterator, bool>	tmp = this->_bst.insert(val);
 				this->_bst.node = this->_bst.root;
-				return (tmp);
+				return (tmp.first);
 			};
 			template <class InputIterator>
 			void insert (InputIterator first, InputIterator last)
