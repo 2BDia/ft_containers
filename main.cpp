@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 16:06:31 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/16 15:01:58 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/16 15:59:57 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -889,18 +889,6 @@ int	main()
 		// std::cout << it->first << " " << it->second << std::endl;
 		// std::cout << "map[2] = " << real[2] << std::endl;
 		// std::cout << "map[3] = " << real[3] << std::endl;
-
-		ft::map<int, int>	mine;
-		mine[1] = 10;
-		mine[2] = 20;
-		ft::map<int, int>::iterator	mit = mine.begin();
-		std::cout << "mit = " << mit->first << " " << mit->second << std::endl;
-
-		std::map<int, int>	real;
-		real[1] = 10;
-		real[2] = 20;
-		std::map<int, int>::iterator	it = real.begin();
-		std::cout << "it = " << it->first << " " << it->second << std::endl;
 	}
 	// system("leaks containers");
 }

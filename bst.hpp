@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 10:45:07 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/11 15:17:34 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/16 15:38:25 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -199,7 +199,7 @@ namespace	ft
 			//min points to old left and right child, min points to old parent, old min parent points to null and delete node
 			void	erase(iterator position)
 			{
-				node_type	*old = position.getNPointer();
+				node_type	*old = position.base();
 
 				if (old->left == this->null && old->right == this->null) //if node is a leaf
 				{
@@ -298,6 +298,7 @@ namespace	ft
 					this->alloc.destroy(old);
 					this->alloc.deallocate(old, 1);
 				}
+				this->null->parent = this->root;
 			}
 
 			void	delete_tree()
