@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 16:06:31 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/16 13:44:13 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/16 13:49:21 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -780,6 +780,10 @@ int	main()
 		std::cout << "-- = " << mit->first << std::endl;
 		mit--;
 		std::cout << "-- = " << mit->first << std::endl;
+		ft::map<int, int>::reverse_iterator	mite = mine.rend();
+		std::cout << "end = " << mite->first << std::endl;
+		mite--;
+		std::cout << "-- = " << mite->first << std::endl;
 
 		std::cout << std::endl;
 		std::map<int, int>	real;
@@ -805,6 +809,10 @@ int	main()
 		std::cout << "-- = " << it->first << std::endl;
 		it--;
 		std::cout << "-- = " << it->first << std::endl;
+		std::map<int, int>::reverse_iterator	ite = real.rend();
+		std::cout << "end = " << ite->first << std::endl;
+		ite--;
+		std::cout << "-- = " << ite->first << std::endl;
 
 		//GENERAL TESTS
 		// ft::map<int, int> mine;
