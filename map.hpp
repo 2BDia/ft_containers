@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 11:59:39 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/16 13:47:55 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/16 15:03:28 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -198,7 +198,14 @@ namespace	ft
 
 			// Element access
 			mapped_type& operator[] (const key_type& k)
-			{return (*((this->insert(ft::make_pair(k,mapped_type()))).first)).second;};
+			{
+				iterator tmp = this->find(k);
+
+				if (tmp == this->end())
+					this->insert(ft::make_pair(k, mapped_type()));
+				tmp = this->find(k);
+				return ((*tmp).second);
+			};
 
 			//Modifiers
 			//pair<iterator,bool> to check if already existing key and if so return iterator to that node

@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 16:06:31 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/16 13:49:21 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/16 15:01:58 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -738,6 +738,7 @@ int	main()
 		// mine.insert(ft::pair<int, int>(10, 10));
 		// mine.insert(ft::pair<int, int>(14, 14));
 		// mine.insert(ft::pair<int, int>(13, 13));
+		// ft::map<int, int>::iterator	mit = mine.end();
 		// std::cout << "end = " << mit->first << " " << mit->second << std::endl;
 		// mit--;
 		// std::cout << "next = " << mit->first << " " << mit->second << std::endl;
@@ -756,63 +757,34 @@ int	main()
 		// ++mit;
 		// std::cout << "next = " << mit->first << " " << mit->second << std::endl;
 
-		//ITERATORS TESTS
-		ft::map<int, int> mine;
-		mine.insert(ft::pair<int, int>(50, 5));
-		mine.insert(ft::pair<int, int>(30, 3));
-		mine.insert(ft::pair<int, int>(40, 4));
-		mine.insert(ft::pair<int, int>(20, 2));
-		ft::map<int, int>::reverse_iterator	mit = mine.rbegin();
-		std::cout << "begin = " << mit->first << std::endl;
-		mit++;
-		std::cout << "-- = " << mit->first << std::endl;
-		mit++;
-		std::cout << "-- = " << mit->first << std::endl;
-		mit++;
-		std::cout << "-- = " << mit->first << std::endl;
-		mit++;
-		std::cout << "-- = " << mit->first << std::endl;
-		mit--;
-		std::cout << "-- = " << mit->first << std::endl;
-		mit--;
-		std::cout << "-- = " << mit->first << std::endl;
-		mit--;
-		std::cout << "-- = " << mit->first << std::endl;
-		mit--;
-		std::cout << "-- = " << mit->first << std::endl;
-		ft::map<int, int>::reverse_iterator	mite = mine.rend();
-		std::cout << "end = " << mite->first << std::endl;
-		mite--;
-		std::cout << "-- = " << mite->first << std::endl;
-
-		std::cout << std::endl;
-		std::map<int, int>	real;
-		real.insert(std::pair<int, int>(50, 5));
-		real.insert(std::pair<int, int>(30, 3));
-		real.insert(std::pair<int, int>(40, 4));
-		real.insert(std::pair<int, int>(20, 2));
-		std::map<int, int>::reverse_iterator	it = real.rbegin();
-		std::cout << "begin = " << it->first << std::endl;
-		++it;
-		std::cout << "-- = " << it->first << std::endl;
-		++it;
-		std::cout << "-- = " << it->first << std::endl;
-		++it;
-		std::cout << "-- = " << it->first << std::endl;
-		++it;
-		std::cout << "-- = " << it->first << std::endl;
-		it--;
-		std::cout << "-- = " << it->first << std::endl;
-		it--;
-		std::cout << "-- = " << it->first << std::endl;
-		it--;
-		std::cout << "-- = " << it->first << std::endl;
-		it--;
-		std::cout << "-- = " << it->first << std::endl;
-		std::map<int, int>::reverse_iterator	ite = real.rend();
-		std::cout << "end = " << ite->first << std::endl;
-		ite--;
-		std::cout << "-- = " << ite->first << std::endl;
+		// REV ITERATORS TESTS
+		// ft::map<int, int> mine;
+		// mine.insert(ft::pair<int, int>(50, 5));
+		// mine.insert(ft::pair<int, int>(30, 3));
+		// mine.insert(ft::pair<int, int>(40, 4));
+		// mine.insert(ft::pair<int, int>(20, 2));
+		// ft::map<int, int>::reverse_iterator	mit = mine.rbegin();
+		// std::cout << "begin = " << mit->first << std::endl;
+		// mit++;
+		// std::cout << "-- = " << mit->first << std::endl;
+		// mit++;
+		// std::cout << "-- = " << mit->first << std::endl;
+		// mit++;
+		// std::cout << "-- = " << mit->first << std::endl;
+		// mit++;
+		// std::cout << "-- = " << mit->first << std::endl;
+		// mit--;
+		// std::cout << "-- = " << mit->first << std::endl;
+		// mit--;
+		// std::cout << "-- = " << mit->first << std::endl;
+		// mit--;
+		// std::cout << "-- = " << mit->first << std::endl;
+		// mit--;
+		// std::cout << "-- = " << mit->first << std::endl;
+		// ft::map<int, int>::reverse_iterator	mite = mine.rend();
+		// std::cout << "end = " << mite->first << std::endl;
+		// mite--;
+		// std::cout << "-- = " << mite->first << std::endl;
 
 		//GENERAL TESTS
 		// ft::map<int, int> mine;
@@ -917,6 +889,18 @@ int	main()
 		// std::cout << it->first << " " << it->second << std::endl;
 		// std::cout << "map[2] = " << real[2] << std::endl;
 		// std::cout << "map[3] = " << real[3] << std::endl;
+
+		ft::map<int, int>	mine;
+		mine[1] = 10;
+		mine[2] = 20;
+		ft::map<int, int>::iterator	mit = mine.begin();
+		std::cout << "mit = " << mit->first << " " << mit->second << std::endl;
+
+		std::map<int, int>	real;
+		real[1] = 10;
+		real[2] = 20;
+		std::map<int, int>::iterator	it = real.begin();
+		std::cout << "it = " << it->first << " " << it->second << std::endl;
 	}
 	// system("leaks containers");
 }

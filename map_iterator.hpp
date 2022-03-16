@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 13:40:51 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/16 13:42:53 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/16 14:41:35 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,9 @@ namespace	ft
 				this->_nPointer = rhs._nPointer;
 				return (*this);
 			};
+
+			operator	map_iterator<value_type const>() const
+			{ return (map_iterator<value_type const>(this->_nPointer)); }
 
 			//Member functions
 			value_type	&operator*() const {return this->_nPointer->data;};
