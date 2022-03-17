@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 11:59:39 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/17 13:44:51 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/17 13:56:30 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -248,12 +248,7 @@ namespace	ft
 				}
 			};
 
-			void swap (map& x)
-			{
-				map	tmp = x;
-				x = *this;
-				*this = tmp;
-			};
+			void swap (map& x) {this->_bst.swap(x._bst);};
 
 			void clear()
 			{
