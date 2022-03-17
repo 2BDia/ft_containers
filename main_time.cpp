@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 15:12:09 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/17 15:30:42 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/17 17:37:42 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int main()
 	}
 	for (ft::map<int, int>::iterator it = one.begin(); it != one.end(); it++)
 		std::cout << it->first << " " << it->second << std::endl;
-	for (int i = 0; i < 100; i++)
+	for (int i = 0; i < 500; i++)
 	{
 		r = rand() % 100000;
 		one.erase(r);
