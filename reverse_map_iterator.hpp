@@ -38,7 +38,7 @@ namespace	ft
 			reverse_map_iterator() : _it(NULL) {};
 			explicit reverse_map_iterator (iterator_type it) : _it(it) {};
 			template <class Iter>
-			reverse_map_iterator (const reverse_map_iterator<Iter>& rev_it) : _it(rev_it.getNPointer()) {};
+			reverse_map_iterator (const reverse_map_iterator<Iter>& rev_it) : _it(rev_it.base()) {};
 
 			//Destructor
 			~reverse_map_iterator() {};
@@ -51,9 +51,13 @@ namespace	ft
 			};
 
 			//Member functions
-			value_type	&operator*() const {return this->_it.base()->data;};
+			value_type	&operator*() const
+			{
+				iterator_type	tmp = this->_it;
+				return (*(--tmp));
+			};
 
-			value_type* operator->() const {return &this->_it.base()->data;};
+			value_type* operator->() const {return &(operator*());};
 
 			reverse_map_iterator	&operator++()
 			{
@@ -85,9 +89,14 @@ namespace	ft
 				return (tmp);
 			};
 
-			bool	operator==(reverse_map_iterator const rhs) const {return (this->it.base() == rhs.it.base());};
-			bool	operator!=(reverse_map_iterator const rhs) const {return (this->it.base() != rhs.it.base());};
+			bool	operator==(reverse_map_iterator const rhs) const {return (this->_it.base() == rhs._it.base());};
+			bool	operator!=(reverse_map_iterator const rhs) const {return (this->_it.base() != rhs._it.base());};
 
 			iterator_type base() const {return this->_it;};
+			// {
+			// 	iterator_type	tmp = this->_it;
+			// 	--tmp;
+			// 	return (tmp);
+			// };
 	};
 }

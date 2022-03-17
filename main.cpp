@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 16:06:31 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/16 17:50:43 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/17 13:46:01 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -728,46 +728,46 @@ int	main()
 		std::cout << std::endl << "*** TEST ***" << std::endl;
 
 		//OPERATORS TESTS
-		ft::map<int, int>	one;
-		one.insert(ft::pair<int, int>(2, 2));
-		one.insert(ft::pair<int, int>(3, 3));
-		one.insert(ft::pair<int, int>(1, 1));
-		one.insert(ft::pair<int, int>(6, 6));
-		one.insert(ft::pair<int, int>(4, 4));
-		ft::map<int, int>	two;
-		two.insert(ft::pair<int, int>(2, 2));
-		two.insert(ft::pair<int, int>(3, 3));
-		two.insert(ft::pair<int, int>(1, 1));
-		two.insert(ft::pair<int, int>(6, 6));
-		two.insert(ft::pair<int, int>(4, 4));
-		if (one == two)
-			std::cout << "== ok" << std::endl;
-		two.erase(2);
-		if (one != two)
-			std::cout << "!= ok" << std::endl;
-		two.insert(ft::pair<int, int>(0, 0));
-		if (two < one)
-			std::cout << "< ok" << std::endl;
-		if (two <= one)
-		{
-			two.erase(0);
-			one.erase(2);
-			if (one <= two)
-				std::cout << "<= ok" << std::endl;
-		}
-		one.insert(ft::pair<int, int>(9, 9));
-		two.insert(ft::pair<int, int>(8, 8));
-		if (one > two)
-			std::cout << "> ok" << std::endl;
-		one.erase(9);
-		two.erase(8);
-		if (one >= two)
-		{
-			two.erase(1);
-			two.insert(ft::pair<int, int>(0, 0));
-			if (one >= two)
-				std::cout << ">= ok" << std::endl;
-		}
+		// ft::map<int, int>	one;
+		// one.insert(ft::pair<int, int>(2, 2));
+		// one.insert(ft::pair<int, int>(3, 3));
+		// one.insert(ft::pair<int, int>(1, 1));
+		// one.insert(ft::pair<int, int>(6, 6));
+		// one.insert(ft::pair<int, int>(4, 4));
+		// ft::map<int, int>	two;
+		// two.insert(ft::pair<int, int>(2, 2));
+		// two.insert(ft::pair<int, int>(3, 3));
+		// two.insert(ft::pair<int, int>(1, 1));
+		// two.insert(ft::pair<int, int>(6, 6));
+		// two.insert(ft::pair<int, int>(4, 4));
+		// if (one == two)
+		// 	std::cout << "== ok" << std::endl;
+		// two.erase(2);
+		// if (one != two)
+		// 	std::cout << "!= ok" << std::endl;
+		// two.insert(ft::pair<int, int>(0, 0));
+		// if (two < one)
+		// 	std::cout << "< ok" << std::endl;
+		// if (two <= one)
+		// {
+		// 	two.erase(0);
+		// 	one.erase(2);
+		// 	if (one <= two)
+		// 		std::cout << "<= ok" << std::endl;
+		// }
+		// one.insert(ft::pair<int, int>(9, 9));
+		// two.insert(ft::pair<int, int>(8, 8));
+		// if (one > two)
+		// 	std::cout << "> ok" << std::endl;
+		// one.erase(9);
+		// two.erase(8);
+		// if (one >= two)
+		// {
+		// 	two.erase(1);
+		// 	two.insert(ft::pair<int, int>(0, 0));
+		// 	if (one >= two)
+		// 		std::cout << ">= ok" << std::endl;
+		// }
 
 		//ITERATORS TESTS
 		// ft::map<int, int> mine;
