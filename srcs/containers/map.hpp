@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 11:59:39 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/17 18:01:39 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/17 19:03:57 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,22 +31,24 @@ namespace	ft
 	{
 		public:
 
+			//---- Member types ----//
 			typedef Key																	key_type;
 			typedef T																	mapped_type;
 			typedef ft::pair<const key_type, mapped_type>								value_type;
 			typedef Compare																key_compare;
+			/* Value_compare : nested function class to compare elements */
 			class value_compare : ft::binary_function<value_type, value_type, bool>
 			{
 				friend class map<key_type, mapped_type, key_compare, Alloc>;
 
 				protected:
 					Compare comp;
-					value_compare (Compare c) : comp(c) {}
+					value_compare (Compare c) : comp(c) {};
 
 				public:
 
 					bool operator() (const value_type& x, const value_type& y) const
-						{return (comp(x.first, y.first));}
+					{return (comp(x.first, y.first));};
 			};
 			typedef Alloc																allocator_type;
 			typedef typename allocator_type::reference									reference;
@@ -68,6 +70,9 @@ namespace	ft
 
 		public:
 
+			//---- Constructors ----//
+
+			/* Default constructor : constructs an empty container */
 			explicit map(const key_compare& comp = key_compare(),
               const allocator_type& alloc = allocator_type())
 			:
@@ -76,6 +81,7 @@ namespace	ft
 				_bst(comp, alloc, 0)
 			{};
 
+			/* Range constructor : constructs a container with the elements in the first - last range */
 			template <class InputIterator>
 			map (InputIterator first, InputIterator last,
 				const key_compare& comp = key_compare(),
@@ -88,15 +94,18 @@ namespace	ft
 				this->insert(first, last);
 			};
 
+			/* Copy constructor : constructs a container that is a copy of x (deep copy) */
 			map (const map& x)
 			{
 				*this = x;
 			};
 
-			//Destructor
+			//---- Destructor ----//
 			~map() {this->_bst.delete_tree();};
 
-			//Operator=
+			//---- Operator= ----//
+
+			/* Copies all the elements of x into the container */
 			map& operator= (const map& x)
 			{
 				this->clear();
@@ -104,7 +113,9 @@ namespace	ft
 				return (*this);
 			};
 
-			//Iterators
+			//---- Iterators ----//
+
+			/* Returns iterator to the beginning (leftmost element in the tree) */
 			iterator begin()
 			{
 				Node<Key, T>	*tmp = this->_bst.root;
@@ -126,6 +137,7 @@ namespace	ft
 				return const_iterator(tmp);
 			};
 
+			/* Returns iterator to the end (null element to the right of the rightmost element in the tree) */
 			iterator end()
 			{
 				Node<Key, T>	*tmp = this->_bst.root;
@@ -147,20 +159,28 @@ namespace	ft
 				return (const_iterator(tmp->right));
 			};
 
+			/* Returns iterator to the reverse beginning (rightmost element in the tree) */
 			reverse_iterator rbegin() {return (reverse_iterator(this->end()));};
 			const_reverse_iterator rbegin() const {return (const_reverse_iterator(this->end()));};
 
+			/* Returns iterator to the reverse end (null element to the left of the leftmost element in the tree) */
 			reverse_iterator rend() {return (reverse_iterator(this->begin()));};
 			const_reverse_iterator rend() const {return (const_reverse_iterator(this->begin()));};
 
-			//Capacity
+			//---- Capacity ----//
+
+			/* Return true if the container is empty, false if it isn't */
 			bool empty() const {return this->_bst.empty();};
 
+			/* Returns size of the container (number of elements) */
 			size_type size() const {return this->_bst.size();};
 
+			/* Returns the maximum size of elements the map can hold */
 			size_type max_size() const {return this->_bst.max_size();};
 
-			// Element access
+			//---- Element access ----//
+
+			/* Access element whose key is k */
 			mapped_type& operator[] (const key_type& k)
 			{
 				iterator tmp = this->find(k);
@@ -171,13 +191,17 @@ namespace	ft
 				return ((*tmp).second);
 			};
 
-			//Modifiers
+			//---- Modifiers ----//
+
+			//- Insert : inserts new elements -//
+			/* Single element insert : inserts a new element */
 			pair<iterator,bool> insert (const value_type& val)
 			{
 				pair<iterator, bool>	tmp = this->_bst.insert(val);
 				this->_bst.node = this->_bst.root;
 				return (tmp);
 			};
+			/* Hint insert : inserts a new element */
 			iterator insert (iterator position, const value_type& val)
 			{
 				static_cast<void>(position);
@@ -185,6 +209,7 @@ namespace	ft
 				this->_bst.node = this->_bst.root;
 				return (tmp.first);
 			};
+			/* Range insert : inserts elements that are in the given range */
 			template <class InputIterator>
 			void insert (InputIterator first, InputIterator last)
 			{
@@ -196,7 +221,10 @@ namespace	ft
 				}
 			};
 
+			//- Erase : removes elements -//
+			/* Position erase : erase an element at position */
 			void erase (iterator position) {this->_bst.erase(position);};
+			/* Key erase : erase an element whose key is k */
 			size_type erase (const key_type& k)
 			{
 				iterator	first = this->begin();
@@ -211,6 +239,7 @@ namespace	ft
 				}
 				return (0);
 			};
+			/* Range erase : erase elements in the given range */
 			void erase (iterator first, iterator last)
 			{
 				iterator	tmp;
@@ -231,20 +260,27 @@ namespace	ft
 				}
 			};
 
+			/* Exchanges the content of the container with the contents of x */
 			void swap (map& x) {this->_bst.swap(x._bst);};
 
+			/* Removes all elements from the container */
 			void clear()
 			{
 				while (this->_bst.root != this->_bst.null)
 					this->erase(this->_bst.root->data.first);
 			};
 
-			//Observers
+			//---- Observers ----//
+
+			/* Returns the key comparison object */
 			key_compare key_comp() const {return (this->_comp);};
 
+			/* Returns the value comparison object */
 			value_compare value_comp() const {return (value_compare(key_compare()));};
 
-			//Operations
+			//---- Operations ----//
+
+			/* Returns iterator to element whose key is k */
 			iterator find (const key_type& k)
 			{
 				iterator	first = this->begin();
@@ -268,6 +304,7 @@ namespace	ft
 				return (first);
 			};
 
+			/* Counts number of elements who have the k key (can only be one in map since each key is unique) */
 			size_type count (const key_type& k) const
 			{
 				const_iterator	first = this->begin();
@@ -280,6 +317,7 @@ namespace	ft
 				return (0);
 			};
 
+			/* Returns iterator to the first element whose key is equivalent or bigger than k (goes after k) */
 			iterator lower_bound (const key_type& k)
 			{
 				iterator	first = this->begin();
@@ -303,6 +341,7 @@ namespace	ft
 				return (first);
 			};
 
+			/* Returns iterator to the first element whose key is strictly bigger than k (goes after k) */
 			iterator upper_bound (const key_type& k)
 			{
 				iterator	first = this->begin();
@@ -326,6 +365,8 @@ namespace	ft
 				return (first);
 			};
 
+			/* Returns a range that includes elements which have a key equivalent to k, that range can only be
+			of 1 at most in map since each key is unique*/
 			pair<iterator,iterator> equal_range (const key_type& k)
 			{
 				return (ft::make_pair(this->lower_bound(k), this->upper_bound(k)));
@@ -336,13 +377,14 @@ namespace	ft
 				return (ft::make_pair(this->lower_bound(k), this->upper_bound(k)));
 			};
 
-			//Allocator
+			//---- Allocator ----//
 			allocator_type get_allocator() const {return (this->_alloc);};
 	};
 
-	//Non-member function overloads
+	//---- Non-member function overloads ----//
 
-	//Relational operators
+	//- Relational operators -//
+	/* Operator== : compares if each element is equivalent */
 	template< class Key, class T, class Compare, class Alloc >
 	bool operator==(const ft::map<Key,T,Compare,Alloc>& lhs,
 		const ft::map<Key,T,Compare,Alloc>& rhs)
@@ -367,6 +409,7 @@ namespace	ft
 		const ft::map<Key,T,Compare,Alloc>& rhs)
 	{return (!(lhs == rhs));};
 
+	/* Operator< : compares if each element of lhs is smaller than that of rhs */
 	template< class Key, class T, class Compare, class Alloc >
 	bool operator<(const ft::map<Key,T,Compare,Alloc>& lhs,
 		const ft::map<Key,T,Compare,Alloc>& rhs)

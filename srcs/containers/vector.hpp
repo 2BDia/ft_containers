@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 15:17:05 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/17 18:39:49 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/17 18:51:19 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ namespace	ft
 
 			//---- Constructors ----//
 
-			/* Default constructor : constructs an empty constructor */
+			/* Default constructor : constructs an empty container */
 			explicit vector(const allocator_type& alloc = allocator_type())
 			:
 				_data(NULL),
@@ -73,7 +73,7 @@ namespace	ft
 					this->_alloc.construct(this->_data + i, val);
 			};
 
-			/* Range constructor : constructs a container on the elements in the first - last range */
+			/* Range constructor : constructs a container with the elements in the first - last range */
 			template <class InputIterator>
 			vector(InputIterator first, InputIterator last,
 				const allocator_type& alloc = allocator_type(),
@@ -93,7 +93,7 @@ namespace	ft
 				}
 			};
 
-			/* Copy constructor : constructs a container that is a copy of another one (deep copy) */
+			/* Copy constructor : constructs a container that is a copy of x (deep copy) */
 			vector(const vector& x)
 			{
 				this->_data = this->_alloc.allocate(x._capacity);
@@ -210,11 +210,11 @@ namespace	ft
 
 			//---- Element access ----//
 
-			/* Access element at index */
+			/* Access element at index n */
 			reference operator[] (size_type n) {return *(this->_data + n);};
 			const_reference operator[] (size_type n) const {return *(this->_data + n);};
 
-			/* Access element at index (but checks if n is not out of range) */
+			/* Access element at index n (but checks if n is not out of range) */
 			reference at (size_type n)
 			{
 				if (n > this->_size)
