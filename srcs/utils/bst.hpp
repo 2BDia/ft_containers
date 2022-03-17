@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 10:45:07 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/17 19:10:21 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/17 20:52:27 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,8 +105,11 @@ namespace	ft
 			Compare			comp;
 
 			//---- Constructors ----//
+
+			/* Default constructor : sets up the tree by creating a null node, the tree is empty but that null node is what every leaf is going
+			to point to */
 			BST(const key_compare& comp = key_compare(),
-				const allocator_type& alloc = allocator_type()) //default constructor
+				const allocator_type& alloc = allocator_type())
 			:
 				alloc(alloc),
 				comp(comp)
@@ -118,8 +121,10 @@ namespace	ft
 				this->node = this->null;
 			};
 
+			/* Same as default constructor but we're passing key_compare as an argument, we're using the dummy to easily
+			differentiate between this one and default */
 			BST(const key_compare& comp,
-				const allocator_type& alloc, bool dummy) //dummy necessary because same as default except comp and alloc MUST be defined
+				const allocator_type& alloc, bool dummy)
 			:
 				alloc(alloc),
 				comp(comp)
@@ -132,11 +137,12 @@ namespace	ft
 				this->node = this->null;
 			};
 
-			//Destructor
+			//---- Destructor ----//
 			~BST() {};
 
 		private:
 
+			/* Allocates and constructs new nodes, the first condition is for the very first element */
 			void	new_node(const value_type& val, bool side)
 			{
 				if (this->node->side == -1)
@@ -166,7 +172,9 @@ namespace	ft
 
 		public:
 
-			//Capacity
+			//---- Capacity ----//
+
+			/* Return true if the container is empty, false if it isn't */
 			bool	empty() const
 			{
 				if (this->root->left == NULL && this->root->right == NULL)
@@ -174,6 +182,7 @@ namespace	ft
 				return (false);
 			};
 
+			/* Returns size of the container (number of elements) */
 			size_type	size() const
 			{
 				if (this->empty() == 1)
@@ -181,12 +190,12 @@ namespace	ft
 				return (this->root->size());
 			};
 
-			size_type	max_size() const
-			{
-				return (this->alloc.max_size());
-			};
+			/* Returns the maximum size of elements the map can hold */
+			size_type	max_size() const {return (this->alloc.max_size());};
 
-			//Modifiers
+			//---- Modifiers ----//
+
+			/* Recursively inserts new nodes in the tree */
 			ft::pair<iterator,bool>	insert(const value_type& val)
 			{
 				if (this->node->side == -1)
@@ -229,6 +238,7 @@ namespace	ft
 			//If one child : parent of node points to child, child points to parent and delete node
 			//If 2 children : get min in right subtree (last left), assign that min to node, parent of node points to min,
 			//min points to old left and right child, min points to old parent, old min parent points to null and delete node
+			/* Removes nodes from the tree at position */
 			void	erase(iterator position)
 			{
 				node_type	*old = position.base();
@@ -333,6 +343,7 @@ namespace	ft
 				this->null->parent = this->root;
 			}
 
+			/* Exchanges the content of the container with the contents of x */
 			void swap (BST& x)
 			{
 				if (&x == this)
@@ -348,9 +359,7 @@ namespace	ft
 				x.null = tmp_null;
 			}
 
-			void	delete_tree()
-			{
-				this->root->delete_tree(this->alloc);
-			};
+			/* Deletes every element in the tree, including the null node, called by the map destructor */
+			void	delete_tree() {this->root->delete_tree(this->alloc);};
 	};
 }
