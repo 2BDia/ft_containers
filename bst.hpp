@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 10:45:07 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/16 16:47:26 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/17 13:55:36 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -322,6 +322,21 @@ namespace	ft
 					this->alloc.deallocate(old, 1);
 				}
 				this->null->parent = this->root;
+			}
+
+			void swap (BST& x)
+			{
+				if (&x == this)
+					return ;
+				node_type	*tmp_root = this->root;
+				node_type	*tmp_node = this->node;
+				node_type	*tmp_null = this->null;
+				this->root = x.root;
+				this->node = x.node;
+				this->null = x.null;
+				x.root = tmp_root;
+				x.node = tmp_node;
+				x.null = tmp_null;
 			}
 
 			void	delete_tree()
