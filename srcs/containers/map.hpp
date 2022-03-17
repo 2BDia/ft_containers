@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 11:59:39 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/17 15:28:24 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/17 18:01:39 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,8 +100,6 @@ namespace	ft
 			map& operator= (const map& x)
 			{
 				this->clear();
-				// this->_alloc = x._alloc;
-				// this->_comp = x._alloc;
 				this->insert(x.begin(), x.end());
 				return (*this);
 			};
@@ -149,23 +147,11 @@ namespace	ft
 				return (const_iterator(tmp->right));
 			};
 
-			reverse_iterator rbegin()
-			{
-				return (reverse_iterator(this->end()));
-			};
-			const_reverse_iterator rbegin() const
-			{
-				return (const_reverse_iterator(this->end()));
-			};
+			reverse_iterator rbegin() {return (reverse_iterator(this->end()));};
+			const_reverse_iterator rbegin() const {return (const_reverse_iterator(this->end()));};
 
-			reverse_iterator rend()
-			{
-				return (reverse_iterator(this->begin()));
-			};
-			const_reverse_iterator rend() const
-			{
-				return (const_reverse_iterator(this->begin()));
-			};
+			reverse_iterator rend() {return (reverse_iterator(this->begin()));};
+			const_reverse_iterator rend() const {return (const_reverse_iterator(this->begin()));};
 
 			//Capacity
 			bool empty() const {return this->_bst.empty();};
@@ -210,10 +196,7 @@ namespace	ft
 				}
 			};
 
-			void erase (iterator position)
-			{
-				this->_bst.erase(position);
-			};
+			void erase (iterator position) {this->_bst.erase(position);};
 			size_type erase (const key_type& k)
 			{
 				iterator	first = this->begin();
@@ -257,15 +240,9 @@ namespace	ft
 			};
 
 			//Observers
-			key_compare key_comp() const
-			{
-				return (this->_comp);
-			};
+			key_compare key_comp() const {return (this->_comp);};
 
-			value_compare value_comp() const
-			{
-				return (value_compare(key_compare()));
-			};
+			value_compare value_comp() const {return (value_compare(key_compare()));};
 
 			//Operations
 			iterator find (const key_type& k)

@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 15:17:05 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/17 15:28:32 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/17 18:37:26 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,9 @@ namespace	ft
 
 		public:
 
-			//Constructors
+			//---- Constructors ----//
+
+			/* Default constructor : constructs an empty constructor */
 			explicit vector(const allocator_type& alloc = allocator_type())
 			:
 				_data(NULL),
@@ -58,6 +60,7 @@ namespace	ft
 				_alloc(alloc) 
 			{};
 
+			/* Fill constructor : constructs a container with n elements, each element is a copy of val */
 			explicit vector(size_type n, const value_type& val = value_type(),
 				const allocator_type& alloc = allocator_type())
 			:
@@ -70,10 +73,11 @@ namespace	ft
 					this->_alloc.construct(this->_data + i, val);
 			};
 
+			/* Range constructor : constructs a container on the elements in the first - last range */
 			template <class InputIterator>
 			vector(InputIterator first, InputIterator last,
 				const allocator_type& alloc = allocator_type(),
-				typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type* = nullptr) //not compatible with list iterators (no last - first possible)
+				typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type* = nullptr)
 			{
 				size_type	size = 0;
 				for (; last != first; last--)
@@ -89,6 +93,7 @@ namespace	ft
 				}
 			};
 
+			/* Copy constructor : constructs a container that is a copy of another one (deep copy) */
 			vector(const vector& x)
 			{
 				this->_data = this->_alloc.allocate(x._capacity);
@@ -99,14 +104,16 @@ namespace	ft
 					this->_alloc.construct(this->_data + i, x._data[i]);
 			};
 
-			//Detructor
+			//---- Destructor ----//
 			~vector(void)
 			{
 				this->clear();
 				this->_alloc.deallocate(this->_data, this->_capacity);
 			};
 
-			//Operator=
+			//---- Operator= ----//
+
+			/* Copies all the elements of x into the container */
 			vector& operator= (const vector& x)
 			{
 				for (size_type i = 0; i < this->_size; i++)
@@ -114,31 +121,41 @@ namespace	ft
 				this->_alloc.deallocate(this->_data, this->_capacity);
 				this->_size = x._size;
 				this->_capacity = x._capacity;
-				this->_alloc = x._alloc;
 				this->_data = this->_alloc.allocate(this->_capacity);
 				for (size_type i = 0; i < this->_size; i++)
 					this->_alloc.construct(this->_data + i, x._data[i]);
 				return (*this);
 			};
 
-			//Iterators functions
+			//---- Iterators ----//
+
+			/* Returns iterator to the beginning */
 			iterator begin() {return iterator(this->_data);};
 			const_iterator begin() const {return const_iterator(this->_data);};
 
+			/* Returns iterator to the end */
 			iterator end() {return iterator(this->_data + this->_size);};
 			const_iterator end() const {return const_iterator(this->_data + this->_size);};
 
+			/* Returns iterator to the reverse beginning */
 			reverse_iterator rbegin() {return reverse_iterator(iterator(this->_data + this->_size));};
 			const_reverse_iterator rbegin() const {return const_reverse_iterator(const_iterator(this->_data + this->_size));};
 
+			/* Returns iterator to the reverse end */
 			reverse_iterator rend() {return reverse_iterator(iterator(this->_data));};
 			const_reverse_iterator rend() const {return const_reverse_iterator(const_iterator(this->_data));};
 
-			//Capacity functions
+			//---- Capacity ----//
+
+			/* Returns size of the container (number of elements) */
 			size_type size() const {return this->_size;};
 
+			/* Returns the maximum size of elements the vector can hold */
 			size_type max_size() const {return this->_alloc.max_size();};
 
+			/* Resizes the container so that it contains n elements, if n < size : the container is reduced
+			and the extra elements are destroyed, if n > size and < capacity : new elements are inserted,
+			if n > size and capacity : a reallocation happens and new elements are inserted */
 			void resize(size_type n, value_type val = value_type())
 			{
 				if (n < this->_size)
@@ -163,10 +180,13 @@ namespace	ft
 				}
 			};
 
+			/* Returns capacity of the container (number of elements it can hold before a reallocation needs to happen) */
 			size_type capacity() const {return this->_capacity;};
 
+			/* Return false if the container is empty, 1 if it isn't */
 			bool empty() const {return (this->_size == 0) ? true : false;};
 
+			/* Reallocates a larger capacity if n > capacity, else nothing happens */
 			void reserve (size_type n)
 			{
 				if (n > this->max_size())
@@ -188,10 +208,13 @@ namespace	ft
 				}
 			};
 
-			//Element access
+			//---- Element access ----//
+
+			/* Access element at index */
 			reference operator[] (size_type n) {return *(this->_data + n);};
 			const_reference operator[] (size_type n) const {return *(this->_data + n);};
 
+			/* Access element at index (but checks if n is not out of range) */
 			reference at (size_type n)
 			{
 				if (n > this->_size)
@@ -205,13 +228,18 @@ namespace	ft
 				return (this->_data[n]);
 			};
 
+			/* Access first element */
 			reference front() {return this->_data[0];};
 			const_reference front() const {return this->_data[0];};
 
+			/* Access last element */
 			reference back() {return this->_data[this->_size - 1];};
 			const_reference back() const {return this->_data[this->_size - 1];};
 
-			//Modifiers
+			//---- Modifiers ----//
+
+			//- Assign : assigns new elements to the container, replacing its old ones -//
+			/* Range assign : assigns the elements present in the given range */
 			template <class InputIterator>
 			void assign (InputIterator first, InputIterator last,
 				typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type* = nullptr)
@@ -228,6 +256,7 @@ namespace	ft
 				}
 				this->_size = size;
 			};
+			/* Fill assign : assigns n elements of value val */
 			void assign (size_type n, const value_type& val)
 			{
 				this->reserve(n);
@@ -237,6 +266,7 @@ namespace	ft
 				this->_size = n;
 			};
 
+			/* Add an element to the end */
 			void push_back (const value_type& val)
 			{
 				if (this->_capacity == 0)
@@ -247,12 +277,15 @@ namespace	ft
 				this->_size++;
 			};
 
+			/* Delete the last element */
 			void pop_back()
 			{
 				this->_alloc.destroy(this->_data + this->_size);
 				this->_size--;
 			};
 
+			//- Insert : inserts new elements before the element at the specified position -//
+			/* Single element insert : inserts a new element at position */
 			iterator insert (iterator position, const value_type& val)
 			{
 				size_type	i = 0;
@@ -271,6 +304,7 @@ namespace	ft
 				this->_size++;
 				return (iterator(this->_data + i));
 			};
+			/* Fill insert : inserts n new elements starting from position */
 			void insert (iterator position, size_type n, const value_type& val)
 			{
 				size_type	i = 0;
@@ -286,6 +320,7 @@ namespace	ft
 					this->_alloc.construct(this->_data + (i + j), val);
 				this->_size += n;
 			};
+			/* Range insert : inserts elements that are in the given range starting from position */
 			template <class InputIterator>
 			void insert (iterator position, InputIterator first, InputIterator last,
 				typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type* = nullptr)
@@ -306,6 +341,8 @@ namespace	ft
 				this->_size += len;
 			};
 
+			//- Erase : removes one or more elements from the container -//
+			/* Single element erase : removes the element at position */
 			iterator erase (iterator position)
 			{
 				size_type	i = 0;
@@ -317,6 +354,7 @@ namespace	ft
 				this->_size--;
 				return (iterator(this->_data + i));
 			};
+			/* Range erase : removes elements that are in the given range */
 			iterator erase (iterator first, iterator last)
 			{
 				size_type	i = 0, len = 0;
@@ -332,6 +370,7 @@ namespace	ft
 				return (iterator(this->_data + i));
 			};
 
+			/* Exchanges the content of the container with the contents of x */
 			void swap (vector& x)
 			{
 				pointer			data = x._data;
@@ -350,6 +389,7 @@ namespace	ft
 				this->_alloc = alloc;
 			};
 
+			/* Removes all elements from the container */
 			void clear()
 			{
 				for(size_type i = 0; i < this->_size; i++)
@@ -357,11 +397,14 @@ namespace	ft
 				this->_size = 0;
 			};
 
-			//Allocator
+			//---- Allocator ----//
 			allocator_type get_allocator() const {return this->_alloc;};
 	};
 
-	//Non-member function overloads
+	//---- Non-member function overloads ----//
+
+	//- Relational operators -//
+	/* Operator== : first compares the 2 containers' sizes, then compares each element */
 	template <class T, class Alloc>
 	bool operator== (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs)
 	{
@@ -380,6 +423,7 @@ namespace	ft
 	template <class T, class Alloc>
 	bool operator!= (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs) {return (!(lhs == rhs));};
 
+	/* Operator< : first compares each element, then compares the 2 containers' sizes */
 	template <class T, class Alloc>
 	bool operator<  (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs)
 	{
@@ -404,6 +448,7 @@ namespace	ft
 	template <class T, class Alloc>
 	bool operator>= (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs) {return !(lhs < rhs);};
 
+	/* Exchanges the content of the container with the contents of x */
 	template <class T, class Alloc>
 	void swap (vector<T,Alloc>& x, vector<T,Alloc>& y) {x.swap(y);};
 }
