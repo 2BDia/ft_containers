@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 11:59:39 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/17 13:56:30 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/17 15:28:24 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@
 #include <memory>
 #include <stdexcept>
 
-#include "iterator.hpp"
-#include "reverse_iterator.hpp"
-#include "utils.hpp"
-#include "bst.hpp"
-#include "map_iterator.hpp"
-#include "reverse_map_iterator.hpp"
+#include "../utils/iterator.hpp"
+#include "../utils/reverse_iterator.hpp"
+#include "../utils/utils.hpp"
+#include "../utils/bst.hpp"
+#include "../utils/map_iterator.hpp"
+#include "../utils/reverse_map_iterator.hpp"
 
 namespace	ft
 {
