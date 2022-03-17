@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 11:59:39 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/16 17:45:31 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/17 13:44:51 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,44 +151,20 @@ namespace	ft
 
 			reverse_iterator rbegin()
 			{
-				Node<Key, T>	*tmp = this->_bst.root;
-
-				if (tmp == tmp->null)
-					return (reverse_iterator(tmp));
-				while (tmp->right != tmp->null && !(tmp->left == tmp->null && tmp->right == tmp->null))
-					tmp = tmp->right;
-				return (reverse_iterator(tmp));
+				return (reverse_iterator(this->end()));
 			};
 			const_reverse_iterator rbegin() const
 			{
-				Node<Key, T>	*tmp = this->_bst.root;
-
-				if (tmp == tmp->null)
-					return (const_reverse_iterator(tmp));
-				while (tmp->right != tmp->null && !(tmp->left == tmp->null && tmp->right == tmp->null))
-					tmp = tmp->right;
-				return (const_reverse_iterator(tmp));
+				return (const_reverse_iterator(this->end()));
 			};
 
 			reverse_iterator rend()
 			{
-				Node<Key, T>	*tmp = this->_bst.root;
-
-				if (tmp == tmp->null)
-					return (reverse_iterator(tmp));
-				while (tmp->left != tmp->null && !(tmp->left == tmp->null && tmp->right == tmp->null))
-					tmp = tmp->left;
-				return (reverse_iterator(tmp->left));
+				return (reverse_iterator(this->begin()));
 			};
 			const_reverse_iterator rend() const
 			{
-				Node<Key, T>	*tmp = this->_bst.root;
-
-				if (tmp == tmp->null)
-					return (const_reverse_iterator(tmp));
-				while (tmp->left != tmp->null && !(tmp->left == tmp->null && tmp->right == tmp->null))
-					tmp = tmp->left;
-				return (const_reverse_iterator(tmp->left));
+				return (const_reverse_iterator(this->begin()));
 			};
 
 			//Capacity
@@ -426,8 +402,6 @@ namespace	ft
 		typename	ft::map<Key, T>::const_iterator	first = lhs.begin(), firstEnd = lhs.end(), 
 			second = rhs.begin(), secondEnd = rhs.end();
 
-		// if (lhs.size() < rhs.size())
-		// 	return (true);
 		while (first != firstEnd && second != secondEnd)
 		{
 			if (*first < *second)
