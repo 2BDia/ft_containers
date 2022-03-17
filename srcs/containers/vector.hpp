@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 15:17:05 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/17 18:37:26 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/17 18:39:49 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ namespace	ft
 	{
 		public:
 
-			//Member types
+			//---- Member types ----//
 			typedef T 											value_type;
 			typedef Alloc 										allocator_type;
 			typedef typename allocator_type::reference 			reference;
@@ -183,7 +183,7 @@ namespace	ft
 			/* Returns capacity of the container (number of elements it can hold before a reallocation needs to happen) */
 			size_type capacity() const {return this->_capacity;};
 
-			/* Return false if the container is empty, 1 if it isn't */
+			/* Return true if the container is empty, false if it isn't */
 			bool empty() const {return (this->_size == 0) ? true : false;};
 
 			/* Reallocates a larger capacity if n > capacity, else nothing happens */
