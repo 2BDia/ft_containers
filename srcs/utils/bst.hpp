@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 10:45:07 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/17 13:55:36 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/17 19:10:21 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ namespace	ft
 	{
 		public:
 
+			//---- Member types ----//
 			typedef size_t	size_type;
 
 			Node					*parent;
@@ -35,17 +36,23 @@ namespace	ft
 			int						side;
 			ft::pair<const Key, T>	data;
 
-			//Constructors
+			//---- Constructors ----//
+
+			/* Default constructor */
 			Node() : parent(NULL), left(NULL), right(NULL), side(0) {};
-			Node(Node *parent, int side) : parent(parent), left(NULL), right(NULL), side(side) {};
+
+			/* Constructs a normal node */
 			Node(Node *parent, int side, const ft::pair<Key, T> val, Node *null)
 			: parent(parent), left(null), right(null), null(null), side(side), data(val) {};
+
+			/* Constructs null node */
 			Node(int side, const ft::pair<Key, T> val)
 			: parent(NULL), left(NULL), right(NULL), side(side), data(val) {};
 
-			//Destructor
+			//---- Destructor ----//
 			~Node() {};
 
+			/* Deletes every element in the tree, including the null node, called by the map destructor */
 			void	delete_tree(std::allocator<Node<Key, T> > alloc)
 			{
 				if (this == this->null)
@@ -66,6 +73,7 @@ namespace	ft
 				alloc.deallocate(this, 1);
 			}
 
+			/* Recursively calculate tree's size */
 			size_type	size() const
 			{
 				if (this == this->null || (this->left == NULL && this->right == NULL))
@@ -80,6 +88,7 @@ namespace	ft
 	{
 		public:
 
+			//---- Member types ----//
 			typedef Key												key_type;
 			typedef T												mapped_type;
 			typedef Compare											key_compare;
@@ -95,7 +104,7 @@ namespace	ft
 			allocator_type	alloc;
 			Compare			comp;
 
-			//Constructor
+			//---- Constructors ----//
 			BST(const key_compare& comp = key_compare(),
 				const allocator_type& alloc = allocator_type()) //default constructor
 			:
