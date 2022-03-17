@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 09:52:37 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/16 13:31:09 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/17 21:43:44 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 
 namespace	ft
 {
+	//---- Enable_if ----//
+	/* enable_if is used when we want to differenciate between different function overloads,
+	the is_integral struct will return false if the type isn't in the list, and enable_if will return false */
+
 	template<bool Cond, class T = void>
 	struct enable_if {};
 
@@ -52,25 +56,31 @@ namespace	ft
 	{
 		public:
 
-			//Member types
+			//---- Member types ----//
 			typedef T1	first_type;
 			typedef	T2	second_type;
 
-			//Member variables
+			//---- Member variables ----//
 			first_type	first;
 			second_type	second;
 
-			//Constructors
+			//---- Constructors ----//
+
+			/* Default constructor */
 			pair() : first(first_type()), second(second_type()) {};
+
+			/* Copy constructor */
 			template<class U, class V>
 			pair (const pair<U,V>& pr)
 			:
 				first(pr.first),
 				second(pr.second)
 			{};
+
+			/* Initialization constructor */
 			pair (const first_type& a, const second_type& b) : first(a), second(b) {};
 
-			//Operator=
+			//---- Operator= ----//
 			pair& operator= (const pair& pr)
 			{
 				this->first = pr.first;
@@ -78,8 +88,9 @@ namespace	ft
 				return (*this);
 			};
 	};
-	//Non member functions
-	//Relational operators
+	//---- Non-member function overloads ----//
+
+	//- Relational operators -//
 	template <class T1, class T2>
 	bool operator== (const ft::pair<T1,T2>& lhs, const ft::pair<T1,T2>& rhs)
 	{return (lhs.first == rhs.first && lhs.second == rhs.second);};
@@ -104,7 +115,8 @@ namespace	ft
 	bool operator>= (const ft::pair<T1,T2>& lhs, const ft::pair<T1,T2>& rhs)
 	{return !(lhs < rhs);};
 
-	//Binary function
+	//---- Binary function ----//
+	/* Base class for standard binary function objects (http://www.cplusplus.com/reference/functional/binary_function/?kw=binary_function) */
 	template <class Arg1, class Arg2, class Result>
 	struct binary_function
 	{
@@ -113,7 +125,7 @@ namespace	ft
 		typedef Result result_type;
 	};
 
-	//Less
+	//---- Less ----//
 	template <class T>
 	struct less : binary_function <T, T, bool>
 	{
