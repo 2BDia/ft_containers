@@ -93,10 +93,5 @@ namespace	ft
 			bool	operator!=(reverse_map_iterator const rhs) const {return (this->_it.base() != rhs._it.base());};
 
 			iterator_type base() const {return this->_it;};
-			// {
-			// 	iterator_type	tmp = this->_it;
-			// 	--tmp;
-			// 	return (tmp);
-			// };
 	};
 }
