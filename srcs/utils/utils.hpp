@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 09:52:37 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/18 14:49:33 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/18 16:13:19 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -202,5 +202,25 @@ namespace	ft
 			++first2;
 		}
 		return (true);
+	}
+
+	//---- Lexicographical compare ----//
+	/* Returns true if the range (first1,last1) compares lexicographically less than the range (first2,last2)
+	(lexicographically means comparing sequentially the elements that have the same position in both ranges
+	against each other until one element is not equivalent to the other) */
+	template <class InputIterator1, class InputIterator2>
+	bool lexicographical_compare (InputIterator1 first1, InputIterator1 last1,
+		InputIterator2 first2, InputIterator2 last2)
+	{
+		while (first1 != last1)
+		{
+			if (first2 == last2 || *first2 < *first1)
+				return false;
+			else if (*first1<*first2)
+				return true;
+			++first1;
+			++first2;
+		}
+		return (first2 != last2);
 	}
 }
