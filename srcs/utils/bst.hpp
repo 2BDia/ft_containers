@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 10:45:07 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/17 20:52:27 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/18 15:14:09 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,14 +89,15 @@ namespace	ft
 		public:
 
 			//---- Member types ----//
-			typedef Key												key_type;
-			typedef T												mapped_type;
-			typedef Compare											key_compare;
-			typedef ft::pair<const key_type, mapped_type>			value_type;
-			typedef Alloc											allocator_type;
-			typedef Node<Key, T>									node_type;
-			typedef size_t											size_type;
-			typedef typename ft::map_iterator<pair<const Key, T> >	iterator;
+			typedef Key															key_type;
+			typedef T															mapped_type;
+			typedef Compare														key_compare;
+			typedef ft::pair<const key_type, mapped_type>						value_type;
+			typedef Alloc														allocator_type;
+			typedef Node<Key, T>												node_type;
+			typedef size_t														size_type;
+			typedef typename ft::map_iterator<pair<const Key, T> >				iterator;
+			typedef typename ft::map_iterator<const ft::pair<const Key, T> >	const_iterator;
 
 			node_type		*node;
 			node_type		*root;
@@ -195,7 +196,7 @@ namespace	ft
 
 			//---- Modifiers ----//
 
-			/* Recursively inserts new nodes in the tree */
+			/* Recursively inserts new nodes in the tree */			
 			ft::pair<iterator,bool>	insert(const value_type& val)
 			{
 				if (this->node->side == -1)
@@ -358,6 +359,34 @@ namespace	ft
 				x.node = tmp_node;
 				x.null = tmp_null;
 			}
+
+			/* Returns iterator to element whose key is k */
+			iterator find (const key_type& k)
+			{
+				node_type	*tmp = this->root;
+
+				while (tmp != this->null && tmp->data.first != k)
+				{
+					if (this->comp(k, tmp->data.first))
+						tmp = tmp->left;
+					else
+						tmp = tmp->right;
+				}
+				return (iterator(tmp));
+			};
+			const_iterator find (const key_type& k) const
+			{
+				node_type	*tmp = this->root;
+
+				while (tmp != this->null && tmp->data.first != k)
+				{
+					if (this->comp(k, tmp->data.first))
+						tmp = tmp->left;
+					else
+						tmp = tmp->right;
+				}
+				return (const_iterator(tmp));
+			};
 
 			/* Deletes every element in the tree, including the null node, called by the map destructor */
 			void	delete_tree() {this->root->delete_tree(this->alloc);};

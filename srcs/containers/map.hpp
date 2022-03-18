@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 11:59:39 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/17 19:03:57 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/18 15:19:52 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -281,28 +281,8 @@ namespace	ft
 			//---- Operations ----//
 
 			/* Returns iterator to element whose key is k */
-			iterator find (const key_type& k)
-			{
-				iterator	first = this->begin();
-				iterator	last = this->end();
-				for (; first != last; first++)
-				{
-					if ((*first.base()).data.first == k)
-						break ;
-				}
-				return (first);
-			};
-			const_iterator find (const key_type& k) const
-			{
-				const_iterator	first = this->begin();
-				const_iterator	last = this->end();
-				for (; first != last; first++)
-				{
-					if ((*first.base()).data.first == k)
-						break ;
-				}
-				return (first);
-			};
+			iterator find (const key_type& k) {return (this->_bst.find(k));};
+			const_iterator find (const key_type& k) const {return (this->_bst.find(k));};
 
 			/* Counts number of elements who have the k key (can only be one in map since each key is unique) */
 			size_type count (const key_type& k) const

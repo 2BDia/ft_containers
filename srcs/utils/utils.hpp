@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 09:52:37 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/18 09:53:20 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/18 14:49:33 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,4 +187,20 @@ namespace	ft
 		typedef const T&						reference;
 		typedef ft::random_access_iterator_tag	iterator_category;
 	};
+
+	//---- Equal ----//
+	/* Compares the elements in the range [first1,last1) with those in the range beginning at first2,
+	and returns true if all of the elements in both ranges match */
+	template <class InputIterator1, class InputIterator2>
+	bool equal (InputIterator1 first1, InputIterator1 last1, InputIterator2 first2)
+	{
+		while (first1 != last1)
+		{
+			if (!(*first1 == *first2))
+				return (false);
+			++first1;
+			++first2;
+		}
+		return (true);
+	}
 }
