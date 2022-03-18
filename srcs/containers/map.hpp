@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 11:59:39 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/18 15:19:52 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/18 16:11:03 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ namespace	ft
 			typedef typename ft::map_iterator<ft::pair<const Key, T> >::difference_type	difference_type;
 			typedef size_t																size_type;
 
-		private:
+		public:
 
 			allocator_type				_alloc;
 			key_compare					_comp;
@@ -369,19 +369,9 @@ namespace	ft
 	bool operator==(const ft::map<Key,T,Compare,Alloc>& lhs,
 		const ft::map<Key,T,Compare,Alloc>& rhs)
 	{
-		typename	ft::map<Key, T>::const_iterator	first = lhs.begin(), firstEnd = lhs.end(), 
-			second = rhs.begin(), secondEnd = rhs.end();
-
-		while (first != firstEnd && second != secondEnd)
-		{
-			if (*first != *second)
-				return (false);
-			first++;
-			second++;
-		}
-		if (*first != *second)
-			return (false);
-		return (true);
+		if (lhs.size() == rhs.size() && ft::equal(lhs.begin(), lhs.end(), rhs.begin()))
+			return (true);
+		return (false);
 	};
 
 	template< class Key, class T, class Compare, class Alloc >
@@ -394,18 +384,8 @@ namespace	ft
 	bool operator<(const ft::map<Key,T,Compare,Alloc>& lhs,
 		const ft::map<Key,T,Compare,Alloc>& rhs)
 	{
-		typename	ft::map<Key, T>::const_iterator	first = lhs.begin(), firstEnd = lhs.end(), 
-			second = rhs.begin(), secondEnd = rhs.end();
-
-		while (first != firstEnd && second != secondEnd)
-		{
-			if (*first < *second)
-				return (true);
-			else if (*first < *second)
-				return (false);
-			first++;
-			second++;
-		}
+		if (ft::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end()))
+			return (true);
 		return (false);
 	};
 

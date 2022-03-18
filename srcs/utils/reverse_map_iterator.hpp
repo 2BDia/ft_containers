@@ -34,31 +34,44 @@ namespace	ft
 
 		public:
 
-			//Constructors
+			//---- Constructors ----//
+
+			/* Default constructor */
 			reverse_map_iterator() : _it(NULL) {};
+
+			/* Constructor from original iterator it */
 			explicit reverse_map_iterator (iterator_type it) : _it(it) {};
+
+			/* Constructor from reverse iterator */
 			template <class Iter>
 			reverse_map_iterator (const reverse_map_iterator<Iter>& rev_it) : _it(rev_it.base()) {};
 
-			//Destructor
+			//---- Destructor ----//
 			~reverse_map_iterator() {};
 
-			//Operator=
+			//---- Operator= ----//
 			reverse_map_iterator &operator=(const reverse_map_iterator& it)
 			{
 				this->_it = it.base();
 				return (*this);
 			};
 
-			//Member functions
+			//---- Member functions ----//
+
+			/* Returns a copy of the base iterator */
+			iterator_type base() const {return this->_it;};
+
+			/* Returns a reference to the element the pointer points to */
 			value_type	&operator*() const
 			{
 				iterator_type	tmp = this->_it;
 				return (*(--tmp));
 			};
 
+			/* Returns the lvalue of the element pointed to by the iterator */
 			value_type* operator->() const {return &(operator*());};
 
+			/* Preincrement the iterator to point to the previous element in memory */
 			reverse_map_iterator	&operator++()
 			{
 				if (this->_it == this->_it.getLeftMost(this->_it.base()))
@@ -67,6 +80,7 @@ namespace	ft
 					this->_it--;
 				return (*this);
 			};
+			/* Postincrement the iterator to point to the previous element in memory */
 			reverse_map_iterator 	operator++(int)
 			{
 				reverse_map_iterator	tmp = *this;
@@ -74,6 +88,7 @@ namespace	ft
 				return (tmp);
 			};
 
+			/* Preincrement the iterator to point to the next element in memory */
 			reverse_map_iterator	&operator--()
 			{
 				if (this->_it == this->_it.base()->null)
@@ -82,6 +97,7 @@ namespace	ft
 					this->_it++;
 				return (*this);
 			};
+			/* Postincrement the iterator to point to the next element in memory */
 			reverse_map_iterator 	operator--(int)
 			{
 				reverse_map_iterator	tmp = *this;
@@ -89,9 +105,8 @@ namespace	ft
 				return (tmp);
 			};
 
+			//---- Relational operators ----//
 			bool	operator==(reverse_map_iterator const rhs) const {return (this->_it.base() == rhs._it.base());};
 			bool	operator!=(reverse_map_iterator const rhs) const {return (this->_it.base() != rhs._it.base());};
-
-			iterator_type base() const {return this->_it;};
 	};
 }
