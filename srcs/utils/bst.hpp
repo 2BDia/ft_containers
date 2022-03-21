@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 10:45:07 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/18 15:28:39 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/21 13:35:29 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,15 @@ namespace	ft
 			//---- Destructor ----//
 			~Node() {};
 
-			/* Deletes every element in the tree, including the null node, called by the map destructor */
+			/* Deletes every element in the tree, including the null node. Called by the map destructor */
 			void	delete_tree(std::allocator<Node<Key, T> > alloc)
 			{
 				if (this == this->null)
+				{
+					alloc.destroy(null);
+					alloc.deallocate(null, 1);
 					return ;
+				}
 				if (!(this->left == this->null && this->right == this->null))
 				{
 					if (this->left != this->null)
