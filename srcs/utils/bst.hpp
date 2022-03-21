@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 10:45:07 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/21 13:35:29 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/21 16:25:20 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,7 +148,7 @@ namespace	ft
 		private:
 
 			/* Allocates and constructs new nodes, the first condition is for the very first element */
-			void	new_node(const value_type& val, bool side)
+			void	new_node(const value_type& val, bool side, node_type *parent)
 			{
 				if (this->node->side == -1)
 				{
@@ -164,13 +164,13 @@ namespace	ft
 					tmp = this->alloc.allocate(1);
 					if (side == L)
 					{
-						this->alloc.construct(tmp, node_type(this->node, L, val, this->null));
-						this->node->left = tmp;
+						this->alloc.construct(tmp, node_type(parent, L, val, this->null));
+						parent->left = tmp;
 					}
 					else if (side == R)
 					{
-						this->alloc.construct(tmp, node_type(this->node, R, val, this->null));
-						this->node->right = tmp;
+						this->alloc.construct(tmp, node_type(parent, R, val, this->null));
+						parent->right = tmp;
 					}
 				}
 			};
@@ -200,42 +200,77 @@ namespace	ft
 
 			//---- Modifiers ----//
 
-			/* Recursively inserts new nodes in the tree */			
+			/* Iteratively inserts new nodes in the tree */		
 			ft::pair<iterator,bool>	insert(const value_type& val)
 			{
-				if (this->node->side == -1)
+				if (this->root->side == -1)
 				{
-					this->new_node(val, 0);
-					return (ft::pair<iterator, bool>(iterator(this->node), true));
+					this->new_node(val, 0, NULL);
+					return (ft::pair<iterator, bool>(iterator(this->root), true));
 				}
-				else if (this->comp(val.first, this->node->data.first))
+				node_type	*tmp = this->node;
+				while (1)
 				{
-					if (this->node->left != this->null)
+					if (this->comp(val.first, tmp->data.first))
 					{
-						this->node = this->node->left;
-						return (this->insert(val));
+						if (tmp->left != this->null)
+						{
+							tmp = tmp->left;
+							continue ;
+						}
+						this->new_node(val, L, tmp);
+						return (ft::pair<iterator, bool>(iterator(tmp->left), true));
 					}
-					else
+					else if (this->comp(tmp->data.first, val.first))
 					{
-						this->new_node(val, L);
-						return (ft::pair<iterator, bool>(iterator(this->node->left), true));
+						if (tmp->right != this->null)
+						{
+							tmp = tmp->right;
+							continue ;
+						}
+						this->new_node(val, R, tmp);
+						return (ft::pair<iterator, bool>(iterator(tmp->right), true));
 					}
+					return (ft::pair<iterator, bool>(iterator(tmp), false));
 				}
-				else if (this->comp(this->node->data.first, val.first))
-				{
-					if (this->node->right != this->null)
-					{
-						this->node = this->node->right;
-						return (this->insert(val));
-					}
-					else
-					{
-						this->new_node(val, R);
-						return (ft::pair<iterator, bool>(iterator(this->node->right), true));
-					}
-				}
-				return (ft::pair<iterator, bool>(iterator(this->node), false));
-			};
+			}
+
+			/* Recursively inserts new nodes in the tree */	
+			// ft::pair<iterator,bool>	insert(const value_type& val)
+			// {
+			// 	if (this->node->side == -1)
+			// 	{
+			// 		this->new_node(val, 0);
+			// 		return (ft::pair<iterator, bool>(iterator(this->node), true));
+			// 	}
+			// 	else if (this->comp(val.first, this->node->data.first))
+			// 	{
+			// 		if (this->node->left != this->null)
+			// 		{
+			// 			this->node = this->node->left;
+			// 			return (this->insert(val));
+			// 		}
+			// 		else
+			// 		{
+			// 			this->new_node(val, L);
+			// 			return (ft::pair<iterator, bool>(iterator(this->node->left), true));
+			// 		}
+			// 	}
+			// 	else if (this->comp(this->node->data.first, val.first))
+			// 	{
+			// 		if (this->node->right != this->null)
+			// 		{
+			// 			this->node = this->node->right;
+			// 			return (this->insert(val));
+			// 		}
+			// 		else
+			// 		{
+			// 			this->new_node(val, R);
+			// 			return (ft::pair<iterator, bool>(iterator(this->node->right), true));
+			// 		}
+			// 	}
+			// 	return (ft::pair<iterator, bool>(iterator(this->node), false));
+			// };
 
 			//https://www.youtube.com/watch?v=DkOswl0k7s4
 			//https://www.geeksforgeeks.org/binary-search-tree-set-2-delete/#:~:text=1)%20Node%20to%20be%20deleted,Simply%20remove%20from%20the%20tree.&text=3)%20Node%20to%20be%20deleted,predecessor%20can%20also%20be%20used.
