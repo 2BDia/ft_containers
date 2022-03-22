@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 11:59:39 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/21 16:25:25 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/21 17:56:34 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ namespace	ft
 			typedef typename ft::map_iterator<ft::pair<const Key, T> >::difference_type	difference_type;
 			typedef size_t																size_type;
 
-		private:
+		public:
 
 			allocator_type				_alloc;
 			key_compare					_comp;
@@ -101,7 +101,11 @@ namespace	ft
 			};
 
 			//---- Destructor ----//
-			~map() {this->_bst.delete_tree();};
+			~map()
+			{
+				this->clear();
+				this->_bst.delete_null();
+			};
 
 			//---- Operator= ----//
 
@@ -198,7 +202,6 @@ namespace	ft
 			pair<iterator,bool> insert (const value_type& val)
 			{
 				pair<iterator, bool>	tmp = this->_bst.insert(val);
-				this->_bst.node = this->_bst.root;
 				return (tmp);
 			};
 			/* Hint insert : inserts a new element */
@@ -206,7 +209,6 @@ namespace	ft
 			{
 				static_cast<void>(position);
 				pair<iterator, bool>	tmp = this->_bst.insert(val);
-				this->_bst.node = this->_bst.root;
 				return (tmp.first);
 			};
 			/* Range insert : inserts elements that are in the given range */
@@ -215,8 +217,8 @@ namespace	ft
 			{
 				while (first != last)
 				{
+					std::cout << first->first << std::endl;
 					this->_bst.insert(*first);
-					this->_bst.node = this->_bst.root;
 					first++;
 				}
 			};

@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 10:45:07 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/03/22 15:55:09 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/03/21 17:57:53 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,21 +34,20 @@ namespace	ft
 			Node					*right;
 			Node					*null;
 			int						side;
-			int						height;
 			ft::pair<const Key, T>	data;
 
 			//---- Constructors ----//
 
 			/* Default constructor */
-			Node() : parent(NULL), left(NULL), right(NULL), side(0), height(0) {};
+			Node() : parent(NULL), left(NULL), right(NULL), side(0) {};
 
 			/* Constructs a normal node */
 			Node(Node *parent, int side, const ft::pair<Key, T> val, Node *null)
-			: parent(parent), left(null), right(null), null(null), side(side), height(0), data(val) {};
+			: parent(parent), left(null), right(null), null(null), side(side), data(val) {};
 
 			/* Constructs null node */
 			Node(int side, const ft::pair<Key, T> val)
-			: parent(NULL), left(NULL), right(NULL), side(side), height(0), data(val) {};
+			: parent(NULL), left(NULL), right(NULL), side(side), data(val) {};
 
 			//---- Destructor ----//
 			~Node() {};
@@ -198,24 +197,6 @@ namespace	ft
 
 			//---- Modifiers ----//
 
-			int	maxHeight(node_type *left, node_type *right)
-			{
-				if (left->height > right->height)
-					return (left->height);
-				else
-					return (right->height);
-			}
-
-			void recompHeight(node_type *x)
-			{
-				while (x != this->root->parent)
-				{
-					x->height = maxHeight(x->left, x->right) + 1; // Compute height for x    
-					x = x->parent; // Go to the parent node
-					std::cout << "ok" << std::endl;
-				}
-			}
-
 			/* Iteratively inserts new nodes in the tree */		
 			ft::pair<iterator,bool>	insert(const value_type& val)
 			{
@@ -235,7 +216,6 @@ namespace	ft
 							continue ;
 						}
 						this->new_node(val, L, tmp);
-						recompHeight(tmp);
 						return (ft::pair<iterator, bool>(iterator(tmp->left), true));
 					}
 					else if (this->comp(tmp->data.first, val.first))
@@ -246,7 +226,6 @@ namespace	ft
 							continue ;
 						}
 						this->new_node(val, R, tmp);
-						recompHeight(tmp);
 						return (ft::pair<iterator, bool>(iterator(tmp->right), true));
 					}
 					return (ft::pair<iterator, bool>(iterator(tmp), false));
@@ -318,7 +297,6 @@ namespace	ft
 					}
 					this->alloc.destroy(old);
 					this->alloc.deallocate(old, 1);
-					recompHeight(parent);
 				}
 				else if (old->left != this->null && old->right == this->null) //if node has a left child
 				{
